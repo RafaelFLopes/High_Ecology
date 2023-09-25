@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/icon.png"> <!--favicon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- font externa-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="crossorigin="anonymous" referrerpolicy="no-referrer" /> <!--imagens para o footer-->
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+    <title>Início - High Ecology</title>
+</head>
+<body>
+
+    <!--COMEÇO DA NAVBAR-->
+    <nav class="nav">
+        <a href="index.html" class="logo"><img src="img/logo.png" alt="logo"></a>
+        <div class="menu-btn">
+            <i class="fa fa-bars fa-2x" onclick="menuShow()"></i>
+        </div>
+        <ul>
+            <li><a href="#" class="active"> Matricule-se</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Especializações</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+    <!--FINAL DA NAVBAR-->
+
+    <!--COMEÇO DO CARROSSEL-->
+    <section class="slider">
+        <div class="slider-content">
+            <input type="radio" name="btn-radio" id="radio1">
+            <input type="radio" name="btn-radio" id="radio2">
+            <input type="radio" name="btn-radio" id="radio3">
+            <input type="radio" name="btn-radio" id="radio4">
+            <div class="slide-box primeiro">
+                <img class="img-desktop" src="img/carrossel/impacto-desktop.png" alt="slide 1">
+                <img class="img-mobile" src="img/carrossel/impacto-mob.png" alt="slide 1">
+            </div>
+            <div class="slide-box">
+                <img class="img-desktop" src="img/carrossel/poluicao-desktop.png" alt="slide 3">
+                <img class="img-mobile" src="img/carrossel/poluicao-mob.png" alt="slide 1">
+            </div>
+            <div class="slide-box">
+                <img class="img-desktop" src="img/carrossel/habitat-desktop.png" alt="slide 3">
+                <img class="img-mobile" src="img/carrossel/habitat-mob.png" alt="slide 3">
+            </div>
+            <div class="slide-box">
+                <img class="img-desktop" src="img/carrossel/ecologia-desktop.png" alt="slide 4">
+                <img class="img-mobile" src="img/carrossel/ecologia-mob.png" alt="slide 4">
+            </div>
+            <div class="nav-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+                <div class="auto-btn4"></div>
+            </div>
+            <div class="nav-manual">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+                <label for="radio4" class="manual-btn"></label>
+            </div>
+        </div>
+    </section>
+    <!--FINAL DO CARROSSEL-->
+
+    <!--COMEÇO DA LINHA DO TEMPO-->
+    <div class="cards-home">
+        <div id="cards_content">
+            <ul class="cards-list">
+                <li>
+                    <h2>2020</h2>
+                </li>
+                <li class="cards-sobre-texto">
+                    Em 2020, estabelecemos nosso site de cursos dedicado à ecologia e sustentabilidade, inspirados pelo afastamento e mudanças globais ocasionados pela Pandemia.
+                </li>
+            </ul>
+            <ul class="cards-list">
+                <li>
+                    <h2>2021</h2>
+                </li>
+                <li class="cards-sobre-texto">
+                    Em 2021, focamos na qualidade dos cursos e atraímos os primeiros alunos.
+                </li>
+            </ul>
+            <ul class="cards-list">
+                <li>
+                    <h2>2022</h2>
+                </li>
+                <li class="cards-sobre-texto">
+                    Em 2022, ampliamos nossa oferta de cursos  e expandimos nossa base de instrutores especializados. Nossos alunos se tornaram defensores ativos do meio ambiente.
+                </li>
+            </ul>
+            <ul class="cards-list">
+                <li>
+                    <h2>2023</h2>
+                </li>
+                <li class="cards-sobre-texto">
+                    Atualmente nosso compromisso com a excelência educacional nos rendeu reconhecimento internacional. Estamos em busca de solidificar ainda mais nossas tecnologias, para assim, garantir educação de qualidade remotamente para todas as áreas.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--FINAL DA LINHA DO TEMPO-->
+
+   <!--COMEÇO DO FOOTER-->
+    <footer>
+        <div id="footer_content">
+            <div id="footer_contacts">
+                <img src="img/logo.png" alt="Logo">
+                <div id="footer_social_media">
+                    <a href="https://instagram.com/high.ecology?igshid=OGQ5ZDc2ODk2ZA==" class="footer-link" id="instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="high.ecology@hotmail.com" class="footer-link" id="email">
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <ul class="footer-list">
+                <li>
+                    <h2>Redes Sociais</h2>
+                </li>
+                <li>
+                    <a href="https://instagram.com/high.ecology?igshid=OGQ5ZDc2ODk2ZA==" class="footer-link">Instagram</a>
+                </li>
+                <li>
+                    <a href="high.ecology@hotmail.com" class="footer-link">Email</a>
+                </li>
+            </ul>
+            <ul class="footer-list">
+                <li>
+                    <h2>Sobre</h2>
+                </li>
+                <li id="footer-sobre-texto">
+                    um instituto de ensino focado em ensinar os nossos estudantes a cuidar melhor do lugar aonde
+                    eles moram, a Terra, temos o objetivo de disponibilizar cursos sobre biologia e ecologia.
+                </li>
+            </ul>
+        </div>
+        <div id="footer_copyright">
+            &#169
+            2023 all rights reserved
+        </div>
+    </footer>
+    <!--FINAL DO FOOTER-->
+
+</body>
+</html>
