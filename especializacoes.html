@@ -3,17 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/icon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous"
-    referrerpolicy="no-referrer"/> 
+    <link rel="shortcut icon" href="img/icon.png"> <!--favicon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="crossorigin="anonymous" referrerpolicy="no-referrer" /> <!--imagens para o footer-->
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
-    <title>Login - High Ecology</title>
+    <title>Especializações - High Ecology</title>
 </head>
 <body>
 
@@ -24,7 +18,7 @@
             <i class="fa fa-bars fa-2x" onclick="menuShow()"></i>
         </div>
         <ul>
-            <li><a href="#"class="active"> Matricule-se</a></li>
+            <li><a href="#" class="active"> Matricule-se</a></li>
             <li><a href="index.html">Home</a></li>
             <li><a href="especializacoes.html">Especializações</a></li>
             <li><a href="login.html">Login</a></li>
@@ -32,34 +26,43 @@
     </nav>
     <!--FINAL DA NAVBAR-->
 
-    <!--COMEÇO DO LOGIN-->
-    <nav class="inputlogin">
-        <div class="wrapper">
-            <form action="">
-                <h1 class="h1login">Login</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="E-mail" required>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Senha" required>  
-                </div>
-                <div class="LembreDeMim">
-                    <label><input type="checkbox">Lembre de mim</label>
-                    <a href="#">Esqueceu a senha?</a>
-                </div>
-                <button type="submit" class="btnlogin">
-                    Login
-                </button>
-                <div class="linkderegistro">
-                    <p>Não tem possui uma conta?</p>
-                    <p><a href="#">Matricule-se</a></p>
-                </div>
-            </form>
+    <!--COMEÇO DOS CURSOS-->
+    <div class="curso-container">
+        <div class="curso-card">
+            <img src="img/cursos/paisagem-arvore.png" alt="paisagem">
+            <div class="curso-content">
+                <h3>Ecologia 1  </h3>
+                <p>
+                    paisagem paisagem de paisagem o paisagem ao, paisagem paisagem
+                </p>
+                <a href="#" class="curso-btn">Acessar</a>
+            </div>
         </div>
-    </nav>
-    <!--FINAL DO LOGIN-->
+        <div class="curso-card">
+            <img src="img/cursos/paisagem-arvore.png" alt="paisagem">
+            <div class="curso-content">
+                <h3>Ecologia 2</h3>
+                <p>
+                    paisagem paisagem de paisagem o paisagem ao, paisagem paisagem
+                </p>
+                <a href="#" class="curso-btn">Acessar</a>
+            </div>
+        </div>
+        <div class="curso-card">
+            <img src="img/cursos/paisagem-arvore.png" alt="paisagem">
+            <div class="curso-content">
+                <h3>Ecologia 3</h3>
+                <p>
+                    paisagem paisagem de paisagem o paisagem ao, paisagem paisagem
 
-    <!--COMEÇO DO FOOTER-->
+                </p>
+                <a href="#" class="curso-btn">Acessar</a>
+            </div>
+        </div>
+    </div>
+    <!--FINAL DOS CURSOS-->
+
+   <!--COMEÇO DO FOOTER-->
     <footer>
         <div id="footer_content">
             <div id="footer_contacts">
@@ -95,8 +98,8 @@
             </ul>
         </div>
         <div id="footer_copyright">
-        &#169
-        2023 all rights reserved
+            &#169
+            2023 all rights reserved
         </div>
     </footer>
     <!--FINAL DO FOOTER-->
