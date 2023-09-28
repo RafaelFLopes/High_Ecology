@@ -10,7 +10,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-/* COMEÇO DA NAVBAR */
+/*COMEÇO DA NAVBAR*/
 
 nav{
     display: flex;
@@ -44,21 +44,25 @@ nav ul li a:hover{
     background: #8da58d;
 }
 nav ul li a.active{
-    background: #5f9d5d;
-    color: #000000;
+    background: #527D4D;
+    color: #f2f2f2;
 }
 nav ul li a.active:hover{
-    background: #4a7b47;
-    color: #f2f2f2;
+    background-color: #476b43;
+    color: #ededed;
 }
 nav .menu-btn i{
     color: #5a2323;
     cursor: pointer;
     display: none;
+    transition: all 0.4s ease;
 }
 @media (max-width: 900px) {
     nav .menu-btn i{
         display: block;
+        color: #5a2323c4;
+    }
+    nav .menu-btn i:hover{
         color: #5a2323;
     }
     nav ul{
@@ -83,27 +87,16 @@ nav .menu-btn i{
     nav ul li a {
         font-size: 17px;
     }
-    nav ul li a.active{
-        background: #5f9d5d;
-        color: #000000;
-    }
-    nav ul li a.active:hover{
-        background: #4a7b47;
-        color: #f2f2f2;
-    }
     nav ul li a:hover{
-        background: #8da58d;
+        background-color: #d0d0d0;
     }   
     
     .slider_fechado{ /* Quando o menu estiver aberto */
         display: none;
     }
-    .footer_fechado{
-        display: none;
-    }
 }
 
-/* FINAL DA NAVBAR */
+/*FINAL DA NAVBAR*/
 
 /* COMEÇO DO CARROSSEL */
 
@@ -140,7 +133,7 @@ section.slider{
     justify-content: center;
 }
 .nav-manual .manual-btn, .nav-auto div{
-    border: 1px solid #333333;
+    background-color: #00000012;
     padding: 10px;
     border-radius: 50%;
     cursor: pointer;
@@ -150,19 +143,19 @@ section.slider{
     margin-right: 10px;
 }
 .nav-manual .manual-btn:hover {
-    background-color: #333333;
+    background-color: #5a2323;
 }
 #radio1:checked ~ .nav-auto .auto-btn1 {
-    background-color: #333333;
+    background-color: #5a2323;
 }
 #radio2:checked ~ .nav-auto .auto-btn2 {
-    background-color: #333333;
+    background-color: #5a2323;
 }
 #radio3:checked ~ .nav-auto .auto-btn3 {
-    background-color: #333333;
+    background-color: #5a2323;
 }
 #radio4:checked ~ .nav-auto .auto-btn4 {
-    background-color: #333333;
+    background-color: #5a2323;
 }
 #radio1:checked ~ .primeiro{
     margin-left: 0%;
@@ -193,25 +186,120 @@ section.slider{
 
 /*FINAL DO CARROSSEL*/
 
+/*COMEÇO DE PLANOS*/  
+
+.conteiner{
+    max-width: 1024px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.grid{
+    display: grid;
+}
+.card{
+    padding: 40px;
+    align-items: center;
+}
+.card-conteiner{
+    gap: 48px 80px;
+}
+.card-content{
+    background-color: #527D4D;
+    padding: 50px 25px 50px;
+    border-radius: 35px;
+    box-shadow:18px 19px 0px 4px rgba(52,84,51,1);
+    transition: 0.4s;
+}
+.card-content:hover{
+    transform: scale(1.050);
+}
+.card-title{
+    text-align: center;
+    margin-bottom: 7px;
+    font-size: 40px;
+    color: #5a2323;
+}
+.card-price{
+    text-align: center;
+    color: #f2f2f2;
+    font-size: 35px;
+}
+.card-list{
+    row-gap: 12.8px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.list-item{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #e9e9e9;
+}
+.icon{
+    color: #e9e9e9;
+    margin-right: 4px;
+    font-size: 18px;
+    font-weight: 700;
+}
+.card-button{
+    padding: 18px;
+    margin-top: 25px;
+    border: none;
+    font-size: 16px;
+    border-radius: 25px;
+    background-color: #ffffff;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+.card-button:hover{
+    background-color: #5a2323;
+    color: #ffffff;
+    letter-spacing: 1.2px;
+}
+@media screen and (min-width: 900px){
+    .conteiner{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .card{
+        height: 100vh;
+        width: 100%;
+        align-items: center;
+    }
+    .card-content{
+        margin-left: 15px;
+    }
+    .card-conteiner{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/*FINAL DE PLANOS*/
+
 /*COMEÇO DO LOGIN*/
 
 .inputlogin {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 100vh;
     background-color: #f2f2f2;
     background-position: center;
 }
 .h1login {
-    font-family: 'Mooli', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 .wrapper {
+    align-items: center;
     width: 420px;
-    background-color: #538c51;
+    background-color: #527D4D;
     color: #f2f2f2;
     border-radius: 40px;
-    padding: 30px 45px;
+    padding: 20px 35px;
 }
 .wrapper h1 {
     font-size: 36px;
@@ -235,14 +323,7 @@ section.slider{
     text-align: center;
 }
 .input-box input::placeholder {
-    color: #f2f2f2;
-}
-.input-box i {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
+    color: #f2f2f2cf;
 }
 .wrapper .LembreDeMim {
     display: flex;
@@ -251,17 +332,17 @@ section.slider{
     margin: -15px 0 15px;
 }
 .LembreDeMim label input {
-    accent-color: #5a2323;
-    margin-right: 3px;
+    accent-color: #f2f2f2 ;
+    margin-right: 4px;
 }
-
 .LembreDeMim a {
+    color: #f2f2f2;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+.LembreDeMim a:hover {
     color: #5a2323;
     text-decoration: none;
-}
-
-.LembreDeMim a:hover {
-    text-decoration: underline;
 }
 .wrapper .btnlogin   {
     width: 100%;
@@ -274,7 +355,7 @@ section.slider{
     font-size: 16px;
     color: #333333;
     font-weight: 600;
-    transition: all 0.5s ease;
+    transition: all 0.4s ease;
 }
 .wrapper .btnlogin:hover{
     background-color: #5a2323;
@@ -287,26 +368,33 @@ section.slider{
     accent-color: #f2f2f2;
 }
 .linkderegistro p a {
-    color: #5a2323;
+    color: #f2f2f2;
     text-decoration: none;
     font-weight: 400;
+    transition: all 0.4s ease;
 }
 .linkderegistro p a:hover {
-    text-decoration: underline;
+    color: #5a2323;
+    text-decoration: none;
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
     .wrapper h1 {
-        font-size: 30px;
+        font-size: 33px;
     }
     .input-box input{
-        font-size: 12px;
+        font-size: 13.5px;
     }
     .wrapper .LembreDeMim {
-        font-size: 13px;
+        margin: 15px 0 25px;
+        font-size: 13.5px;
     }
     .wrapper .linkderegistro {
-        font-size: 13px;
+        font-size: 13.5px;
     } 
+    .wrapper .input-box{
+        height: 40px;
+        margin: 10px 0;
+    }
 }
 
 /*FINAL DO LOGIN*/
@@ -322,7 +410,7 @@ section.slider{
 #cards_content {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    padding: 4rem 2rem;
+    padding: 5.5rem 2rem;
 }
 #cards_content h2 {
     letter-spacing: 1.5px;
@@ -346,9 +434,9 @@ section.slider{
     }
 }
 
-/* FINAL DA LINHA DO TEMPO*/
+/*FINAL DA LINHA DO TEMPO*/
 
-/*COMEÇO DE CURSOS*/
+/*COMEÇO DE ESPECIALIZAÇÕES*/
 
 .curso-container {
     display: flex;
@@ -361,7 +449,7 @@ section.slider{
 }
 .curso-card {
     width: 325px;
-    background-color: #538c51;
+    background-color: #527D4D;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0px 2px 4px rgba (0,0,0,0.2);
@@ -375,12 +463,12 @@ section.slider{
     padding: 16px;
 }
 .curso-content h3 {
-    color: #5a2323;
+    color: #f2f2f2;
     font-size: 28px;
     margin-bottom: 8px;
 }
 .curso-content p {
-    color: #333333;
+    color: #e9e9e9;
     font-size: 15px;
     line-height: 1.3;
 }
@@ -399,7 +487,7 @@ section.slider{
     color: #f2f2f2;
 }
 
-/*FINAL DE CURSOS*/
+/*FINAL DE ESPECIALIZAÇÕES*/
 
 /*COMEÇO DO FOOTER*/
 
@@ -409,7 +497,7 @@ footer {
     width: 100%;
     box-sizing: border-box;
     letter-spacing: 1px;
-    color: #D95E32;
+    color: #527D4D;
 }
 .footer-link {
     text-decoration: none;
@@ -418,10 +506,11 @@ footer {
     background-color: #b9ceb9;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    padding: 3rem 3.5rem;
+    padding: 1rem 3.5rem;
 }
 #footer_content h2 {
-    margin-top: 0.75rem;
+    font-size: 1.10rem;
+    margin-top: 0.10rem;
 }
 #footer_social_media{
     display: flex;
@@ -436,19 +525,19 @@ footer {
     width: 2.5rem;
     color: #f2f2f2;
     border-radius: 50%;
-    transition: all 0.4s;
+    transition: all 0.4s ease;  
 }
 #footer_social_media .footer-link i {
     font-size: 1.25rem;
 }
 #footer_social_media .footer-link:hover {
-    opacity: 0.8;
+    background-color: #476b43;
 }
 #instagram {
-    background: linear-gradient(#7f37c9, #ff2992, #ff9807);
+    background-color: #527D4D;
 }
 #email {
-    background-color: #D95E32;
+    background-color: #527D4D;
 }
 .footer-list{
     display: flex;
@@ -457,7 +546,8 @@ footer {
     list-style: none;
 }
 .footer-list .footer-link{
-    color: #774242;
+    font-size: 0.95rem;
+    color: black;
     transition: all 0.4s;
 }
 .footer-list .footer-link:hover{
@@ -465,17 +555,18 @@ footer {
 }
 #footer-sobre-texto{
     color: black;
+    font-size: 0.95rem;
 }
 #footer_copyright {
     display: flex;
     justify-content: center;
     background-color: #8da58d;
-    color: #f2f2f2;
+    color: #ffffff;
     font-size: 0.9rem;
     padding: 0.9rem;
     font-weight: 100;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
     #footer_content {
         grid-template-columns: repeat(1, 1fr);
         padding: 3rem 2rem;
