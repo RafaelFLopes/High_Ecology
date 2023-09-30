@@ -2,18 +2,21 @@
 
 var ul = document.querySelector('nav ul');
 var menuBtn = document.querySelector('.menu-btn i');
-let section = document.querySelector('.slider');
+let sectionSlider = document.querySelector('.slider');
+let sectionTimeline = document.querySelector('.timeline-section');
 
 function menuShow(){
 
     if (ul.classList.contains('open')) {
         ul.classList.remove('open');
-        section.classList.remove('slider_fechado');
+        sectionSlider.classList.remove('slider_fechado');
+        sectionTimeline.classList.remove('timeline_fechado');
     }
 
     else{
         ul.classList.add('open');
-        section.classList.add('slider_fechado');
+        sectionSlider.classList.add('slider_fechado');
+        sectionTimeline.classList.add('timeline_fechado');
     }
 }
 
