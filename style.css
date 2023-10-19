@@ -60,10 +60,10 @@ nav .menu-btn i{
 @media (max-width: 900px) {
     nav .menu-btn i{
         display: block;
-        color: #5a2323c4;
+        color: #5a2323;
     }
     nav .menu-btn i:hover{
-        color: #5a2323;
+        color: #1f0c0c;
     }
     nav ul{
         
@@ -100,7 +100,7 @@ nav .menu-btn i{
 
 /*FINAL DA NAVBAR*/
 
-/* COMEÇO DO CARROSSEL */
+/*COMEÇO DO CARROSSEL*/
 
 section.slider{
     margin: 0 auto;
@@ -171,7 +171,7 @@ section.slider{
 #radio4:checked ~ .primeiro{
     margin-left: -75%;
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 530px) {
     .img-desktop{
         display: none;
     }
@@ -179,7 +179,7 @@ section.slider{
         display:block;
     }
     .nav-auto, .nav-manual{
-        margin-top: 65%;
+        margin-top: 95%;
     }
 }
 
@@ -408,7 +408,7 @@ section.slider{
     text-align: center;
     padding: 20px;
     font-size: 17px;
-    color: #311313;
+    color: #5a2323;
 }
 
 .timeline-items{
@@ -505,6 +505,7 @@ section.slider{
 }
 .curso-card {
     width: 325px;
+    height: 420px;
     background-color: #527D4D;
     border-radius: 20px;
     overflow: hidden;
@@ -530,19 +531,18 @@ section.slider{
 }
 .curso-content .curso-btn {
     display: inline-block;
-    padding: 8px 16px;
+    padding: 8px 60px;
     background-color: #f2f2f2;
     color: black;
     text-decoration: none;
     border-radius: 10px;
-    margin-top: 16px;
+    margin-top: 45px;
     transition: all 0.5s ease;
 }
 .curso-content .curso-btn:hover {
     background-color: #5a2323;
     color: #f2f2f2;
 }
-
 /*FINAL DE ESPECIALIZAÇÕES*/
 
 /*COMEÇO DO FOOTER*/
