@@ -19,7 +19,7 @@ nav{
     background-color: #b9ceb9;
     align-items: center;
     justify-content: space-between;
-    padding: 0  50px 0 100px;
+    padding: 0 50px 0 100px;
     flex-wrap: wrap;
 }
 nav ul{
@@ -398,12 +398,12 @@ section.slider{
 
 .timeline-section{
     min-height: 100vh;
-    padding: 20px;
+    padding: 20px 20px 80px;
     background-color: #b9ceb9;
 }
 .timeline-title{
     text-align: center;
-    padding: 20px;
+    padding: 60px;
     font-size: 17px;
     color: #5a2323;
 }
@@ -632,7 +632,7 @@ footer {
 
 .assessment {
     min-height: 100vh;
-    padding: 17px;
+    padding: 80px 0 80px 0;
     display: flex;
 }
 .container-ava {
@@ -718,3 +718,5 @@ footer {
         grid-template-columns: repeat(1, 1fr);
     }
 }
+
+/*FINAL DE AVALIAÇÕES*/
