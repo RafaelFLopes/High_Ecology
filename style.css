@@ -282,19 +282,17 @@ section.slider{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f2f2f2;
+    background-color: #5a8854;
     background-position: center;
-}
-.h1login {
-    font-family: 'Roboto', sans-serif;
 }
 .wrapper {
     align-items: center;
     width: 420px;
-    background-color: #527D4D;
     color: #f2f2f2;
-    border-radius: 40px;
-    padding: 20px 35px;
+    border-radius: 20px;
+    background-color: #476b43;
+    padding: 40px 35px;
+    border-color: #8da58d;
 }
 .wrapper h1 {
     font-size: 36px;
@@ -372,25 +370,22 @@ section.slider{
     color: #5a2323;
     text-decoration: none;
 }
-@media screen and (max-width: 700px) {
-    .wrapper h1 {
-        font-size: 33px;
-    }
-    .input-box input{
-        font-size: 13.5px;
-    }
-    .wrapper .LembreDeMim {
-        margin: 15px 0 25px;
-        font-size: 13.5px;
-    }
-    .wrapper .linkderegistro {
-        font-size: 13.5px;
-    } 
-    .wrapper .input-box{
-        height: 40px;
-        margin: 10px 0;
+@media (width < 420px) {
+    .wrapper {
+        width: 350px;
     }
 }
+@media (width < 350px) {
+    .wrapper {
+        width: 300px;
+    }
+}
+@media (width < 300px) {
+    .wrapper {
+        width: 250px;
+    }
+}
+
 
 /*FINAL DO LOGIN*/
 
