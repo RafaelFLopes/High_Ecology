@@ -237,21 +237,20 @@ section.slider{
     color: #e9e9e9;
 }
 .icon{
-    color: #e9e9e9;
-    margin-right: 4px;
-    font-size: 18px;
-    font-weight: 700;
+    color: #5a2323;
+    margin-right: 3px;
+    font-size: 15px;
 }
 .card-button{
-    padding: 18px;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px;
     margin-top: 25px;
-    border: none;
     font-size: 16px;
-    border-radius: 25px;
+    border-radius: 20px;
     background-color: #ffffff;
     color: black;
     font-weight: 600;
-    cursor: pointer;
     transition: all 0.4s ease;
 }
 .card-button:hover{
@@ -509,7 +508,7 @@ section.slider{
 }
 .curso-card {
     width: 325px;
-    height: 420px;
+    height: 350px;
     background-color: #527D4D;
     border-radius: 20px;
     overflow: hidden;
@@ -521,12 +520,11 @@ section.slider{
     height: auto;
 }
 .curso-content {
-    padding: 16px;
+    text-align: center;
 }
 .curso-content h3 {
     color: #f2f2f2;
     font-size: 27.5px;
-    margin-bottom: 8px;
 }
 .curso-content p {
     color: #e9e9e9;
@@ -535,18 +533,34 @@ section.slider{
 }
 .curso-content .curso-btn {
     display: inline-block;
-    padding: 8px 60px;
+    padding: 8px 90px;
     background-color: #f2f2f2;
     color: black;
     text-decoration: none;
     border-radius: 10px;
-    margin-top: 45px;
+    margin-top: 20px;
     transition: all 0.5s ease;
 }
 .curso-content .curso-btn:hover {
     background-color: #5a2323;
     color: #f2f2f2;
 }
+swiper-container {
+          width: 100%;
+          height: 100%;
+          padding-top: 25vh;
+          padding-bottom: 80px;
+        }
+        swiper-slide {
+          background-position: center;
+          background-size: cover;
+          width: 325px;
+          height: 430px;
+        }
+        swiper-slide img {
+          display: block;
+          width: 100%;
+        }
 /*FINAL DE ESPECIALIZAÇÕES*/
 
 /*COMEÇO DO FOOTER*/
@@ -727,3 +741,415 @@ footer {
 }
 
 /*FINAL DE AVALIAÇÕES*/
+
+/*COMEÇO CURSOS*/
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        text-align: justify;
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+    .imagem{
+        max-width: 40%;
+        margin-left: 30%;
+        border-radius: 20px;
+}
+    .imagem3{
+        max-width: 40%;
+        margin-left: 30%;
+        border-radius: 20px;
+}
+    .texto{
+        font-size: 100%;
+        text-align: justify;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .paragrafo{
+        margin-left: 25px;
+    }
+    .btn{
+         padding: 8px 60px;
+         background-color: #8da58d;
+        color: black;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: all 0.5s ease;
+        position: relative;
+}
+.btn:hover {
+        background-color: #476b43;
+        color: #f2f2f2;
+}
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+.container {
+    display: flex;
+    align-items: center; 
+}
+
+.imagem{
+    border: 5px;
+    margin-left: 2%;
+    margin-right: 20px; 
+    max-width: 50%; 
+    border-radius: 20px;
+}
+.imagem3{
+    border: 5px;
+    margin-left: 2%;
+    margin-right: 20px; 
+    width: 420px;
+    max-width: 50%;
+    border-radius: 20px;
+}
+.texto { 
+    margin-left: 50px;
+    text-align: justify;
+    margin-right: 25px;
+}
+.paragrafo {
+    margin-left: 25px;
+}
+.btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+         padding: 8px 60px;
+         background-color: #8da58d;
+        color: black;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: all 0.5s ease;
+}
+.btn:hover {
+        background-color: #476b43;
+        color: #f2f2f2;
+}
+}
+@media (min-width: 1025px) {
+    .container {
+    display: flex;
+    align-items: center; 
+}
+
+.imagem{
+    border: 5px;
+    margin-left: 10%;
+    margin-right: 7%; 
+    width: 4000px;
+    height: 550px;
+    border-radius: 20px;
+}
+.imagem3{
+    border: 5px;
+    margin-left: 10%;
+    margin-right: 7%; 
+    width: 700px;
+    height: 550px;
+    border-radius: 20px;
+}
+.texto {
+    margin-left: 80px;
+    margin-right: 10%;
+    font-size: 20px;
+    text-align: justify;
+}
+.paragrafo{
+        margin-left: 45px;
+        text-align: justify;
+    }
+    .btn{
+        padding: 8px 60px;
+        margin-left: 78%;
+        align-items: center;
+         padding: 8px 60px;
+         background-color: #8da58d;
+        color: black;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: all 0.5s ease;
+        width: 300px;
+}
+.btn:hover {
+        background-color: #476b43;
+        color: #f2f2f2;
+}
+}
+h3{
+text-align: center;
+
+    font-weight: 350;
+    font-size: 30px;
+    color: #476b43;
+    
+
+}
+
+/*FINAL CURSOS*/
+
+
+
+/*COMEÇO DE PAGAMENTO*/
+
+.container-pagamentos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:25px;
+    min-height: 100vh;
+    background-color: #f2f2f2;
+  }
+  
+  .container-pagamentos form{
+    padding:20px;
+    width:700px;
+    background: #fff;
+  }
+  
+  .container-pagamentos form .row{
+    display: flex;
+    flex-wrap: wrap;
+    gap:15px;
+  }
+  
+  .container-pagamentos form .row .col{
+    flex:1 1 250px;
+  }
+  
+  .container-pagamentos form .row .col .title{
+    font-size: 20px;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+  }
+  
+  .container-pagamentos form .row .col .inputBox-pagamentos{
+    margin:15px 0;
+  }
+  
+  .container-pagamentos form .row .col .inputBox-pagamentos span{
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .container-pagamentos form .row .col .inputBox-pagamentos input{
+    width: 100%;
+    border:1px solid;
+    padding:10px 15px;
+    font-size: 15px;
+    text-transform: none;
+    color: #476b43;
+  }
+  
+  .container-pagamentos form .row .col .inputBox-pagamentos input:focus{
+    border:1px solid;
+  }
+  
+  .container-pagamentos form .row .col .flex{
+    display: flex;
+    gap:15px;
+  }
+  
+  .container-pagamentos form .row .col .flex .inputBox-pagamentos{
+    margin-top: 5px;
+  }
+  
+  .container-pagamentos form .row .col .inputBox-pagamentos img{
+    height: 34px;
+    margin-top: 5px;
+    
+  }
+  
+  .container-pagamentos form .submit-btn{
+    border: none;
+    width: 100%;
+    padding:12px;
+    font-size: 17px;
+    background: #5a8854;
+    color: #f2f2f2;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  
+  .container-pagamentos form .submit-btn:hover{
+    background: #476b43;
+  }
+  .button-pagamento{
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 50px;
+    margin-top: 25px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #5a8854;
+    color: #f2f2f2;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+.button-pagamento:hover{
+    background-color: #476b43;
+    letter-spacing: 1.2px;
+}
+
+/*FINAL DE PAGAMENTO*/
+
+/*COMEÇO DE APROVADO*/
+.logo-pagamento {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+}
+
+.titulo-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin-top: -40px;
+}
+
+.titulo-container h1 {
+    font-family: 'Poppins', sans-serif;
+    color: #5a2323;
+    margin-top: -30px;
+}
+
+.titulo-container img {
+    width: 80%;
+    max-width: 500px;
+    height: auto;
+}
+
+.button-pagamento {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10rem;
+    color: #e9e9e9;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: #b9ceb9;
+    text-decoration: none;
+
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: #b9ceb9;
+        transition: all 0.3s;
+        border-radius: 10rem;
+        z-index: -1;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #b9ceb9;
+        border-radius: 10rem;
+        z-index: -2;
+    }
+
+    &:hover {
+        &::before {
+            width: 100%;
+        }
+    }
+}
+
+.cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 2rem;
+    color: #5a2323;
+    background: #b9ceb9;
+    transition: 0.5s;
+    box-shadow: 6px 6px 0 #5a2323;
+    transform: skewX(-15deg);
+}
+
+.cta a {
+    text-decoration: none;
+    color: #5a2323;
+}
+
+.cta:focus {
+    outline: none;
+}
+
+.cta:hover {
+    transition: 0.5s;
+    box-shadow: 10px 10px 0 #5a2323;
+}
+
+.linha-esq,
+.linha-dir {
+    background-color: #476B43;
+    position: fixed;
+    width: 4px;
+    height: 90vh;
+    top: 30px;
+}
+
+.linha-esq {
+    left: 10px;
+}
+
+.linha-dir {
+    right: 10px;
+}
+
+.linha-bai {
+    background-color: #476B43;
+    position: fixed;
+    bottom: 0;
+    width: 50%;
+    height: 4px;
+    left: 25%;
+    
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        left: 5%;
+        max-width: 200px;
+    }
+
+    .titulo-container img {
+        max-width: 300px;
+    }
+
+    .linha-esq,
+    .linha-dir {
+        display: none;
+    }
+
+    .linha-bai {
+        width: 100%;
+        left: 0;
+    }
+}
+
+/*FINAL DE APROVADO*/
