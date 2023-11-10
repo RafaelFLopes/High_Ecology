@@ -74,6 +74,7 @@ nav .menu-btn i{
         width: 100%;
         text-align: center;
         display: block;
+        z-index: 5;
     }
     nav ul.open{
         left: 0;
