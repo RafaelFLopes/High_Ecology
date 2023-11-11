@@ -1,4 +1,4 @@
-//FECHAR O CARROSSEL PARA APARECER O MENU HAMBURGUER
+//COMEÇO DE NAVBAR
 
 var ul = document.querySelector('nav ul');
 var menuBtn = document.querySelector('.menu-btn i');
@@ -7,7 +7,10 @@ function menuShow(){
 
     if (ul.classList.contains('open')) {
         ul.classList.remove('open');
+<<<<<<< HEAD
     
+=======
+>>>>>>> 6df8c75b8e7d61132d3dc7eef561c90ec17bd5c2
     }
 
     else{
@@ -15,7 +18,7 @@ function menuShow(){
     }
 }
 
-//FECHAR O CARROSSEL PARA APARECER O MENU HAMBURGUER
+//FINAL DE NAVBAR
 
 //COMEÇO DO CARROSSEL
 
