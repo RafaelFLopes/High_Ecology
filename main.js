@@ -7,10 +7,6 @@ function menuShow(){
 
     if (ul.classList.contains('open')) {
         ul.classList.remove('open');
-<<<<<<< HEAD
-    
-=======
->>>>>>> 6df8c75b8e7d61132d3dc7eef561c90ec17bd5c2
     }
 
     else{

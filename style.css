@@ -11,15 +11,14 @@ body{
 }
 
 /*COMEÇO DA NAVBAR*/
-
 nav{
     display: flex;
     height: 52px;
-    width: 100% ;
+    width: 100%;
     background-color: #b9ceb9;
     align-items: center;
     justify-content: space-between;
-    padding: 0 50px 0 100px;
+    padding: 0 30px 0 30px;
     flex-wrap: wrap;
 }
 nav ul{
@@ -67,7 +66,7 @@ nav .menu-btn i{
     }
     nav ul{
         position: absolute;
-        top: 52px;
+        top: 51px;
         left: -100%;
         background-color: #f2f2f2;
         height: 100vh;
@@ -75,7 +74,7 @@ nav .menu-btn i{
         text-align: center;
         display: block;
         z-index: 5;
-        transition: all 0.4s ease;
+        transition: all 0.7s ease;
     }
     nav ul.open{
         left: 0;
