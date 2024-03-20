@@ -13,13 +13,16 @@ body{
 /*COMEÇO DA NAVBAR*/
 nav{
     display: flex;
-    height: 52px;
+    height: 50px;
     width: 100%;
     background-color: #b9ceb9;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px 0 30px;
+    padding: 0 30px 0 35px;
     flex-wrap: wrap;
+}
+nav img{
+    height: 35px;
 }
 nav ul{
     display: flex;
@@ -35,8 +38,8 @@ nav ul li a{
     font-size: 14px;
     font-weight: 400;
     padding: 8px 15px;
-    border-radius: 10px;
-    letter-spacing: 1px;
+    border-radius: 7px;
+    letter-spacing: 0.5px;
     transition: all 0.4s ease;
 }
 nav ul li a:hover{
@@ -66,7 +69,7 @@ nav .menu-btn i{
     }
     nav ul{
         position: absolute;
-        top: 51px;
+        top: 49px;
         left: -100%;
         background-color: #f2f2f2;
         height: 100vh;
@@ -891,8 +894,6 @@ text-align: center;
 }
 
 /*FINAL CURSOS*/
-
-
 
 /*COMEÇO DE PAGAMENTO*/
 
