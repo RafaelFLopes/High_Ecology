@@ -740,6 +740,12 @@ footer {
     .container__right {
         grid-template-columns: repeat(1, 1fr);
     }
+    .container__left h1 {
+        margin-bottom: 1rem;
+        font-size: 2rem;
+        font-weight: 1000;
+        color: #527D4D;
+    }
 }
 
 /*FINAL DE AVALIAÇÕES*/
