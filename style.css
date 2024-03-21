@@ -575,6 +575,9 @@ footer {
     letter-spacing: 1px;
     color: #527D4D;
 }
+footer img {
+    height: 35px;
+}
 .footer-link {
     text-decoration: none;
 }
