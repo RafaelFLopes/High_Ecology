@@ -69,7 +69,7 @@ nav .menu-btn i{
     }
     nav ul{
         position: absolute;
-        top: 49px;
+        top: 50px;
         left: -100%;
         background-color: #f2f2f2;
         height: 100vh;
@@ -182,6 +182,12 @@ section.slider{
     }
     .nav-manual .manual-btn:not(:last-child), .nav-auto div:not(:last-child){
         margin-right: 18px;
+    }
+    .nav-manual .manual-btn, .nav-auto div{
+        padding: 11px;
+    }
+    .slider-content{
+        width: 410%;
     }
     
 }
@@ -748,6 +754,9 @@ footer img {
         font-size: 2rem;
         font-weight: 1000;
         color: #527D4D;
+    }
+    .assessment {
+        padding: 55px 0 55px 0;
     }
 }
 
