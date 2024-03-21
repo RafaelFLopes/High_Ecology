@@ -193,14 +193,12 @@ section.slider{
 
 .conteiner{
     max-width: 1024px;
-    margin-left: 20px;
-    margin-right: 20px;
 }
 .grid{
     display: grid;
 }
 .card{
-    padding: 40px;
+    padding: 20px 20px 40px;
     align-items: center;
 }
 .card-conteiner{
@@ -210,11 +208,11 @@ section.slider{
     background-color: #527D4D;
     padding: 50px 25px 50px;
     border-radius: 35px;
-    box-shadow:18px 19px 0px 4px rgba(52,84,51,1);
+    box-shadow:12px 12px 0px 0px rgba(52,84,51,1);
     transition: 0.4s;
 }
 .card-content:hover{
-    transform: scale(1.050);
+    transform: scale(1.015);
 }
 .card-title{
     text-align: center;
@@ -260,7 +258,7 @@ section.slider{
 .card-button:hover{
     background-color: #5a2323;
     color: #ffffff;
-    letter-spacing: 1.2px;
+    letter-spacing: 0.9px;
 }
 @media screen and (min-width: 900px){
     .conteiner{
