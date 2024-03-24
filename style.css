@@ -758,6 +758,17 @@ footer img {
     .assessment {
         padding: 55px 0 55px 0;
     }
+    .card-ava {
+        display: block;
+        text-align: center;
+    }  
+    .card-ava img {
+        max-width: 85px;
+        margin: 0 0 20px 0;
+    }
+    .card__details p {
+        text-align: left;
+    }
 }
 
 /*FINAL DE AVALIAÇÕES*/
