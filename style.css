@@ -582,12 +582,6 @@ footer {
     letter-spacing: 1px;
     color: #527D4D;
 }
-img.footer-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 35px;
-}
 li#footer-sobre-texto{
     text-align: center;
 }
