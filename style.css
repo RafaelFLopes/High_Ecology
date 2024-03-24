@@ -990,14 +990,9 @@ text-align: center;
   }
   
   .container-pagamentos form .row .col .flex .inputBox-pagamentos{
-    margin-top: 3px;
+    margin-top: 0.005px;
   }
   
-  .container-pagamentos form .row .col .inputBox-pagamentos img{
-    height: 34px;
-    margin-top: 5px;
-    
-  }
   
   .container-pagamentos form .submit-btn{
     border: none;
