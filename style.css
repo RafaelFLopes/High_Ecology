@@ -582,8 +582,14 @@ footer {
     letter-spacing: 1px;
     color: #527D4D;
 }
-footer img {
+img.footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 35px;
+}
+li#footer-sobre-texto{
+    text-align: center;
 }
 .footer-link {
     text-decoration: none;
@@ -599,9 +605,10 @@ footer img {
     margin-top: 0.10rem;
 }
 #footer_social_media{
+    align-items: center;
+    justify-content: center;
     display: flex;
-    gap: 2rem;
-    margin-top: 1.5rem;
+    gap: 1rem;
 }
 #footer_social_media .footer-link{
     display: flex;
@@ -625,7 +632,13 @@ footer img {
 #email {
     background-color: #527D4D;
 }
+#github{
+    background-color: #527D4D;
+}
 .footer-list{
+    margin: 20px 0 20px 0;
+    align-items: center;
+    justify-content: center;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
