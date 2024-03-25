@@ -650,14 +650,14 @@ li#footer-sobre-texto{
     color: black;
     font-size: 0.95rem;
 }
-#footer_copyright {
+#footer_copyright{
     display: flex;
     justify-content: center;
     background-color: #8da58d;
-    color: #ffffff;
+    color: #f2f2f2;
     font-size: 0.9rem;
     padding: 0.9rem;
-    font-weight: 100;
+    font-weight: 8000;
 }
 @media screen and (max-width: 900px) {
     #footer_content {
