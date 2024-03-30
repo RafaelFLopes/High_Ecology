@@ -1,7 +1,6 @@
 <h1 align="center">
   <img src="img/icon.png"/>
   <p>High Ecology</p>
-  <p>Um planeta sustentável</p>
 </h1>
 <hr>
 <h2> Sobre o Projeto: </h2>
