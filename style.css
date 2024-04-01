@@ -77,12 +77,11 @@ nav .menu-btn i{
         width: 100%;
         text-align: center;
         display: block;
-        z-index: 5;
+        z-index: 999;
         transition: all 0.7s ease;
     }
     nav ul.open{
         left: 0;
-        
     }
     nav ul li{
         width: 100%;
@@ -94,12 +93,6 @@ nav .menu-btn i{
     nav ul li a:hover{
         background-color: #d0d0d0;
     }   
-    .slider_fechado{ /* Quando o menu estiver aberto */
-        display: none;
-    }
-    .timeline_fechado{
-        display: none;
-    }
 }
 
 /*FINAL DA NAVBAR*/
@@ -140,25 +133,40 @@ section.slider{
 }
 .nav-manual .manual-btn, .nav-auto div{
     background-color: #00000012;
-    padding: 12px;
+    padding: 11px;
     border-radius: 50%;
     cursor: pointer;
     transition: 0.3s;
 }
 .nav-manual .manual-btn:not(:last-child), .nav-auto div:not(:last-child){
-    margin-right: 10px;
+    margin-right: 15px;
 }
 .nav-manual .manual-btn:hover {
-    background-color: #00000060;
+    background-color: rgb(186, 186, 186);
 }
 #radio1:checked ~ .nav-auto .auto-btn1 {
     background-color: #476b43;
+    transform: scale(1.15);  
+    z-index: 9;
+}
+#radio1:checked ~ .nav-auto .auto-btn1:hover {
+    background-color: #375234;
 }
 #radio2:checked ~ .nav-auto .auto-btn2 {
     background-color: #b9ceb9;
+    transform: scale(1.15);
+    z-index: 9;
+}
+#radio2:checked ~ .nav-auto .auto-btn2:hover {
+    background-color: #a4b7a4;
 }
 #radio3:checked ~ .nav-auto .auto-btn3 {
     background-color: #0079be;
+    transform: scale(1.15);
+    z-index: 9;
+}
+#radio3:checked ~ .nav-auto .auto-btn3:hover {
+    background-color: #005a8e;
 }
 #radio1:checked ~ .primeiro{
     margin-left: 0%;
@@ -623,12 +631,24 @@ li#footer-sobre-texto{
 }
 #instagram {
     background-color: #527D4D;
+    transition: 1s;
+}
+#instagram:hover {
+    transform: scale(1.1);
 }
 #email {
     background-color: #527D4D;
+    transition: 1s;
+}
+#email:hover {
+    transform: scale(1.1);
 }
 #github{
     background-color: #527D4D;
+    transition: 1s;
+}
+#github:hover {
+    transform: scale(1.1);
 }
 .footer-list{
     margin: 20px 0 20px 0;
