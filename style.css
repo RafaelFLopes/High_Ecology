@@ -427,9 +427,7 @@ section.slider{
     font-size: 2.5rem;
     font-weight: 40;
     color: #476b43;
-
 }
-
 .timeline-items{
     max-width: 1000px;
     margin: auto;
@@ -788,9 +786,8 @@ li#footer-sobre-texto{
         grid-template-columns: repeat(1, 1fr);
     }
     .container__left h1 {
-        margin-bottom: 1rem;
-        font-size: 2rem;
-        font-weight: 1000;
+        margin-bottom: 2rem;
+        font-size: 2.3rem;
         color: #527D4D;
     }
     .assessment {
