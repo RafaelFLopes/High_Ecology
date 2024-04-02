@@ -491,7 +491,6 @@ section.slider{
 .timeline-content p{
     color: #f2f2f2;
     font-size: 16px;
-    font-weight: 100;
     line-height: 22px;
 }
 @media (max-width: 900px) {
@@ -711,8 +710,10 @@ li#footer-sobre-texto{
     color: #527D4D;
 }
 .container__left p {
+    font-size: 16px;
     color: #333333;
     margin-bottom: 1rem;
+    line-height: 22px;
 } 
 .container__left button {
     padding: 1rem 2rem;
@@ -724,6 +725,12 @@ li#footer-sobre-texto{
     color: #f2f2f2;
     font-size: 1rem;
     cursor: pointer;
+    transition: 0.3s;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+.container__left button:hover {
+    transform: scale(1.05);
 }
 .container__right {
     display: grid;
@@ -751,6 +758,8 @@ li#footer-sobre-texto{
     color: #527D4D;
 }
 .card__details p {
+    line-height: 22px;
+    font-size: 16px;
     font-style: italic;
     color: #333333;
     margin-bottom: 1rem;
