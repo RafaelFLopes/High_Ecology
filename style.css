@@ -786,8 +786,8 @@ li#footer-sobre-texto{
         grid-template-columns: repeat(1, 1fr);
     }
     .container__left h1 {
-        margin-bottom: 2rem;
-        font-size: 2.3rem;
+        margin-bottom: 1.3rem;
+        font-size: 1.9rem;
         color: #527D4D;
     }
     .assessment {
