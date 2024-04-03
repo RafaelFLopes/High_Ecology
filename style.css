@@ -709,7 +709,7 @@ li#footer-sobre-texto{
 }
 .container__left p {
     font-size: 16px;
-    color: #333333;
+    color: black;
     margin-bottom: 1rem;
     line-height: 22px;
 } 
@@ -759,7 +759,7 @@ li#footer-sobre-texto{
     line-height: 22px;
     font-size: 16px;
     font-style: italic;
-    color: #333333;
+    color: black;
     margin-bottom: 1rem;
 }
 .card__details h4 {
@@ -788,6 +788,7 @@ li#footer-sobre-texto{
     .container__left h1 {
         margin-bottom: 1.3rem;
         font-size: 1.9rem;
+        font-weight: 510;
         color: #527D4D;
     }
     .assessment {
