@@ -1,0 +1,107 @@
+/*====================FOOTER======================*/
+
+footer {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    color: #527D4D;
+}
+li#footer-sobre-texto{
+    text-align: center;
+}
+.footer-link {
+    text-decoration: none;
+}
+#footer_content {
+    background-color: #b9ceb9;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem 3.5rem;
+}
+#footer_content h2 {
+    font-size: 1.10rem;
+    margin-top: 0.10rem;
+}
+#footer_social_media{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 1rem;
+}
+#footer_social_media .footer-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    color: #f2f2f2;
+    border-radius: 50%;
+    transition: all 0.4s ease;  
+}
+#footer_social_media .footer-link i {
+    font-size: 1.25rem;
+}
+#footer_social_media .footer-link:hover {
+    background-color: #476b43;
+}
+#instagram {
+    background-color: #527D4D;
+    transition: 1s;
+}
+#instagram:hover {
+    transform: scale(1.1);
+}
+#email {
+    background-color: #527D4D;
+    transition: 1s;
+}
+#email:hover {
+    transform: scale(1.1);
+}
+#github{
+    background-color: #527D4D;
+    transition: 1s;
+}
+#github:hover {
+    transform: scale(1.1);
+}
+.footer-list{
+    margin: 20px 0 20px 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    list-style: none;
+}
+.footer-list .footer-link{
+    font-size: 0.95rem;
+    color: black;
+    transition: all 0.4s;
+}
+.footer-list .footer-link:hover{
+    color: #5a2323;
+}
+#footer-sobre-texto{
+    color: black;
+    font-size: 0.95rem;
+}
+#footer_copyright{
+    display: flex;
+    justify-content: center;
+    background-color: #8da58d;
+    color: #f2f2f2;
+    font-size: 0.9rem;
+    padding: 0.9rem;
+    font-weight: 8000;
+}
+@media screen and (max-width: 900px) {
+    #footer_content {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 3rem 2rem;
+    }
+}
+
+/*====================FINAL FOOTER======================*/

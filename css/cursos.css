@@ -1,0 +1,166 @@
+/*====================COMEÇO CURSOS======================*/
+
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        text-align: justify;
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .imagem {
+        max-width: 40%;
+        margin-left: 30%;
+        border-radius: 20px;
+    }
+
+    .imagem3 {
+        max-width: 40%;
+        margin-left: 30%;
+        border-radius: 20px;
+    }
+
+    .texto {
+        font-size: 100%;
+        text-align: justify;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .paragrafo {
+        margin-left: 25px;
+    }
+
+    .btn {
+        padding: 8px 60px;
+        background-color: #8da58d;
+        color: black;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: all 0.5s ease;
+        position: relative;
+    }
+
+    .btn:hover {
+        background-color: #476b43;
+        color: #f2f2f2;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        display: flex;
+        align-items: center;
+    }
+
+    .imagem {
+        border: 5px;
+        margin-left: 2%;
+        margin-right: 20px;
+        max-width: 50%;
+        border-radius: 20px;
+    }
+
+    .imagem3 {
+        border: 5px;
+        margin-left: 2%;
+        margin-right: 20px;
+        width: 420px;
+        max-width: 50%;
+        border-radius: 20px;
+    }
+
+    .texto {
+        margin-left: 50px;
+        text-align: justify;
+        margin-right: 25px;
+    }
+
+    .paragrafo {
+        margin-left: 25px;
+    }
+
+    .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 60px;
+        background-color: #8da58d;
+        color: black;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: all 0.5s ease;
+    }
+
+    .btn:hover {
+        background-color: #476b43;
+        color: #f2f2f2;
+    }
+}
+
+@media (min-width: 1025px) {
+    .container {
+        display: flex;
+        align-items: center;
+    }
+
+    .imagem {
+        border: 5px;
+        margin-left: 10%;
+        margin-right: 7%;
+        width: 4000px;
+        height: 550px;
+        border-radius: 20px;
+    }
+
+    .imagem3 {
+        border: 5px;
+        margin-left: 10%;
+        margin-right: 7%;
+        width: 700px;
+        height: 550px;
+        border-radius: 20px;
+    }
+
+    .texto {
+        margin-left: 80px;
+        margin-right: 10%;
+        font-size: 20px;
+        text-align: justify;
+    }
+
+    .paragrafo {
+        margin-left: 45px;
+        text-align: justify;
+    }
+
+    .btn {
+        padding: 8px 60px;
+        margin-left: 78%;
+        align-items: center;
+        padding: 8px 60px;
+        background-color: #8da58d;
+        color: black;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: all 0.5s ease;
+        width: 300px;
+    }
+
+    .btn:hover {
+        background-color: #476b43;
+        color: #f2f2f2;
+    }
+}
+
+h3 {
+    text-align: center;
+
+    font-weight: 350;
+    font-size: 30px;
+    color: #476b43;
+}
+
+/*====================FINAL CURSOS======================*/

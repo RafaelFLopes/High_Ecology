@@ -1,0 +1,327 @@
+/*=====================CARROSSEL======================*/
+
+section.slider{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    overflow: hidden;
+}
+.slider-content{
+    width: 400%;
+    height: auto;
+    display: flex;
+}
+.slider-content input, .img-mobile{
+    display: none;
+}
+.slide-box{
+    width: 25%;
+    height: auto;
+    position: relative;
+    text-align: center;
+    transition: 1s;
+}
+.slide-box img{
+    width: 100%;
+}
+.nav-manual, .nav-auto{
+    position: absolute;
+    width: 100%;
+    margin-top: 38.90%;
+    display: flex;
+    justify-content: center;
+}
+.nav-manual .manual-btn, .nav-auto div{
+    background-color: #00000012;
+    padding: 11px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.nav-manual .manual-btn:not(:last-child), .nav-auto div:not(:last-child){
+    margin-right: 15px;
+}
+.nav-manual .manual-btn:hover {
+    background-color: rgb(186, 186, 186);
+}
+#radio1:checked ~ .nav-auto .auto-btn1 {
+    background-color: #476b43;
+    transform: scale(1.15);  
+    z-index: 9;
+}
+#radio1:checked ~ .nav-auto .auto-btn1:hover {
+    background-color: #375234;
+}
+#radio2:checked ~ .nav-auto .auto-btn2 {
+    background-color: #b9ceb9;
+    transform: scale(1.15);
+    z-index: 9;
+}
+#radio2:checked ~ .nav-auto .auto-btn2:hover {
+    background-color: #a4b7a4;
+}
+#radio3:checked ~ .nav-auto .auto-btn3 {
+    background-color: #0079be;
+    transform: scale(1.15);
+    z-index: 9;
+}
+#radio3:checked ~ .nav-auto .auto-btn3:hover {
+    background-color: #005a8e;
+}
+#radio1:checked ~ .primeiro{
+    margin-left: 0%;
+}
+#radio2:checked ~ .primeiro{
+    margin-left: -25%;
+}
+#radio3:checked ~ .primeiro{
+    margin-left: -50%;
+}
+
+
+@media screen and (max-width: 530px) {
+    .img-desktop{
+        display: none;
+    }
+    .img-mobile{
+        display:block;
+    }
+    .nav-auto, .nav-manual{
+        margin-top: 100%;
+    }
+    .nav-manual .manual-btn:not(:last-child), .nav-auto div:not(:last-child){
+        margin-right: 18px;
+    }
+    .nav-manual .manual-btn, .nav-auto div{
+        padding: 11px;
+    }
+    .slider-content{
+        width: 410%;
+    }
+    
+}
+
+/*=====================FINAL CARROSSEL======================*/
+
+/*====================AVALIAÇÕES======================*/
+.assessment {
+    min-height: 100vh;
+    padding: 80px 0 80px 0;
+    display: flex;
+}
+.container-ava {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10rem;
+}
+.container__left h1 {
+    margin-bottom: 2rem;
+    font-size: 2.8rem;
+    font-weight: 500;
+    color: #527D4D;
+}
+.container__left p {
+    font-size: 16px;
+    color: black;
+    margin-bottom: 1rem;
+    line-height: 22px;
+} 
+.container__left button {
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    outline: none;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(to right,#527D4D,#476b43);
+    color: #f2f2f2;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+.container__left button:hover {
+    transform: scale(1.05);
+}
+.container__right {
+    display: grid;
+    gap: 2rem;
+}
+.card-ava {
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    background-color: #f2f2f2;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}  
+.card-ava img {
+    max-width: 75px;
+    border-radius: 100%;
+}
+.card__content {
+    display: flex;
+    gap: 1rem;
+}
+.card__content span i {
+    font-size: 2rem;
+    color: #527D4D;
+}
+.card__details p {
+    line-height: 22px;
+    font-size: 16px;
+    font-style: italic;
+    color: black;
+    margin-bottom: 1rem;
+}
+.card__details h4 {
+    text-align: right;
+    color: #527D4D;
+    font-size: 1rem;
+    font-weight: 500;
+}
+@media (width < 1200px) {
+    .container-ava {
+        gap: 3rem;
+    }
+}
+@media (width < 900px) {
+    .container-ava {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .container__right {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (width < 750px) {
+    .container__right {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .container__left h1 {
+        margin-bottom: 1.3rem;
+        font-size: 1.9rem;
+        font-weight: 510;
+        color: #527D4D;
+    }
+    .assessment {
+        padding: 55px 0 55px 0;
+    }
+    .card-ava {
+        display: block;
+        text-align: center;
+    }  
+    .card-ava img {
+        max-width: 85px;
+        margin: 0 0 20px 0;
+    }
+    .card__details p {
+        text-align: left;
+    }
+}
+
+/*====================FINAL AVALIAÇÕES======================*/
+
+/*====================TIMELINE======================*/
+
+.timeline-section{
+    min-height: 100vh;
+    padding: 20px 20px 80px;
+    background-color: #b9ceb9;
+}
+.timeline-title{
+    text-align: center;
+    padding: 60px;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.timeline-title h1{
+    font-size: 2.5rem;
+    font-weight: 40;
+    color: #476b43;
+}
+.timeline-items{
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+.timeline-items::before{
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: #527D4D;
+    left: calc(50% - 1px);
+}
+.timeline-item {
+    margin-bottom: 40px;
+    width: 100%;
+    position: relative;
+}
+.timeline-item:last-child{
+    margin-bottom: 0;
+
+}
+.timeline-item:nth-child(odd){
+    padding-right:calc(50% + 30px) ;
+    text-align: right;
+}
+.timeline-item:nth-child(even){
+    padding-left:calc(50% + 30px) ;
+}
+.timeline-dot{
+    height: 16px;
+    width: 16px;
+    background-color: #5a2323;
+    position: absolute;
+    left: calc(50% - 8px);
+    border-radius:50%;
+    top: 4px;
+}
+.timeline-date{
+    font-weight: 700;
+    font-size: 20px;
+    color: #5a2323;
+}
+.timeline-content{
+    background-color: #527D4D;
+    padding: 30px;
+    border-radius:8px ;
+    margin: 6px 0 15px;
+}
+.timeline-content h3 {
+    font-weight: 400;
+    font-size: 22px;
+    color: #5a2323;
+    margin: 0 0 15px;
+    
+}
+.timeline-content p{
+    color: #f2f2f2;
+    font-size: 16px;
+    line-height: 22px;
+}
+@media (max-width: 900px) {
+    .timeline-items::before{
+        left: 7px;
+    }
+    .timeline-item:nth-child(odd){
+        padding-right: 0 ;
+        text-align: left;
+    }
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even){
+        padding-left: 37px ;
+    }
+    .timeline-dot{
+        left: 0;
+    }
+}
+
+/*====================FINAL TIMELINE======================*/

@@ -1,0 +1,90 @@
+/*====================MATRICULA======================*/
+
+.conteiner{
+    max-width: 1024px;
+}
+.grid{
+    display: grid;
+}
+.card{
+    padding: 20px 20px 40px;
+    align-items: center;
+}
+.card-conteiner{
+    gap: 48px 80px;
+}
+.card-content{
+    background-color: #527D4D;
+    padding: 50px 25px 50px;
+    border-radius: 35px;
+    box-shadow:12px 12px 0px 0px rgba(52,84,51,1);
+    transition: 0.4s;
+}
+.card-content:hover{
+    transform: scale(1.015);
+}
+.card-title{
+    text-align: center;
+    margin-bottom: 7px;
+    font-size: 40px;
+    color: #5a2323;
+}
+.card-price{
+    text-align: center;
+    color: #f2f2f2;
+    font-size: 35px;
+}
+.card-list{
+    row-gap: 12.8px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.list-item{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #e9e9e9;
+}
+.icon{
+    color: #5a2323;
+    margin-right: 3px;
+    font-size: 15px;
+}
+.card-button{
+    text-align: center;
+    text-decoration: none;
+    padding: 20px;
+    margin-top: 25px;
+    font-size: 16px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: black;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+.card-button:hover{
+    background-color: #5a2323;
+    color: #ffffff;
+    letter-spacing: 0.9px;
+}
+@media screen and (min-width: 900px){
+    .conteiner{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .card{
+        height: 100vh;
+        width: 100%;
+        align-items: center;
+    }
+    .card-content{
+        margin-left: 15px;
+    }
+    .card-conteiner{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/*====================FINAL MATRICULA======================*/
