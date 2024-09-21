@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../css/login.css">
 
     <script src="../js/main.js" defer></script>
+    <script src="../js/login.js" defer></script>
     
     <title>Login - High Ecology</title>
 </head>
@@ -26,13 +27,13 @@
 
     <!--COMEÇO DA NAVBAR-->
     <nav class="nav">
-        <a href="../index.html" class="logo"><img src="../img/logo-tres.svg" alt="logo"></a>
+        <a href="index.html" class="logo"><img src="../img/logo-tres.svg" alt="logo"></a>
         <div class="menu-btn">
             <i class="fa fa-bars fa-2x" onclick="menuShow()"></i>
         </div>
         <ul>
             <li><a href="../html/matricula.html"class="active"> Matricule-se</a></li>
-            <li><a href="/index.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="../html/especializacoes.html">Especializações</a></li>
             <li><a href="../html/login.html">Login</a></li>
         </ul>
@@ -40,30 +41,53 @@
     <!--FINAL DA NAVBAR-->
 
     <!--COMEÇO DO LOGIN-->
-    <section class="inputlogin">
-        <div class="wrapper">
-            <form>
-                <h1 class="h1login">Login</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="E-mail" required>
+    <section class="teste">
+        <div class="container" id="container">
+            <div class="form-container sign-up">
+                <form>
+                    <h1>Criar Conta</h1>
+                    <div class="social-icons">
+                        <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                    <span>ou use seu E-mail e sua Senha para cadastrar-se</span>
+                    <input type="text" placeholder="Nome">
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Senha">
+                    <button>Cadastrar-se</button>
+                </form>
+            </div>
+            <div class="form-container sign-in">
+                <form>
+                    <h1>Login</h1>
+                    <div class="social-icons">
+                        <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                    <span>ou use seu E-mail e sua Senha</span>
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Senha">
+                    <a href="#">Esqueceu Sua Senha?</a>
+                    <button>Login</button>
+                </form>
+            </div>
+            <div class="toggle-container">
+                <div class="toggle">
+                    <div class="toggle-panel toggle-left">
+                        <h1>Bem Vindo De Volta!</h1>
+                        <p>Sempre Bom Ver Velhos Amigos!</p>
+                        <button class="hidden" id="login">Login</button>
+                    </div>
+                    <div class="toggle-panel toggle-right">
+                        <h1>Novo no High Ecology?</h1>
+                        <p>Cadastre-se em nosso site para melhor experiência!</p>
+                        <button class="hidden" id="register">Cadastrar-se</button>
+                    </div>
                 </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Senha" required>  
-                </div>
-                <div class="LembreDeMim">
-                    <label><input type="checkbox">Lembre de mim</label>
-                    <a href="#">Esqueceu a senha?</a>
-                </div>
-                <button type="submit" class="btnlogin">
-                    Entrar
-                </button>
-                <div class="linkderegistro">
-                    <p>Não possui uma conta?</p>
-                    <p><a href="matricula.html">Matricule-se</a></p>
-                </div>
-            </form>
+            </div>
         </div>
     </section>
+    
     <!--FINAL DO LOGIN-->
 
     <!--COMEÇO DO FOOTER-->
