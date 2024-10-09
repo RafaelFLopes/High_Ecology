@@ -1,0 +1,303 @@
+/*======================= CABEÇALHO CURSO ====================*/
+
+.container-titles{
+    padding: 20px;
+    height: 190px;
+    background-color: #476b43;
+}
+.container-titles a{
+    text-align: left;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s ease;
+}
+.container-titles a:hover{
+    color: #5a2323;
+    letter-spacing: 1.2px;
+}
+.titles{
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.titles h1{
+    color: #f2f2f2;
+    font-size: 50px;
+    font-weight: 50; 
+}
+.titles p{
+    color: #f2f2f2;
+    font-size: 20px;
+    font-weight: 50; 
+}
+@media (max-width: 600px) {
+    .container-titles h1{
+        font-size: 40px;
+    }
+}
+@media (max-width: 495px) {
+    .container-titles{
+        padding: 20px;
+        height: 200px;
+        background-color: #476b43;
+
+    }
+}
+
+/*======================= FINAL CABEÇALHO CURSO ====================*/
+
+/*=================== CONTEÚDO UM =====================*/
+section.conteudo-curso{
+    padding: 50px 0 50px 0;
+    display: grid;
+    place-items: center;
+    background-color: #f2f2f2;
+}
+section.conteudo-curso h1{
+    color: #476b43;
+    font-size: 40px;
+    font-weight: 50;
+    margin-bottom: 20px;
+    padding: 0 20px 0 20px;
+    text-align: center;
+}
+.conteudo{
+    
+    width: 80%;
+    max-width: 1170px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 50px 30px;
+}
+.conteudo .conteudo-left{
+    overflow: hidden;
+}
+
+.conteudo .conteudo-left img{
+    border-radius: 5px ;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.conteudo .conteudo-right{
+    display: flex;
+    align-items: center;
+}
+.conteudo .conteudo-right .content-textos{
+    padding-left: 20px;
+}
+.conteudo .conteudo-right .content-textos p{
+    font-size: 17px;
+    line-height: 26px;
+    color: black;
+}
+@media (max-width: 991px) {
+    .conteudo .conteudo-right .content-textos{
+        padding-left: 0px;
+    }
+    .conteudo{
+        grid-gap: 30px 30px;
+    }
+}
+@media (max-width: 768px) {
+    .conteudo{
+        width: 90%;
+        grid-template-columns: 1fr;
+        grid-gap: 15px 30px;
+    }
+    section.conteudo-curso{
+        padding: 20px 0 20px 0;
+    }
+}
+@media (max-width: 495px) {
+    section.conteudo-curso h1{
+        font-size: 35px;
+    }
+}
+
+/*=================== FINAL CONTEÚDO UM =====================*/
+
+/*=================== CONTEÚDO DOIS =====================*/
+section.conteudo-curso-dois{
+    padding: 50px 0 50px 0;
+    display: grid;
+    place-items: center;
+    background-color: #b9ceb9;
+}
+section.conteudo-curso-dois h1{
+    color: #476b43;
+    font-size: 40px;
+    font-weight: 50;
+    margin-bottom: 20px;
+    padding: 0 20px 0 20px;
+    text-align: center;
+}
+.conteudo-dois{
+    width: 80%;
+    max-width: 1170px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 50px 30px;
+}
+
+.conteudo-dois .conteudo-right-dois{
+    overflow: hidden;
+}
+
+.conteudo-dois .conteudo-right-dois img{
+    border-radius: 5px ;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.conteudo-dois .conteudo-left-dois{
+    display: flex;
+    align-items: center;
+}
+.conteudo-dois .conteudo-left-dois .content-textos-dois{
+    padding-right: 20px;
+}
+.conteudo-dois .conteudo-left-dois .content-textos-dois p{
+    font-size: 17px;
+    line-height: 26px;
+    color: black;
+}
+@media (max-width: 991px) {
+    .conteudo-dois .conteudo-left-dois .content-textos-dois{
+        padding-right: 0px;
+    }
+    .conteudo-dois{
+        grid-gap: 30px 30px;
+    }
+}
+@media (max-width: 768px) {
+    .conteudo-dois{
+        width: 90%;
+        grid-template-columns: 1fr;
+        grid-gap: 15px 30px;
+    }
+    section.conteudo-curso-dois{
+        padding: 20px 0 20px 0;
+    }
+    .conteudo-dois .conteudo-right-dois{
+
+        grid-row: 1;
+        grid-column: 1;
+    }
+    .conteudo-dois .conteudo-left-dois{
+        grid-row: 2;
+        grid-column: 1;
+    }
+}
+@media (max-width: 495px) {
+    section.conteudo-curso h1{
+        font-size: 35px;
+    }
+    
+
+}
+
+/*=================== FINAL CONTEÚDO DOIS =====================*/
+
+
+section.conteudo-curso-dois .accordion.accordion-flush{
+    margin-top: 25px;
+    width: 73%;
+}
+section.conteudo-curso-dois button.accordion-button.collapsed:hover{
+background-color: #476b4398;
+color: white;
+}
+
+@media (max-width: 495px) {
+    section.conteudo-curso-dois .accordion.accordion-flush{
+        width: 90%;
+    }
+}
+
+section.conteudo-curso .conteudo-right .accordion.accordion-flush{ 
+    width: 100%;
+    padding-bottom: 15px;
+}
+
+section.conteudo-curso .conteudo-right button.accordion-button.collapsed{
+    background-color: #b9ceb9;
+    color: #476b43;
+    }
+
+section.conteudo-curso .conteudo-right button.accordion-button.collapsed:hover{
+background-color: #476b4398;
+color: white;
+
+}
+@media (max-width: 768px) {
+    section.conteudo-curso-dois .accordion.accordion-flush{
+        margin-top:0 ;
+    }
+}
+
+/*======================= RODAPE CURSO ====================*/
+.rodape{
+    padding: 20px;
+    height: 30vh;
+    background-color: #476b43;
+    text-align: center;
+}
+.rodape-button-um{
+    display: flex;
+    justify-content: center;
+}
+
+/*Caso houver botão voltar e avançar*/
+.rodape-buttons-dois{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 80px 0 80px;
+}
+
+
+
+.rodape-button button{
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: 550;
+    transition: all 0.4s ease;
+}
+.rodape-button button:hover{
+    background-color: #5a2323;
+    letter-spacing: 1.5px;
+    color: white;
+}
+
+.rodape-text{
+    padding-bottom: 10px;
+}
+.rodape-text h1{
+    color: #f2f2f2;
+    font-size: 50px;
+    font-weight: 50; 
+}
+.rodape-text p{
+    color: #f2f2f2;
+    font-size: 20px;
+    font-weight: 50; 
+}
+@media (max-width: 600px) {
+    .rodape-text h1{
+        font-size: 40px;
+    }
+    .rodape{
+        height: 40vh;
+    }
+}
+@media (max-width: 500px) {
+    .rodape-buttons-dois{
+        padding: 0 30px 0 30px;
+    }
+}
+/*======================= FINAL RODAPE CURSO ====================*/
