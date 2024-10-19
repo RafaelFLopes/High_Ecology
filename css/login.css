@@ -1,8 +1,7 @@
 /*====================LOGIN======================*/
 
 .teste{
-    background-image: url(../img/especializacoes/ecologia-curso.jpg);
-    background-repeat: no-repeat;
+
     background-size: cover;
     background-position: center;
     display: flex;
