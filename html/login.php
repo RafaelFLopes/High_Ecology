@@ -41,50 +41,63 @@
     <!--FINAL DA NAVBAR-->
 
     <!--COMEÇO DO LOGIN-->
-    <section class="teste">
-        <div class="container" id="container">
-            <div class="form-container sign-up">
-                <form>
-                    <h1>Criar Conta</h1>
-                    <div class="social-icons">
-                        <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                        <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                    </div>
-                    <span>ou use seu E-mail e sua Senha para cadastrar-se</span>
-                    <input type="text" placeholder="Nome">
-                    <input type="email" placeholder="Email">
-                    <input type="password" placeholder="Senha">
-                    <button>Cadastrar-se</button>
-                </form>
-            </div>
-            <div class="form-container sign-in">
-                <form>
-                    <h1>Login</h1>
-                    <div class="social-icons">
-                        <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                        <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                    </div>
-                    <span>ou use seu E-mail e sua Senha</span>
-                    <input type="email" placeholder="Email">
-                    <input type="password" placeholder="Senha">
-                    <a href="#">Esqueceu Sua Senha?</a>
-                    <button>Login</button>
-                </form>
-            </div>
-            <div class="toggle-container">
-                <div class="toggle">
-                    <div class="toggle-panel toggle-left">
-                        <h1>Bem Vindo De Volta!</h1>
-                        <p>Sempre Bom Ver Velhos Amigos!</p>
-                        <button class="hidden" id="login">Login</button>
-                    </div>
-                    <div class="toggle-panel toggle-right">
-                        <h1>Novo no High Ecology?</h1>
-                        <p>Cadastre-se em nosso site para melhor experiência!</p>
-                        <button class="hidden" id="register">Cadastrar-se</button>
-                    </div>
+    <section class="inputlogin">
+        <div class="wrapper">
+            <form action="#" method="POST">
+                <h1>Login</h1>
+                <div class="input-box">
+                    <input type="email" id="emaillogin" name="email" placeholder="E-mail" required>
                 </div>
+                <div class="input-box">
+                    <input type="password" id="password" name="password" placeholder="Senha" required>  
+                </div>
+                <div class="LembreDeMim">
+                    <a href="#">Esqueceu a senha?</a>
+                </div>
+                <button type="submit" class="btnlogin" name="btn_entrar">
+                    Entrar
+                </button>
+                <div class="linkderegistro">
+                    <p>Não possui uma conta?</p>
+                    <p><a href="matricula.html">Matricule-se</a></p>
+                </div>
+                
+            </form>
+            <div class="msg-banco">
+                <?php
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        if (isset($_POST['btn_entrar'])) {  // Verifica se o botão 'btn_entrar' foi pressionado (se o formulário foi submetido corretamente)
+                            include_once '../php/metodos_principais.php'; // Inclui o arquivo contendo a classe 'metodos_principais', onde estão os métodos de login
+                            $metodos_principais = new metodos_principais(); // Cria uma nova instância da classe 'metodos_principais'
+
+                            // Armazena os valores do email e login em variáveis
+                            $email = $_POST['email'];
+                            $senha = $_POST['password'];
+
+                            // Passa as variáveis
+                            $metodos_principais->setEmailAluno($email);
+                            $metodos_principais->setSenhaAluno($senha);
+                            $metodos_principais->setEmailProfessor($email);
+                            $metodos_principais->setSenhaProfessor($senha);
+
+                             // Chama o método 'login' da classe 'metodos_principais' para verificar se o login é válido
+                            $result = $metodos_principais->login();
+
+                            if ($result == "aluno") {
+                                header("Location:matricula.html"); // Altere para o caminho desejado
+                                exit(); // Importante para parar a execução do script
+                            } else if ($result == "professor") {
+                                header("Location:pagamento.html"); // Altere para o caminho desejado
+                                exit(); // Importante para parar a execução do script
+                            } else {
+                                echo "<p style='color: #5a2323; font-size: 15px; text-align: center; transition: all 0.5s;'>Email ou Senha inválidos</p>";
+                                echo $result;
+                            }
+                        }
+                    }
+                ?>
             </div>
+            
         </div>
     </section>
     

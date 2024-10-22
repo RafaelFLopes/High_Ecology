@@ -53,11 +53,11 @@ li#footer-sobre-texto{
 #instagram:hover {
     transform: scale(1.1);
 }
-#email {
+#emailfooter {
     background-color: #527D4D;
     transition: 1s;
 }
-#email:hover {
+#emailfooter:hover {
     transform: scale(1.1);
 }
 #github{
