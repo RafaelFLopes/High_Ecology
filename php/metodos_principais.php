@@ -3,10 +3,22 @@ include_once 'conectar.php';
 
 class metodos_principais
 {
+    private $nome_aluno;
     private $email_aluno;
     private $senha_aluno;
+
     private $email_professor;
     private $senha_professor;
+
+
+    // Getters e Setters para $nome_aluno
+    public function getNomeAluno() {
+        return $this->nome_aluno;
+    }
+
+    public function setNomeAluno($nome_aluno) {
+        $this->nome_aluno = $nome_aluno;
+    }
 
     // Getters e Setters para $email_aluno
     public function getEmailAluno() {
@@ -44,7 +56,7 @@ class metodos_principais
         $this->senha_professor = $senha_professor;
     }
 
-    // Método de login
+    // Método LOGIN
     public function login()
     {
         try {
@@ -82,6 +94,44 @@ class metodos_principais
             echo "Erro ao consultar. " . $exc->getMessage();
             return false;
         }
-    } 
+    }
+
+
+    // Método CADASTRO
+    public function cadastro()
+    {
+        try {
+            $this->conn = new Conectar();
+            
+            // Verificação se o e-mail já existe
+            $sqlVerifica = $this->conn->prepare("SELECT COUNT(*) as total FROM aluno WHERE Email = ?");
+            $email = $this->getEmailAluno(); // Armazena o valor de getEmailAluno em uma variável
+            $sqlVerifica->bindParam(1, $email, PDO::PARAM_STR);
+            $sqlVerifica->execute();
+            $resultado = $sqlVerifica->fetch(PDO::FETCH_ASSOC);
+
+            if ($resultado['total'] > 0) { //Caso o resultado da verficação for maior que 0, significa que já consta o email no bd
+                return ""; //TEMPORARIO
+            }
+
+            // Cadastro do aluno
+            $sql = $this->conn->prepare("INSERT INTO aluno (Nome, Email, Senha) VALUES (?, ?, ?)");
+            $nome = $this->getNomeAluno();  // Armazena o valor de getNomeAluno em uma variável
+            $senha = $this->getSenhaAluno();  // Armazena o valor de getSenhaAluno em uma variável
+            $sql->bindParam(1, $nome, PDO::PARAM_STR);
+            $sql->bindParam(2, $email, PDO::PARAM_STR); // Aqui já usa a variável $email
+            $sql->bindParam(3, $senha, PDO::PARAM_STR); // Aqui já usa a variável $senha
+
+            if ($sql->execute()) {
+                return "registrado"; // Se cadastrado com sucesso
+            }
+
+            $this->conn = null;
+
+        } catch (PDOException $exc) {
+            echo "Erro ao cadastrar. " . $exc->getMessage();
+            return false;
+        }
+    }  
 }
 ?>

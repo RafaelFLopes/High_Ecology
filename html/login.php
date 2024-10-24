@@ -59,11 +59,10 @@
                 </button>
                 <div class="linkderegistro">
                     <p>Não possui uma conta?</p>
-                    <p><a href="matricula.html">Matricule-se</a></p>
+                    <p><a href="cadastro.php">Cadastrar</a></p>
                 </div>
                 
             </form>
-            <div class="msg-banco">
                 <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if (isset($_POST['btn_entrar'])) {  // Verifica se o botão 'btn_entrar' foi pressionado (se o formulário foi submetido corretamente)
@@ -96,8 +95,6 @@
                         }
                     }
                 ?>
-            </div>
-            
         </div>
     </section>
     
