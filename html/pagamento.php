@@ -17,9 +17,9 @@
 <body>
 
     <div class="container-pagamentos">
-        <form action="">
+        <form action="#" method="POST">
             <a class="voltar-pagamento" href="matricula.html">
-                Voltar
+                < Voltar
             </a>
             <div class="row">
 
@@ -29,19 +29,19 @@
 
                     <div class="inputBox-pagamentos">
                         <span>Nome:</span>
-                        <input type="text" placeholder="Nome">
+                        <input type="text" name="name" placeholder="Nome"></input>
                     </div>
                     <div class="inputBox-pagamentos">
                         <span>Sobrenome:</span>
-                        <input type="text" placeholder="Sobrenome">
+                        <input type="text" name="sobrenome" placeholder="Sobrenome">
                     </div>
                     <div class="inputBox-pagamentos">
                         <span>Email:</span>
-                        <input type="email" placeholder="exemplo@exemplo.com">
+                        <input type="email" name="email" placeholder="exemplo@exemplo.com">
                     </div>
                     <div class="inputBox-pagamentos">
                         <span>Telefone:</span>
-                        <input type="tel" placeholder="(XX)XXXXX-XXXX">
+                        <input type="tel" name="telefone" placeholder="(XX)XXXXX-XXXX">
                     </div>
 
                     <div class="flex">
@@ -81,6 +81,7 @@
                     </div>
                 </div>
             </div>
+            <button type="submit" name="btn_comprar_pagamento" class="button-pagamento">Comprar</button>
             <a class="button-pagamento" href="Aprovado.html">Confirmar</a>
         </form>
     </div>

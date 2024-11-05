@@ -1,0 +1,324 @@
+:root {
+    --verde: #476b43;
+    --white: #fff;
+    --gray: #f5f5f5;
+    --black1: #222;
+    --black2: #999;
+}
+  
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  .container-p {
+    position: relative;
+    width: 100%;
+  }
+  
+  /* ===== MENU LATERAL ===== */
+  
+
+  .navegacao {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: var(--verde);
+    border-left: 10px solid var(--verde);
+    transition: 0.5s;
+    overflow: hidden;
+  }
+  
+  .navegacao.active {
+    width: 80px;
+  }
+  
+  .navegacao ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  .navegacao ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+  }
+  
+  .navegacao ul li:hover,
+  .navegacao ul li.hovered {
+    background-color: var(--white);
+  }
+  
+  .navegacao ul li:nth-child(1) {
+    margin-bottom: 40px;
+    pointer-events: none;
+  }
+  
+  .navegacao ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--white);
+  }
+  
+  .navegacao ul li:hover a,
+  .navegacao ul li.hovered a {
+    color: var(--verde);
+  }
+  
+  .navegacao ul li a .icone {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 75px;
+    text-align: center;
+  }
+  
+  .navegacao ul li a .icone ion-icon {
+    font-size: 1.75rem;
+  }
+  
+  .navegacao ul li a .titulo {
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+  }
+  
+  .navegacao ul li:hover a::before,
+  .navegacao ul li.hovered a::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px var(--white);
+    pointer-events: none;
+  }
+  
+  .navegacao ul li:hover a::after,
+  .navegacao ul li.hovered a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px var(--white);
+    pointer-events: none;
+  }
+
+
+  
+  /* ====== MAIN ====== */
+
+  .main-p {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background: var(--white);
+    transition: 0.5s;
+  }
+  
+  .main-p.active {
+    width: calc(100% - 80px);
+    left: 80px;
+  }
+  
+  .topbar {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    background-color: #b9ceb9;
+  }
+  
+  .toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+  }
+  
+  .user {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .user img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* ======  CARDS  ===== */
+
+  .cardGrupo {
+    position: relative;
+    width: 100%;
+    padding: 6px 0 0 17px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+  }
+  
+  .cardGrupo .cards {
+    position: relative;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    transition: all 0.2s ease;
+  }
+  
+  .cardGrupo .cards .numeros {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: var(--verde);
+  }
+  
+  .cardGrupo .cards .nomeCard {
+    color: var(--black2);
+    font-size: 1.1rem;
+    margin-top: 5px;
+  }
+  
+  .cardGrupo .cards .iconeGp {
+    font-size: 3.5rem;
+    color: var(--black2);
+  }
+  
+  .cardGrupo .cards:hover {
+    background: var(--verde);
+  }
+  
+  .cardGrupo .cards:hover .numeros,
+  .cardGrupo .cards:hover .nomeCard,
+  .cardGrupo .cards:hover .iconeGp {
+    color: var(--white);
+  }
+  
+  /* ===== HISTÓRICO ===== */
+  
+  
+  .card{
+    width: 100%;
+  }
+  
+  
+  
+                  /* ====== MEUS CURSOS ====== */
+   
+        /* ====== RESPONSIVIDADE ====== */
+  
+  @media (max-width: 1300px){
+    .cardGrupo {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .card{
+      width: 100%;
+    }
+  }
+
+
+  @media (max-width: 991px) {
+  
+    .cardGrupo {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .toggle {
+      z-index: 10001;
+    }
+    .main-p.active .toggle {
+      color: #fff;
+      position: fixed;
+      right: 0;
+      left: initial;
+    }
+
+    .navegacao {
+      width: 100%;
+      left: -100%;
+      z-index: 1000;
+    }
+  
+    .navegacao.active {
+      width: 100%;
+      left: 0;
+    }
+    .main-p {
+      width: 100%;
+      left: 0;
+    }
+  
+    .main-p.active {
+      left: -300px;
+    }
+  }
+
+  
+@media (max-width:640px){
+  .cardGrupo {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+  @media (max-width: 480px) {
+  
+    .cardGrupo {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  
+    .cardHeader h2 {
+      font-size: 20px;
+    }
+  
+    .user {
+      min-width: 40px;
+    }
+  
+  }
+    
+
+  .mensagemBemvindo {
+    padding: 15px 17px 0 17px;
+  }
+  .mensagemBemvindo h1{
+    color: #476b43;
+    font-weight: 400;
+    font-size: 30px;
+  }

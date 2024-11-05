@@ -64,6 +64,8 @@
                 
             </form>
                 <?php
+                    session_start();
+
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if (isset($_POST['btn_entrar'])) {  // Verifica se o botão 'btn_entrar' foi pressionado (se o formulário foi submetido corretamente)
                             include_once '../php/metodos_principais.php'; // Inclui o arquivo contendo a classe 'metodos_principais', onde estão os métodos de login
@@ -80,17 +82,21 @@
                             $metodos_principais->setSenhaProfessor($senha);
 
                              // Chama o método 'login' da classe 'metodos_principais' para verificar se o login é válido
-                            $result = $metodos_principais->login();
+                             $_SESSION["user"] = $metodos_principais->login();
 
-                            if ($result == "aluno") {
-                                header("Location:matricula.html"); // Altere para o caminho desejado
-                                exit(); // Importante para parar a execução do script
-                            } else if ($result == "professor") {
-                                header("Location:pagamento.html"); // Altere para o caminho desejado
-                                exit(); // Importante para parar a execução do script
+                            // Verifica se o login foi bem-sucedido (USAR TRY CATCH())
+                            if ($_SESSION["user"] && is_array($_SESSION["user"])) {
+                                if ($_SESSION["user"]['tabela'] === "aluno") {
+                                    $_SESSION['dados_user'] = $metodos_principais->getAlunoPorId($_SESSION["user"]['id']);     
+                                    header("Location: perfil.php"); // Altere para o caminho desejado
+                                    exit(); // Importante para parar a execução do script
+                                } else if ($_SESSION["user"]['tabela'] === "professor") {
+                                    $_SESSION['dados_user'] = $metodos_principais->getProfessorPorId($_SESSION["user"]['id']);     
+                                    header("Location: perfil.php"); // Altere para o caminho desejado
+                                    exit(); // Importante para parar a execução do script
+                                }
                             } else {
-                                echo "<p style='color: #5a2323; font-size: 15px; text-align: center; transition: all 0.5s;'>Email ou Senha inválidos</p>";
-                                echo $result;
+                                echo "<p style='color: #5a2323; font-size: 15px; text-align: center; transition: all 0.5s;'>Email ou Senha inválidos</p>";  
                             }
                         }
                     }

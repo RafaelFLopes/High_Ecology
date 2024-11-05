@@ -17,6 +17,9 @@
                     <input type="text" id="name" name="name" placeholder="Nome completo" required>
                 </div>
                 <div class="input-box">
+                    <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
+                </div>
+                <div class="input-box">
                     <input type="email" id="email" name="email" placeholder="E-mail" required>
                 </div>
                 <div class="input-box">
@@ -41,11 +44,13 @@
 
                             // Armazena os valores do email e login em variáveis
                             $nome = $_POST['name'];
+                            $cpf = $_POST['cpf'];
                             $email = $_POST['email'];
                             $senha = $_POST['password'];
 
                             // Passa as variáveis
                             $metodos_principais->setNomeAluno($nome);
+                            $metodos_principais->setCpfAluno($cpf);
                             $metodos_principais->setEmailAluno($email);
                             $metodos_principais->setSenhaAluno($senha);
 
