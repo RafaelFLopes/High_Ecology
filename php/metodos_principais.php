@@ -112,6 +112,28 @@ class metodos_principais {
     }
 
 
+    // Método LOGOUT
+    public function logout()
+    {
+        try{
+                // Inicia a sessão caso ainda não tenha sido iniciada
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+
+                // Limpa todos os dados da sessão
+                session_unset();
+                session_destroy();
+
+                // Redireciona para a página de login
+                header("Location: ../index.html");
+                exit();
+        }catch (PDOException $exc) {
+            echo "Erro ao consultar. " . $exc->getMessage();
+            return false;
+        }
+    }
+
     // Método CADASTRO
     public function cadastro()
     {

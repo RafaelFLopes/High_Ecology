@@ -78,15 +78,6 @@ session_start();
                 <li>
                     <a href = "#">
                         <span class = "icone">
-                            <ion-icon name = "help-outline"></ion-icon>
-                        </span>
-                        <span class = "titulo">Ajuda</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href = "#">
-                        <span class = "icone">
                             <ion-icon name = "settings-outline"></ion-icon>
                         </span>
                         <span class = "titulo">Editar Perfil</span>
@@ -94,7 +85,7 @@ session_start();
                 </li>
 
                 <li>
-                    <a href = "#">
+                    <a href = "../html/logout.php">
                         <span class = "icone">
                             <ion-icon name = "log-out-outline"></ion-icon>
                         </span>
@@ -166,9 +157,8 @@ session_start();
 
                 <div class="page-content page-container" id="page-content">
                     <div class="padding">
-                        <div class="row container d-flex justify-content-center">
+                        <div class="row container d-flex">
 
-                            <div class="col-lg-8 grid-margin stretch-card">
                               <div class="card">
                                 <div class="card-body">
                                   <h4 class="card-title">Histórico</h4>
@@ -221,7 +211,6 @@ session_start();
                                   </div>
                                 </div>
                               </div>
-                            </div>
                         </div>
                     </div>
                 </div>
