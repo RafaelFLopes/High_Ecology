@@ -24,12 +24,15 @@ session_start();
     <script type = "module" src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/gerenciar-cursos.css">
+
     <title>Editar Perfil - High Ecology</title>
 </head>
 <body>
     <div class = "container-p">
         <div class = "navegacao">
-            <ul>
+            <ul style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
                 <li>
                     <a href = "#">
                         <span class = "icone">
@@ -59,7 +62,7 @@ session_start();
                         <span class = "titulo">Gerenciar Cursos</span>
                     </a>
                     </li>
-                <?php } ?>
+                <?php }?>
 
 
                 <li>
@@ -81,7 +84,7 @@ session_start();
                 </li>
 
                 <li>
-                    <a href = "#">
+                    <a href = "editar-perfil">
                         <span class = "icone">
                             <ion-icon name = "settings-outline"></ion-icon>
                         </span>
@@ -113,45 +116,62 @@ session_start();
                 </div>
             </div>
             
-            <section class="inputlogin">
-                <div class="wrapper">
-                    <form action="#" method="POST">
+            
+                <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
 
-                        <h1>Editar Perfil</h1>
-                        <div class="imagem">
-                            <img src="../img/avaliacao/pic-1.png" alt="">
-                        </div>
-                        <div class="input-box">
-                            <label for="">Nome</label>
-                            <input type="text" id="name" name="name" placeholder="Nome" required value="<?php echo $_SESSION['dados_user']['nome'];?>">
-                        </div>
-                        <div class="input-box">
-                        <label for="">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Email" required value="<?php echo $_SESSION['dados_user']['email'];?>">  
-                        </div>
-                        <?php
-                        if($_SESSION["user"]['tabela'] == "aluno") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
-                        {?>
-                        <div class="input-box">
-                            <label for="">CPF</label>
-                            <input type="text" id="cpf" name="cpf" placeholder="CPF" required value="<?php echo $_SESSION['dados_user']['cpf'];?>">  
-                        </div>
-                        <?php } ?>
-                        
-                        <div class="input-box">
-                        <label for="">Senha</label>
-                            <input type="password" id="password" name="password" placeholder="Senha" required value="<?php echo $_SESSION['dados_user']['senha'];?>">  
-                        </div>
-                        <div class="input-file">
-                        <label for="">Foto de perfil</label>
-                            <input type="file" id="file" name="file" placeholder="file"> 
-                        </div>
-                        <button type="submit" class="btnEditar" name="btn_editar">
-                            Salvar
-                        </button>
-                    </form>
+            <?php
+            include('../php/config.php');
+
+            $id = $_GET['id'];
+            $stmt = $pdo->prepare('SELECT * FROM cursos WHERE id = ?');
+            $stmt->execute([$id]);
+            $course = $stmt->fetch();
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $title = $_POST['title'];
+                $description = $_POST['description'];
+                $image = $course['image'];
+
+                if (!empty($_FILES['image']['name'])) {
+                    $image = $_FILES['image']['name'];
+                    $target_dir = "../img/uploads/";
+                    $target_file = $target_dir . basename($_FILES['image']['name']);
+                    move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
+                }
+
+                $stmt = $pdo->prepare('UPDATE courses SET title = ?, description = ?, image = ? WHERE id = ?');
+                $stmt->execute([$title, $description, $image, $id]);
+
+                header('Location: list.php');
+            }
+            ?>
+
+            <header>
+            <h1>Editar Curso</h1>
+            </header>
+
+            <div class="container">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Título</label>
+                    <input type="text" name="title" value="<?php echo htmlspecialchars($course['title']); ?>" class="form-control" required>
                 </div>
-            </section>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Descrição</label>
+                    <textarea name="description" class="form-control" rows="4" required><?php echo htmlspecialchars($course['description']); ?></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Imagem Atual</label>
+                
+                </div>
+
+            </form>
+
+                <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
+
+
         </div>
 </body>
 </html>

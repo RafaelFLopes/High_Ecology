@@ -1,0 +1,107 @@
+
+
+
+/* Cabeçalho */
+header {
+    background-color: #fff;
+    padding-top: 20px;
+    color: #476b43;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Estilos dos botões */
+.add-course,
+.btn-primary,
+.btn-danger {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    padding: 12px 25px;
+}
+
+.add-course {
+    background-color: #476b43;
+    border: none;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+}
+
+.add-course:hover {
+    background-color: #41613d;
+}
+
+/* Botões alinhados lado a lado dentro dos cards */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Estilos dos cartões */
+.card {
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Configuração de imagens dentro dos cards */
+.card img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+}
+
+/* Estilo do formulário */
+form .form-control {
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Espaçamento entre campos do formulário */
+.form-control {
+    margin-bottom: 15px;
+}
+
+button.btn.btn-success{
+    background-color: #476b43;
+}
+button.btn.btn-success:hover{
+    background-color: #41613d;
+}
+a.btn.btn-primary{
+    background-color: #476b43;
+    border: none;
+}
+a.btn.btn-primary:hover{
+    background-color: #41613d;
+}
+div.card-footer{
+    background-color: #fff ;
+    border: none;
+}

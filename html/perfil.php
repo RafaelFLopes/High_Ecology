@@ -47,7 +47,7 @@ session_start();
                 if($_SESSION["user"]['tabela'] == "professor") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
                 {?>
                     <li>
-                    <a href = "#">
+                    <a href = "gerenciar-cursos.php">
                         <span class = "icone">
                             <ion-icon name="pencil-outline"></ion-icon>
                         </span>
