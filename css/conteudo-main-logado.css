@@ -1,0 +1,37 @@
+:root {
+    --verde: #476b43;
+    --white: #fff;
+    --gray: #f5f5f5;
+    --black1: #222;
+    --black2: #999;
+}
+
+.container-p {
+    position: relative;
+    width: 100%;
+  }
+
+.main-p {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background: var(--white);
+    transition: all 0.5s ease;
+  }
+  
+  .main-p.active {
+    width: calc(100% - 80px);
+    left: 80px;
+  }
+
+  @media (max-width: 991px) {
+    .main-p {
+      width: 100%;
+      left: 0;
+    }
+  
+    .main-p.active {
+      left: -300px;
+    }
+  }

@@ -1,0 +1,131 @@
+/*====================LOGIN======================*/
+
+.inputlogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fff;
+    background-position: center;
+}
+.wrapper {
+    align-items: center;
+    width: 420px;
+    color: #f2f2f2;
+    border-radius: 20px;
+    background-color: #476b43;
+    padding: 40px 35px;
+    border-color: #8da58d;
+}
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.wrapper .input-box{
+    width: 100%;
+    height: 50px;
+    margin: 30px 0 ;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #f2f2f2;
+    text-align: center;
+}
+.input-box input::placeholder {
+    color: #f2f2f2cf;
+}
+.wrapper .LembreDeMim {
+    display: flex;
+    justify-content: center;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+.LembreDeMim a {
+    color: #f2f2f2;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+.LembreDeMim a:hover {
+    color: #5a2323;
+    text-decoration: none;
+}
+.wrapper .btnEditar   {
+    margin: 30px 0 0 0;
+    width: 100%;
+    height: 45px;
+    background: #f2f2f2;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333333;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+.wrapper .btnEditar:hover{
+    background-color: #5a2323;
+    color: #f2f2f2;
+    letter-spacing: 1.5px;
+}
+.wrapper .linkderegistro {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+    accent-color: #f2f2f2;
+}
+.linkderegistro p a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-weight: 400;
+    transition: all 0.4s ease;
+}
+.linkderegistro p a:hover {
+    color: #5a2323;
+    text-decoration: none;
+}
+@media (width < 420px) {
+    .wrapper {
+        width: 350px;
+    }
+}
+@media (width < 350px) {
+    .wrapper {
+        width: 300px;
+    }
+}
+@media (width < 300px) {
+    .wrapper {
+        width: 250px;
+    }
+}
+/*====================FINAL LOGIN======================*/
+
+.imagem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagem img {
+    width: 100px; /* Define a largura da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 50%; /* Faz a imagem ficar circular, opcional */
+}
+
+input#file{
+    font-size: 14px;
+}
+input#file-upload-button{
+    background-color: #476b43;
+    color: #8da58d;
+}

@@ -76,7 +76,7 @@ session_start();
                 </li>
 
                 <li>
-                    <a href = "#">
+                    <a href = "editar-perfil.php">
                         <span class = "icone">
                             <ion-icon name = "settings-outline"></ion-icon>
                         </span>
@@ -85,7 +85,7 @@ session_start();
                 </li>
 
                 <li>
-                    <a href = "../html/logout.php">
+                    <a href = "../php/logout.php">
                         <span class = "icone">
                             <ion-icon name = "log-out-outline"></ion-icon>
                         </span>

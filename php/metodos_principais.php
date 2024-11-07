@@ -6,9 +6,20 @@ class metodos_principais {
     private $cpf_aluno;
     private $email_aluno;
     private $senha_aluno;
+    
+    private $nome_editar_aluno;
+    private $cpf_editar_aluno;
+    private $email_editar_aluno;
+    private $senha_editar_aluno;
 
     private $email_professor;
     private $senha_professor;
+
+    private $nome_editar_professor;
+    private $email_editar_professor;
+    private $senha_editar_professor;
+
+
 
 
     // Getters e Setters para $nome_aluno
@@ -65,6 +76,56 @@ class metodos_principais {
         $this->senha_professor = $senha_professor;
     }
 
+
+    public function getNomeEditarAluno(){
+        return $this->nome_editar_aluno;
+    }
+    public function setNomeEditarAluno($nome_editar_aluno){
+         $this->nome_editar_aluno = $nome_editar_aluno;
+    }
+
+    public function getEmailEditarAluno(){
+        return $this->email_editar_aluno;
+    }
+    public function setEmailEditarAluno($email_editar_aluno){
+         $this->email_editar_aluno = $email_editar_aluno;
+    }
+
+    public function getCpfEditarAluno(){
+        return $this->cpf_editar_aluno;
+    }
+    public function setCpfEditarAluno($cpf_editar_aluno){
+         $this->cpf_editar_aluno = $cpf_editar_aluno;
+    }
+
+    public function getSenhaEditarAluno(){
+        return $this->senha_editar_aluno;
+    }
+    public function setSenhaEditarAluno($senha_editar_aluno){
+         $this->senha_editar_aluno = $senha_editar_aluno;
+    }
+
+    public function getNomeEditarProfessor(){
+        return $this->nome_editar_professor;
+    }
+    public function setNomeEditarProfessor($nome_editar_professor){
+         $this->nome_editar_professor = $nome_editar_professor;
+    }
+
+    public function getEmailEditarProfessor(){
+        return $this->email_editar_professor;
+    }
+    public function setEmailEditarProfessor($email_editar_professor){
+         $this->email_editar_professor = $email_editar_professor;
+    }
+
+    public function getSenhaEditarProfessor(){
+        return $this->senha_editar_professor;
+    }
+    public function setSenhaEditarProfessor($senha_editar_professor){
+         $this->senha_editar_professor = $senha_editar_professor;
+    }
+
     // Método LOGIN
     public function login()
     {
@@ -72,7 +133,7 @@ class metodos_principais {
             $this->conn = new Conectar();
             
             // Verificação na tabela de aluno
-            $sql = $this->conn->prepare("SELECT COD_Aluno, 'aluno' AS tabela FROM aluno WHERE Email = ? AND Senha = ?");
+            $sql = $this->conn->prepare("SELECT Cod_Aluno, 'aluno' AS tabela FROM aluno WHERE Email = ? AND Senha = ?");
             @$sql->bindParam(1, $this->getEmailAluno(), PDO::PARAM_STR);
             @$sql->bindParam(2, $this->getSenhaAluno(), PDO::PARAM_STR);
             $sql->execute();
