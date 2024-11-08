@@ -35,7 +35,7 @@
             <li><a href="../html/matricula.html"class="active"> Matricule-se</a></li>
             <li><a href="../index.html">Home</a></li>
             <li><a href="../html/especializacoes.html">Especializações</a></li>
-            <li><a href="../html/login.html">Login</a></li>
+            <li><a href="../html/login.php">Login</a></li>
         </ul>
     </nav>
     <!--FINAL DA NAVBAR-->
@@ -119,7 +119,7 @@
                             <a href="https://instagram.com/high.ecology?igshid=OGQ5ZDc2ODk2ZA==" class="footer-link" id="instagram">
                                 <i class="fa-brands fa-instagram"></i>
                             </a>
-                            <a href="high.ecology@hotmail.com" class="footer-link" id="email">
+                            <a href="high.ecology@hotmail.com" class="footer-link" id="emailfooter">
                                 <i class="fa-regular fa-envelope"></i>
                             </a>
                             <a href="https://github.com/RafaelFLopes/High_Ecology" class="footer-link" id="github">

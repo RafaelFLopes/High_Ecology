@@ -81,7 +81,6 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" name="btn_comprar_pagamento" class="button-pagamento">Comprar</button>
             <a class="button-pagamento" href="Aprovado.html">Confirmar</a>
         </form>
     </div>

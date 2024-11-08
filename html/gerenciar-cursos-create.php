@@ -1,5 +1,21 @@
 <?php
-session_start();
+    session_start();
+            include('../php/config.php');
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $title = $_POST['title'];
+                $description = $_POST['description'];
+                $image = $_FILES['image']['name'];
+
+                $target_dir = "../img/uploads/";
+                $target_file = $target_dir . basename($_FILES['image']['name']);
+                move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
+
+                $stmt = $pdo->prepare('INSERT INTO cursos (title, description, image) VALUES (?, ?, ?)');
+                $stmt->execute([$title, $description, $image]);
+
+                header('Location: gerenciar-cursos.php');
+            }
 ?>
 
 
@@ -115,25 +131,6 @@ session_start();
             
             
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
-
-            <?php
-            include('../php/config.php');
-
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $title = $_POST['title'];
-                $description = $_POST['description'];
-                $image = $_FILES['image']['name'];
-
-                $target_dir = "../img/uploads/";
-                $target_file = $target_dir . basename($_FILES['image']['name']);
-                move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
-
-                $stmt = $pdo->prepare('INSERT INTO cursos (title, description, image) VALUES (?, ?, ?)');
-                $stmt->execute([$title, $description, $image]);
-
-                header('Location: gerenciar-cursos.php');
-            }
-            ?>
             <header>
                 <h1>Criar Novo Curso</h1>
             </header>

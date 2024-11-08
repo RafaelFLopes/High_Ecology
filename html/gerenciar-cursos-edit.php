@@ -1,5 +1,29 @@
 <?php
-session_start();
+    session_start();
+            include('../php/config.php');
+
+            $id = $_GET['id'];
+            $stmt = $pdo->prepare('SELECT * FROM cursos WHERE id = ?');
+            $stmt->execute([$id]);
+            $course = $stmt->fetch();
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $title = $_POST['title'];
+                $description = $_POST['description'];
+                $image = $course['image'];
+
+                if (!empty($_FILES['image']['name'])) {
+                    $image = $_FILES['image']['name'];
+                    $target_dir = "../img/uploads/";
+                    $target_file = $target_dir . basename($_FILES['image']['name']);
+                    move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
+                }
+
+                $stmt = $pdo->prepare('UPDATE cursos SET title = ?, description = ?, image = ? WHERE id = ?');
+                $stmt->execute([$title, $description, $image, $id]);
+
+                header('Location: gerenciar-cursos.php'); 
+            }
 ?>
 
 
@@ -118,33 +142,6 @@ session_start();
             
             
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
-
-            <?php
-            include('../php/config.php');
-
-            $id = $_GET['id'];
-            $stmt = $pdo->prepare('SELECT * FROM cursos WHERE id = ?');
-            $stmt->execute([$id]);
-            $course = $stmt->fetch();
-
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $title = $_POST['title'];
-                $description = $_POST['description'];
-                $image = $course['image'];
-
-                if (!empty($_FILES['image']['name'])) {
-                    $image = $_FILES['image']['name'];
-                    $target_dir = "../img/uploads/";
-                    $target_file = $target_dir . basename($_FILES['image']['name']);
-                    move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
-                }
-
-                $stmt = $pdo->prepare('UPDATE courses SET title = ?, description = ?, image = ? WHERE id = ?');
-                $stmt->execute([$title, $description, $image, $id]);
-
-                header('Location: list.php');
-            }
-            ?>
 
             <header>
             <h1>Editar Curso</h1>
