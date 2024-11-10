@@ -48,14 +48,15 @@ img {
 /*=============== CARD ===============*/
 .container {
   display: grid;
-  place-items: center;
-  margin-inline: 1.5rem;
-  padding-block: 5rem;
+ justify-content: center;
+ align-items: center;
+ padding: 50px;
+
 }
 
 .card__container {
   display: grid;
-  row-gap: 3.5rem;
+  row-gap: 50px;
 }
 
 .card__article {

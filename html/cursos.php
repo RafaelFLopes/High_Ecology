@@ -18,18 +18,21 @@ session_start();
     <link rel="stylesheet" href="../css/conteudo-main-logado.css">
     <link rel="stylesheet" href="../css/leftnavbar.css">
     <link rel="stylesheet" href="../css/topbar.css">
-    <link rel="stylesheet" href="../css/editar-perfil.css">
+    <link rel="stylesheet" href="../css/especializacoes.css">
 
     <script src="../js/perfil.js" defer></script>
     <script type = "module" src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/gerenciar-cursos.css">
 
     <title>Editar Perfil - High Ecology</title>
 </head>
 <body>
     <div class = "container-p">
         <div class = "navegacao">
-            <ul>
+            <ul style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
                 <li>
                     <a href = "#">
                         <span class = "icone">
@@ -59,7 +62,7 @@ session_start();
                         <span class = "titulo">Gerenciar Cursos</span>
                     </a>
                     </li>
-                <?php } ?>
+                <?php }?>
 
 
                 <li>
@@ -81,7 +84,7 @@ session_start();
                 </li>
 
                 <li>
-                    <a href = "#">
+                    <a href = "editar-perfil.php">
                         <span class = "icone">
                             <ion-icon name = "settings-outline"></ion-icon>
                         </span>
@@ -113,45 +116,30 @@ session_start();
                 </div>
             </div>
             
-            <section class="inputlogin">
-                <div class="wrapper">
-                    <form action="#" method="POST">
+            
+                <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
 
-                        <h1>Editar Perfil</h1>
-                        <div class="imagem">
-                            <img src="../img/avaliacao/pic-1.png" alt="">
-                        </div>
-                        <div class="input-box">
-                            <label for="">Nome</label>
-                            <input type="text" id="name" name="name" placeholder="Nome" required value="<?php echo $_SESSION['dados_user']['nome'];?>">
-                        </div>
-                        <div class="input-box">
-                        <label for="">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Email" required value="<?php echo $_SESSION['dados_user']['email'];?>">  
-                        </div>
-                        <?php
-                        if($_SESSION["user"]['tabela'] == "aluno") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
-                        {?>
-                        <div class="input-box">
-                            <label for="">CPF</label>
-                            <input type="text" id="cpf" name="cpf" placeholder="CPF" required value="<?php echo $_SESSION['dados_user']['cpf'];?>">  
-                        </div>
-                        <?php } ?>
-                        
-                        <div class="input-box">
-                        <label for="">Senha</label>
-                            <input type="password" id="password" name="password" placeholder="Senha" required value="<?php echo $_SESSION['dados_user']['senha'];?>">  
-                        </div>
-                        <div class="input-file">
-                        <label for="">Foto de perfil</label>
-                            <input type="file" id="file" name="file" placeholder="file"> 
-                        </div>
-                        <button type="submit" class="btnEditar" name="btn_editar">
-                            Salvar
-                        </button>
-                    </form>
-                </div>
-            </section>
-        </div>
+            <?php
+            include('../php/config.php');
+
+            $stmt = $pdo->query('SELECT * FROM cursos');
+            $courses = $stmt->fetchAll();
+            ?>
+            <div class="container">
+               <div class="card__container">
+               <?php foreach ($courses as $course): ?>
+                  <article class="card__article">
+                     <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" alt="image" class="card__img">
+
+                     <div class="card__data">
+                        <span class="card__description"><?php echo htmlspecialchars($course['description']); ?></span>
+                        <h2 class="card__title"><?php echo htmlspecialchars($course['title']); ?></h2>
+                        <a href="../html/modulos/modulo-biologia.html" class="card__button">Começar</a>
+                     </div>
+                  </article>
+                  <?php endforeach; ?>
+               </div>
+            </div>
+         </div>
 </body>
 </html>

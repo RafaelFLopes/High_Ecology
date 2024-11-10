@@ -57,7 +57,7 @@
     transition: all 0.4s ease;
 }
 .LembreDeMim a:hover {
-    color: #5a2323;
+    color:#5a2323;    
     text-decoration: none;
 }
 .wrapper .btnlogin   {
