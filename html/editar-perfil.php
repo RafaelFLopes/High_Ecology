@@ -63,7 +63,7 @@ session_start();
 
 
                 <li>
-                    <a href = "#">
+                    <a href = "cursos.php">
                         <span class = "icone">
                             <ion-icon name="library-outline"></ion-icon>
                         </span>

@@ -18,7 +18,7 @@ session_start();
     <link rel="stylesheet" href="../css/conteudo-main-logado.css">
     <link rel="stylesheet" href="../css/leftnavbar.css">
     <link rel="stylesheet" href="../css/topbar.css">
-    <link rel="stylesheet" href="../css/editar-perfil.css">
+    <link rel="stylesheet" href="../css/especializacoes.css">
 
     <script src="../js/perfil.js" defer></script>
     <script type = "module" src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -125,37 +125,21 @@ session_start();
             $stmt = $pdo->query('SELECT * FROM cursos');
             $courses = $stmt->fetchAll();
             ?>
+            <div class="container">
+               <div class="card__container">
+               <?php foreach ($courses as $course): ?>
+                  <article class="card__article">
+                     <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" alt="image" class="card__img">
 
-            <header>
-                <h1>Gerenciamento de Cursos</h1>
-            </header>
-
-            <div class="container my-5">
-                <a href="gerenciar-cursos-create.php" class="btn btn-success add-course mb-4">Criar Novo Curso</a>
-
-                <div class="row">
-                    <?php foreach ($courses as $course): ?>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" class="card-img-top" alt="Imagem do Curso">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($course['title']); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars($course['description']); ?></p>
-                            </div>
-                            <div class="card-footer">
-                                <a href="gerenciar-cursos-edit.php?id=<?php echo $course['id']; ?>" class="btn btn-primary">Editar</a>
-                                <a href="gerenciar-modulos.php?id=<?php echo $course['id']; ?>" class="btn btn-warning">Módulos</a>
-                                <a href="../php/delete.php?id=<?php echo $course['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este curso?')">Deletar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
+                     <div class="card__data">
+                        <span class="card__description"><?php echo htmlspecialchars($course['description']); ?></span>
+                        <h2 class="card__title"><?php echo htmlspecialchars($course['title']); ?></h2>
+                        <a href="../html/modulos/modulo-biologia.html" class="card__button">Começar</a>
+                     </div>
+                  </article>
+                  <?php endforeach; ?>
+               </div>
             </div>
-
-                <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
-
-
-        </div>
+         </div>
 </body>
 </html>
