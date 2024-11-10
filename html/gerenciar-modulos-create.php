@@ -1,5 +1,21 @@
 <?php
-session_start();
+    session_start();
+            include('../php/config.php');
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $titulo_mod = $_POST['titulo_mod'];
+                $descricao_mod = $_POST['descricao_mod'];
+                $image_mod = $_FILES['image_mod']['name'];
+
+                $target_dir = "../img/uploads/";
+                $target_file = $target_dir . basename($_FILES['image_mod']['name']);
+                move_uploaded_file($_FILES['image_mod']['tmp_name'], $target_file);
+
+                $stmt = $pdo->prepare('INSERT INTO modulos (titulo_mod, descricao_mod, image_mod) VALUES (?, ?, ?)');
+                $stmt->execute([$titulo_mod, $descricao_mod, $image_mod]);
+
+                header('Location: gerenciar-modulos.php');
+            }
 ?>
 
 
@@ -51,9 +67,8 @@ session_start();
                     </a>
                 </li>
 
-                <?php 
-                if($_SESSION["user"]['tabela'] == "professor") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
-                {?>
+                 
+                <?php if($_SESSION["user"]['tabela'] == "professor"){?>
                     <li>
                     <a href = "gerenciar-cursos.php">
                         <span class = "icone">
@@ -109,50 +124,37 @@ session_start();
                 <div class = "toggle">
                     <ion-icon name = "menu-outline"></ion-icon>
                 </div>
-
-                <div class = "user">
-                    
+                <div class = "user">  
                     <img src = "../img/avaliacao/pic-1.png" alt = "Foto do Usuário">
                 </div>
             </div>
             
             
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
-
-            <?php
-            include('../php/config.php');
-
-            $stmt = $pdo->query('SELECT * FROM cursos');
-            $courses = $stmt->fetchAll();
-            ?>
-
             <header>
-                <h1>Gerenciamento de Cursos</h1>
+                <h1>Criar Novo Módulo</h1>
             </header>
 
             <div class="container my-5">
-                <a href="gerenciar-cursos-create.php" class="btn btn-success add-course mb-4">Criar Novo Curso</a>
-
-                <div class="row">
-                    <?php foreach ($courses as $course): ?>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" class="card-img-top" alt="Imagem do Curso">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($course['title']); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars($course['description']); ?></p>
-                            </div>
-                            <div class="card-footer">
-                                <a href="gerenciar-cursos-edit.php?id=<?php echo $course['id']; ?>" class="btn btn-primary">Editar</a>
-                                <a href="gerenciar-modulos.php?id=<?php echo $course['id']; ?>" class="btn btn-warning">Módulos</a>
-                                <a href="../php/delete.php?id=<?php echo $course['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este curso?')">Deletar</a>
-                            </div>
-                        </div>
+                <form action="" method="POST" enctype="multipart/form-data" class="form">
+                    <div class="mb-3">
+                        <label for="titulo_mod" class="form-label">Título</label>
+                        <input type="text" name="titulo_mod" class="form-control" required>
                     </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
 
+                    <div class="mb-3">
+                        <label for="descricao_mod" class="form-label">Descrição</label>
+                        <textarea name="descricao_mod" class="form-control" rows="4" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image_mod" class="form-label">Imagem</label>
+                        <input type="file" name="image_mod" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Criar Módulo</button>
+                </form>
+            </div>
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
 
 

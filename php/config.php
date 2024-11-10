@@ -1,7 +1,7 @@
 <?php
 // Parâmetros de conexão ao banco de dados
 $host = 'localhost';
-$dbname = 'highEcology';
+$dbname = 'highecology';
 $username = 'root';
 $password = '';
 
