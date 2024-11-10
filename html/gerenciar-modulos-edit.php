@@ -1,5 +1,29 @@
 <?php
-session_start();
+    session_start();
+            include('../php/config.php');
+
+            $id_mod = $_GET['id_mod'];
+            $stmt = $pdo->prepare('SELECT * FROM modulos WHERE id_mod = ?');
+            $stmt->execute([$id_mod]);
+            $course = $stmt->fetch();
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $titulo_mod = $_POST['titulo_mod'];
+                $descricao_mod = $_POST['descricao_mod'];
+                $image_mod = $modulo['image_mod'];
+
+                if (!empty($_FILES['image_mod']['name'])) {
+                    $image = $_FILES['image_mod']['name'];
+                    $target_dir = "../img/uploads/";
+                    $target_file = $target_dir . basename($_FILES['image_mod']['name']);
+                    move_uploaded_file($_FILES['image_mod']['tmp_name'], $target_file);
+                }
+
+                $stmt = $pdo->prepare('UPDATE modulos SET titulo_mod = ?, descricao_mod = ?, image_mod = ? WHERE id_mod = ?');
+                $stmt->execute([$titulo_mod, $descricao_mod, $image_mod, $id_mod]);
+
+                header('Location: gerenciar-modulos.php'); 
+            }
 ?>
 
 
@@ -66,7 +90,7 @@ session_start();
 
 
                 <li>
-                    <a href = "cursos.php">
+                    <a href = "#">
                         <span class = "icone">
                             <ion-icon name="library-outline"></ion-icon>
                         </span>
@@ -84,7 +108,7 @@ session_start();
                 </li>
 
                 <li>
-                    <a href = "editar-perfil.php">
+                    <a href = "editar-perfil">
                         <span class = "icone">
                             <ion-icon name = "settings-outline"></ion-icon>
                         </span>
@@ -119,39 +143,28 @@ session_start();
             
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
 
-            <?php
-            include('../php/config.php');
-
-            $stmt = $pdo->query('SELECT * FROM cursos');
-            $courses = $stmt->fetchAll();
-            ?>
-
             <header>
-                <h1>Gerenciamento de Cursos</h1>
+            <h1>Editar Módulos</h1>
             </header>
 
-            <div class="container my-5">
-                <a href="gerenciar-cursos-create.php" class="btn btn-success add-course mb-4">Criar Novo Curso</a>
-
-                <div class="row">
-                    <?php foreach ($courses as $course): ?>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" class="card-img-top" alt="Imagem do Curso">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($course['title']); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars($course['description']); ?></p>
-                            </div>
-                            <div class="card-footer">
-                                <a href="gerenciar-cursos-edit.php?id=<?php echo $course['id']; ?>" class="btn btn-primary">Editar</a>
-                                <a href="gerenciar-modulos.php?id=<?php echo $course['id']; ?>" class="btn btn-warning">Módulos</a>
-                                <a href="../php/delete.php?id=<?php echo $course['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este curso?')">Deletar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
+            <div class="container">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="titulo_mod" class="form-label">Título</label>
+                    <input type="text" name="titulo_mod" value="<?php echo htmlspecialchars($modulo['titulo_mod']); ?>" class="form-control" required>
                 </div>
-            </div>
+
+                <div class="mb-3">
+                    <label for="descricao_mod" class="form-label">Descrição</label>
+                    <textarea name="descricao_mod" class="form-control" rows="4" required><?php echo htmlspecialchars ($modulo['descricao_mod']); ?></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image_mod" class="form-label">Imagem Atual</label>
+                
+                </div>
+
+            </form>
 
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
 

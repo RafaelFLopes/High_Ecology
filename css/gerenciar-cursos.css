@@ -98,6 +98,11 @@ a.btn.btn-primary{
     background-color: #476b43;
     border: none;
 }
+
+a.btn.btn-warning{
+ border-radius: 12px;   
+
+}
 a.btn.btn-primary:hover{
     background-color: #41613d;
 }

@@ -66,7 +66,7 @@ session_start();
 
 
                 <li>
-                    <a href = "cursos.php">
+                    <a href = "#">
                         <span class = "icone">
                             <ion-icon name="library-outline"></ion-icon>
                         </span>
@@ -122,30 +122,30 @@ session_start();
             <?php
             include('../php/config.php');
 
-            $stmt = $pdo->query('SELECT * FROM cursos');
-            $courses = $stmt->fetchAll();
+            $stmt = $pdo->query('SELECT * FROM modulos');
+            $modulos = $stmt->fetchAll();
             ?>
 
             <header>
-                <h1>Gerenciamento de Cursos</h1>
+                <h1>Gerenciamento de Módulos</h1>
             </header>
 
             <div class="container my-5">
-                <a href="gerenciar-cursos-create.php" class="btn btn-success add-course mb-4">Criar Novo Curso</a>
+                <a href="gerenciar-modulos-create.php" class="btn btn-success add-course mb-4">Criar Novo Módulo</a>
 
                 <div class="row">
-                    <?php foreach ($courses as $course): ?>
+                    <?php foreach ($modulos as $modulo): ?>
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
-                            <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" class="card-img-top" alt="Imagem do Curso">
+                            <img src="../img/uploads/<?php echo htmlspecialchars($modulo['image_mod']); ?>" class="card-img-top" alt="Imagem do Módulo">
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($course['title']); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars($course['description']); ?></p>
+                                <h5 class="card-title"><?php echo htmlspecialchars($modulo['titulo_mod']); ?></h5>
+                                <p class="card-text"><?php echo htmlspecialchars($modulo['descricao_mod']); ?></p>
                             </div>
                             <div class="card-footer">
-                                <a href="gerenciar-cursos-edit.php?id=<?php echo $course['id']; ?>" class="btn btn-primary">Editar</a>
-                                <a href="gerenciar-modulos.php?id=<?php echo $course['id']; ?>" class="btn btn-warning">Módulos</a>
-                                <a href="../php/delete.php?id=<?php echo $course['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este curso?')">Deletar</a>
+                                <a href="gerenciar-cursos-edit.php?id=<?php echo $modulo['id_mod']; ?>" class="btn btn-primary">Editar</a>
+                                <a href="gerenciar-modulos.php?id=<?php echo $modulo['id_mod']; ?>" class="btn btn-warning">Conteúdo</a>
+                                <a href="../php/delete_mod.php?id_mod=<?php echo $modulo['id_mod']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este módulo?')">Deletar</a>
                             </div>
                         </div>
                     </div>
