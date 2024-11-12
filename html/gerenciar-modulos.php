@@ -122,8 +122,15 @@ session_start();
             <?php
             include('../php/config.php');
 
-            $stmt = $pdo->query('SELECT * FROM modulos');
-            $modulos = $stmt->fetchAll();
+            // Pegando o id do curso
+            $stmt = $pdo->query('SELECT * FROM cursos WHERE title LIKE "' . $_SESSION['nome_do_curso'] . '"');
+            $id_do_curso = $stmt->fetch(PDO::FETCH_ASSOC); // Usando fetch() para obter uma única linha e colocando na variavel $id_do_curso
+            
+            $_SESSION['id_do_curso'] = $id_do_curso['id']; // Criei um varaivel de s
+
+            // Armazene o ID do curso na variável de sessão
+            $stmt = $pdo->query('SELECT * FROM modulos WHERE id_curso = ' . $_SESSION['id_do_curso']);
+            $modulos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
 
             <header>

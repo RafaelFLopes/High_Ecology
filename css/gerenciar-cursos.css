@@ -15,12 +15,20 @@ header {
 /* Estilos dos botões */
 .add-course,
 .btn-primary,
+.btn-warning,
 .btn-danger {
     text-transform: uppercase;
+    color: #f2f2f2;
     font-weight: bold;
     letter-spacing: 1px;
     border-radius: 50px;
     padding: 12px 25px;
+}
+.add-course:hover,
+.btn-primary:hover,
+.btn-warning:hover,
+.btn-danger:hover {
+    color:black;
 }
 
 .add-course {
@@ -97,11 +105,6 @@ button.btn.btn-success:hover{
 a.btn.btn-primary{
     background-color: #476b43;
     border: none;
-}
-
-a.btn.btn-warning{
- border-radius: 12px;   
-
 }
 a.btn.btn-primary:hover{
     background-color: #41613d;

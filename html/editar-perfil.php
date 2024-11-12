@@ -113,45 +113,52 @@ session_start();
                 </div>
             </div>
             
-            <section class="inputlogin">
-                <div class="wrapper">
-                    <form action="#" method="POST">
-
+            <div class="container-editar-perfil">
+                <form action="#" method="POST">
+                    <div class="Row">
                         <h1>Editar Perfil</h1>
-                        <div class="imagem">
-                            <img src="../img/avaliacao/pic-1.png" alt="">
+                    </div>
+                    <div class="row">
+                        <div class="col" id="perfil-imagem">
+                            
+                            <div class="imagem">
+                                <img src="../img/avaliacao/pic-1.png" alt="">
+                            </div>
+
                         </div>
-                        <div class="input-box">
-                            <label for="">Nome</label>
-                            <input type="text" id="name" name="name" placeholder="Nome" required value="<?php echo $_SESSION['dados_user']['nome'];?>">
+
+                        <div class="col">
+                            <div class="inputBox-editar-perfil">
+                                <span>Nome:</span>
+                                <input type="text" id="name" name="name" placeholder="Nome" required value="<?php echo $_SESSION['dados_user']['nome'];?>">
+                            </div>
+                            <div class="inputBox-editar-perfil">
+                                <span>Email:</span>
+                                <input type="email" id="email" name="email" placeholder="Email" required value="<?php echo $_SESSION['dados_user']['email'];?>">
+                            </div>
+                            <?php
+                            if($_SESSION["user"]['tabela'] == "aluno")
+                            {?>
+                            <div class="inputBox-editar-perfil">
+                                <span>CPF:</span>
+                                <input type="text" id="cpf" name="cpf" placeholder="CPF" required value="<?php echo $_SESSION['dados_user']['cpf'];?>">
+                            </div>
+                            <?php } ?>
+                            <div class="flex">
+                                <div class="inputBox-editar-perfil">
+                                    <span>Senha:</span>
+                                    <input type="password" placeholder="Senha">
+                                </div>
+                                <div class="inputBox-editar-perfil">
+                                    <span>Confirmar Senha:</span>
+                                    <input type="password" placeholder="Senha">
+                                </div>
+                            </div>
                         </div>
-                        <div class="input-box">
-                        <label for="">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Email" required value="<?php echo $_SESSION['dados_user']['email'];?>">  
-                        </div>
-                        <?php
-                        if($_SESSION["user"]['tabela'] == "aluno") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
-                        {?>
-                        <div class="input-box">
-                            <label for="">CPF</label>
-                            <input type="text" id="cpf" name="cpf" placeholder="CPF" required value="<?php echo $_SESSION['dados_user']['cpf'];?>">  
-                        </div>
-                        <?php } ?>
-                        
-                        <div class="input-box">
-                        <label for="">Senha</label>
-                            <input type="password" id="password" name="password" placeholder="Senha" required value="<?php echo $_SESSION['dados_user']['senha'];?>">  
-                        </div>
-                        <div class="input-file">
-                        <label for="">Foto de perfil</label>
-                            <input type="file" id="file" name="file" placeholder="file"> 
-                        </div>
-                        <button type="submit" class="btnEditar" name="btn_editar">
-                            Salvar
-                        </button>
-                    </form>
-                </div>
-            </section>
+                    </div>
+                    <a type="submit" class="button-editar-perfil" href="Aprovado.html">Confirmar</a>
+                </form>
+            </div>
         </div>
 </body>
 </html>

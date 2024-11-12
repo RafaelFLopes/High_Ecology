@@ -6,13 +6,14 @@
                 $titulo_mod = $_POST['titulo_mod'];
                 $descricao_mod = $_POST['descricao_mod'];
                 $image_mod = $_FILES['image_mod']['name'];
+                $id_curso = $_SESSION['id_do_curso']; // Passei a variavel de sessão "id_do_curso" criado no arquivo gerenciar módulos para o id do curso
 
                 $target_dir = "../img/uploads/";
                 $target_file = $target_dir . basename($_FILES['image_mod']['name']);
                 move_uploaded_file($_FILES['image_mod']['tmp_name'], $target_file);
 
-                $stmt = $pdo->prepare('INSERT INTO modulos (titulo_mod, descricao_mod, image_mod) VALUES (?, ?, ?)');
-                $stmt->execute([$titulo_mod, $descricao_mod, $image_mod]);
+                $stmt = $pdo->prepare('INSERT INTO modulos (id_curso, titulo_mod, descricao_mod, image_mod) VALUES (?, ?, ?, ?)');
+                $stmt->execute([$id_curso, $titulo_mod, $descricao_mod, $image_mod]);
 
                 header('Location: gerenciar-modulos.php');
             }

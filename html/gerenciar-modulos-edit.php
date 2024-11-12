@@ -151,7 +151,7 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="titulo_mod" class="form-label">Título</label>
-                    <input type="text" name="titulo_mod" value="<?php echo htmlspecialchars($modulo['titulo_mod']); ?>" class="form-control" required>
+                    <input type="text" name="titulo_mod" value="<?php echo htmlspecialchars($modulo['id_curso']['titulo_mod']); ?>" class="form-control" required>
                 </div>
 
                 <div class="mb-3">

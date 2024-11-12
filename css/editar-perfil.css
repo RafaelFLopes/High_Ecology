@@ -1,131 +1,120 @@
-/*====================LOGIN======================*/
+/*====================PAGAMENTO======================*/
 
-.inputlogin {
+.container-editar-perfil {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 15px;
     min-height: 100vh;
     background-color: #fff;
-    background-position: center;
-}
-.wrapper {
-    align-items: center;
-    width: 420px;
-    color: #f2f2f2;
-    border-radius: 20px;
-    background-color: #476b43;
-    padding: 40px 35px;
-    border-color: #8da58d;
-}
-.wrapper h1 {
-    font-size: 36px;
-    text-align: center;
-    padding-bottom: 20px;
-}
-.wrapper .input-box{
-    width: 100%;
-    height: 50px;
-    margin: 30px 0 ;
 }
 
-.input-box input{
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    outline: none;
-    border: none;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 40px;
-    font-size: 16px;
+.container-editar-perfil form {
+    padding: 20px;
+    width: 700px;
+    background: #476b43;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+}
+
+.container-editar-perfil form .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.container-editar-perfil form .row .col {
+    flex: 1 1 250px;
+}
+
+.container-editar-perfil form .row .col .inputBox-editar-perfil {
+    margin: 15px 0;
+}
+
+.container-editar-perfil form .row .col .inputBox-editar-perfil span {
+    margin-bottom: 8px;
+    display: block;
     color: #f2f2f2;
-    text-align: center;
 }
-.input-box input::placeholder {
-    color: #f2f2f2cf;
+
+.container-editar-perfil form .row .col .inputBox-editar-perfil input {
+    width: 100%;
+    border: 1px solid;
+    padding: 10px 15px;
+    font-size: 15px;
+    outline: none;
+    text-transform: none;
+    background-color: #f2f2f2;
+    color: #333;
+    border: none;
+    text-decoration: none;
+    transition: 0.5s;
+    border-radius: 10px;
 }
-.wrapper .LembreDeMim {
+
+.container-editar-perfil form .row .col .flex {
+    display: flex;
+    gap: 15px;
+}
+
+
+.container-editar-perfil form .submit-btn {
+    border: none;
+    width: 100%;
+    padding: 12px;
+    font-size: 17px;
+    background: #5a8854;
+    color: #f2f2f2;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.container-pagamentos form .submit-btn:hover {
+    background: #476b43;
+}
+
+a.button-editar-perfil{
     display: flex;
     justify-content: center;
-    font-size: 14.5px;
-    margin: -15px 0 15px;
+    align-items: center;
 }
-.LembreDeMim a {
-    color: #f2f2f2;
+
+.button-editar-perfil {
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
-    transition: all 0.4s ease;
-}
-.LembreDeMim a:hover {
-    color: #5a2323;
-    text-decoration: none;
-}
-.wrapper .btnEditar   {
-    margin: 30px 0 0 0;
-    width: 100%;
-    height: 45px;
-    background: #f2f2f2;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    cursor: pointer;
+    padding: 10px 50px;
+    margin-top: 15px;
     font-size: 16px;
-    color: #333333;
+    border-radius: 10px;
+    background-color: #5a8854;
+    color: #f2f2f2;
     font-weight: 600;
     transition: all 0.4s ease;
 }
-.wrapper .btnEditar:hover{
-    background-color: #5a2323;
-    color: #f2f2f2;
+
+.button-editar-perfil:hover {
+    background-color: #f2f2f2;
+    color: #476b43;
     letter-spacing: 1.5px;
 }
-.wrapper .linkderegistro {
-    font-size: 14.5px;
-    text-align: center;
-    margin: 20px 0 15px;
-    accent-color: #f2f2f2;
-}
-.linkderegistro p a {
-    color: #f2f2f2;
-    text-decoration: none;
-    font-weight: 400;
-    transition: all 0.4s ease;
-}
-.linkderegistro p a:hover {
-    color: #5a2323;
-    text-decoration: none;
-}
-@media (width < 420px) {
-    .wrapper {
-        width: 350px;
-    }
-}
-@media (width < 350px) {
-    .wrapper {
-        width: 300px;
-    }
-}
-@media (width < 300px) {
-    .wrapper {
-        width: 250px;
-    }
-}
-/*====================FINAL LOGIN======================*/
 
-.imagem{
+
+.Row h1{
+    text-align: center;
+    color: #f2f2f2;
+}
+
+.imagem img {
+    width: 200px; /* Define a largura da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 50%; /* Faz a imagem ficar circular, opcional */
+}
+#perfil-imagem {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.imagem img {
-    width: 100px; /* Define a largura da imagem */
-    height: auto; /* Mantém a proporção da imagem */
-    border-radius: 50%; /* Faz a imagem ficar circular, opcional */
-}
 
-input#file{
-    font-size: 14px;
-}
-input#file-upload-button{
-    background-color: #476b43;
-    color: #8da58d;
-}
+/*====================FINAL PAGAMENTO======================*/
