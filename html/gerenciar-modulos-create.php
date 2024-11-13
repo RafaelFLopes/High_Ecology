@@ -33,8 +33,13 @@
 
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/conteudo-main-logado.css">
-    <link rel="stylesheet" href="../css/leftnavbar.css">
-    <link rel="stylesheet" href="../css/topbar.css">
+    <?php  if($_SESSION["user"]['tabela'] == "professor") {?>
+        <link rel="stylesheet" href="../css/leftnavbarprofessor.css">
+        <link rel="stylesheet" href="../css/topbarprofessor.css">
+    <?php } else if($_SESSION["user"]['tabela'] == "aluno") {?>
+        <link rel="stylesheet" href="../css/leftnavbar.css">
+        <link rel="stylesheet" href="../css/topbar.css">
+    <?php } ?>
     <link rel="stylesheet" href="../css/editar-perfil.css">
 
     <script src="../js/perfil.js" defer></script>
@@ -59,15 +64,18 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href = "perfil.php">
-                        <span class = "icone">
-                            <ion-icon name = "home-outline"></ion-icon>
-                        </span>
-                        <span class = "titulo">Home</span>
-                    </a>
-                </li>
-
+                <?php 
+                if($_SESSION["user"]['tabela'] == "aluno")
+                {?>
+                    <li>
+                        <a href = "perfil.php">
+                            <span class = "icone">
+                                <ion-icon name = "home-outline"></ion-icon>
+                            </span>
+                            <span class = "titulo">Home</span>
+                        </a>
+                    </li>
+                <?php }?>
                  
                 <?php if($_SESSION["user"]['tabela'] == "professor"){?>
                     <li>

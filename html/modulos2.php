@@ -1,29 +1,5 @@
 <?php
-    session_start();
-            include('../php/config.php');
-
-            $id_mod = $_GET['id_mod'];
-            $stmt = $pdo->prepare('SELECT * FROM modulos WHERE id_mod = ?');
-            $stmt->execute([$id_mod]);
-            $course = $stmt->fetch();
-
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $titulo_mod = $_POST['titulo_mod'];
-                $descricao_mod = $_POST['descricao_mod'];
-                $image_mod = $modulo['image_mod'];
-
-                if (!empty($_FILES['image_mod']['name'])) {
-                    $image = $_FILES['image_mod']['name'];
-                    $target_dir = "../img/uploads/";
-                    $target_file = $target_dir . basename($_FILES['image_mod']['name']);
-                    move_uploaded_file($_FILES['image_mod']['tmp_name'], $target_file);
-                }
-
-                $stmt = $pdo->prepare('UPDATE modulos SET titulo_mod = ?, descricao_mod = ?, image_mod = ? WHERE id_mod = ?');
-                $stmt->execute([$titulo_mod, $descricao_mod, $image_mod, $id_mod]);
-
-                header('Location: gerenciar-modulos.php'); 
-            }
+session_start();
 ?>
 
 
@@ -36,7 +12,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    <link rel="stylesheet" href="../css/all.css">
 
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/conteudo-main-logado.css">
@@ -47,14 +22,13 @@
         <link rel="stylesheet" href="../css/leftnavbar.css">
         <link rel="stylesheet" href="../css/topbar.css">
     <?php } ?>
-    <link rel="stylesheet" href="../css/editar-perfil.css">
+    <link rel="stylesheet" href="../css/especializacoes.css">
 
     <script src="../js/perfil.js" defer></script>
     <script type = "module" src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/gerenciar-cursos.css">
 
     <title>Editar Perfil - High Ecology</title>
 </head>
@@ -99,7 +73,7 @@
 
 
                 <li>
-                    <a href = "#">
+                    <a href = "cursos.php">
                         <span class = "icone">
                             <ion-icon name="library-outline"></ion-icon>
                         </span>
@@ -117,7 +91,7 @@
                 </li>
 
                 <li>
-                    <a href = "editar-perfil">
+                    <a href = "editar-perfil.php">
                         <span class = "icone">
                             <ion-icon name = "settings-outline"></ion-icon>
                         </span>
@@ -149,35 +123,37 @@
                 </div>
             </div>
             
-            
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
 
-            <header>
-            <h1>Editar Módulos</h1>
-            </header>
+            <?php
+            include('../php/config.php');
+
+            // Pegando o id do curso
+            $stmt = $pdo->query('SELECT * FROM cursos WHERE title LIKE "' . $_SESSION['nome_do_curso'] . '"');
+            $id_do_curso = $stmt->fetch(PDO::FETCH_ASSOC); // Usando fetch() para obter uma única linha e colocando na variavel $id_do_curso
+            
+            $_SESSION['id_do_curso'] = $id_do_curso['id']; // Criei um varaivel de sessão
+
+            // Armazene o ID do curso na variável de sessão
+            $stmt = $pdo->query('SELECT * FROM modulos WHERE id_curso = ' . $_SESSION['id_do_curso']);
+            $modulos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
 
             <div class="container">
-            <form action="" method="POST" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="titulo_mod" class="form-label">Título</label>
-                    <input type="text" name="titulo_mod" value="<?php echo htmlspecialchars($modulo['id_curso']['titulo_mod']); ?>" class="form-control" required>
-                </div>
+               <div class="card__container">
+               <?php foreach ($modulos as $modulo): ?>
+                  <article class="card__article">
+                     <img src="../img/uploads/<?php echo htmlspecialchars($modulo['image_mod']); ?>" alt="image" class="card__img">
 
-                <div class="mb-3">
-                    <label for="descricao_mod" class="form-label">Descrição</label>
-                    <textarea name="descricao_mod" class="form-control" rows="4" required><?php echo htmlspecialchars ($modulo['descricao_mod']); ?></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="image_mod" class="form-label">Imagem Atual</label>
-                
-                </div>
-
-            </form>
-
-                <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
-
-
-        </div>
+                     <div class="card__data">
+                        <span class="card__description"><?php echo htmlspecialchars($modulo['descricao_mod']); ?></span>
+                        <h2 class="card__title"><?php echo htmlspecialchars($modulo['titulo_mod']);?></h2>
+                        <a type="button" class="card__button">Começar</a>
+                     </div>
+                  </article>
+                  <?php endforeach; ?>
+               </div>
+            </div>
+         </div>
 </body>
 </html>

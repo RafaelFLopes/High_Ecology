@@ -1,0 +1,77 @@
+:root {
+  --verde: #476b43;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #333;
+  --black2: #999;
+  --marrom1: #5a2b2b;
+  --marrom2: #4c2727;
+}
+
+.topbar {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    background-color: var(--black2);
+  }
+  
+  .toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .user {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .user img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 991px) {
+  
+    .toggle {
+      z-index: 10001;
+    }
+    .main-p.active .toggle {
+      color: #fff;
+      position: fixed;
+      right: 0;
+      left: initial;
+    }
+                                           
+    .main-p {
+      width: 100%;
+      left: 0;
+    }
+  
+    .main-p.active {
+      left: -300px;
+    }
+  }
+  @media (max-width: 480px) {
+    .user {
+      min-width: 40px;
+    }
+  
+  }

@@ -9,9 +9,9 @@
     <title>Cadastro - High Ecology</title>
 </head>
 <body>
-<section class="inputlogin">
+    <section class="inputlogin">
         <div class="wrapper">
-            <form action="#" method="POST">
+            <form action="#" method="POST" enctype="multipart/form-data">
                 <h1>Cadastro</h1>
                 <div class="input-box">
                     <input type="text" id="name" name="name" placeholder="Nome completo" required>
@@ -25,8 +25,8 @@
                 <div class="input-box">
                     <input type="password" id="password" name="password" placeholder="Senha" required>  
                 </div>
-                <div class="LembreDeMim">
-                    <a href="#">Esqueceu a senha?</a>
+                <div>
+                    <input type="file" name="image_mod" class="form-control" required>
                 </div>
                 <button type="submit" class="btnlogin" name="btn_cadastrar">
                     Cadastrar
@@ -42,7 +42,19 @@
                             include_once '../php/metodos_principais.php'; // Inclui o arquivo contendo a classe 'metodos_principais', onde estão os métodos de login
                             $metodos_principais = new metodos_principais(); // Cria uma nova instância da classe 'metodos_principais'
 
-                            // Armazena os valores do email e login em variáveis
+                            // Processa o upload da imagem
+                            if (isset($_FILES['image_mod']) && $_FILES['image_mod']['error'] == 0) {
+                                $nomeImagem = basename($_FILES['image_mod']['name']);
+                                $caminhoImagem = '../img/uploads' . $nomeImagem;
+                                
+                                // Move o arquivo para a pasta 'uploads'
+                                if (move_uploaded_file($_FILES['image_mod']['tmp_name'], $caminhoImagem)) {
+                                    $metodos_principais->setImagePath($caminhoImagem);
+                                } else {
+                                    echo "Erro ao fazer o upload da imagem.";
+                                }
+                            }
+
                             $nome = $_POST['name'];
                             $cpf = $_POST['cpf'];
                             $email = $_POST['email'];

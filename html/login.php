@@ -92,7 +92,7 @@
                                     exit(); // Importante para parar a execução do script
                                 } else if ($_SESSION["user"]['tabela'] === "professor") {
                                     $_SESSION['dados_user'] = $metodos_principais->getProfessorPorId($_SESSION["user"]['id']);     
-                                    header("Location: perfil.php"); // Altere para o caminho desejado
+                                    header("Location: gerenciar-cursos.php"); // Altere para o caminho desejado
                                     exit(); // Importante para parar a execução do script
                                 }
                             } else {

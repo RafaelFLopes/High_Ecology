@@ -58,7 +58,7 @@
 }
 
 
-.container-editar-perfil form .submit-btn {
+.container-editar-perfil form button {
     border: none;
     width: 100%;
     padding: 12px;
@@ -73,7 +73,7 @@
     background: #476b43;
 }
 
-a.button-editar-perfil{
+button.button-editar-perfil{
     display: flex;
     justify-content: center;
     align-items: center;
