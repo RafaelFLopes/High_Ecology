@@ -231,10 +231,10 @@ a {
             <div class="form">
                 <input type="text" name="" id="inputValue">
                 <button id="btnValue">Gerar QRcode</button>
-                <form action="" id="payment-form">
+                <form action="" method="POST" id="payment-form">
                     <button type="submit" id="btnPagar">Pago</button>
                 </form>
-                <a href="pg.html">
+                <a href="pagamento.php">
                     <button id="btnRetornar">
                         <i class="fa fa-arrow-left"></i> Retornar
                     </button>
