@@ -16,7 +16,7 @@
             <img src="../img/cadImg.svg" alt="Imagem do Cadastro">
         </div>
         <div class="form">
-            <form action="#" method="POST">
+            <form action="#" method="POST" enctype="multipart/form-data">
                 <div class="form-header">
                     <div class="title">
                         <h1>Cadastre-se</h1>
@@ -55,6 +55,10 @@
                         <label for="confirmPassword">Confirmar Senha</label>
                         <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Repita aqui" required>
                     </div>
+                    <div class="input-box">
+                        <label for="file">Foto de perfil</label>
+                        <input type="file" name="image_mod" class="form-control" required>
+                    </div>
 
                 </div>
 
@@ -69,6 +73,19 @@
                         if(isset($_POST['continue_button'])) {
                             include_once '../php/metodos_principais.php';
                             $metodos_principais = new metodos_principais();
+
+                            // Processa o upload da imagem
+                            if (isset($_FILES['image_mod']) && $_FILES['image_mod']['error'] == 0) {
+                                $nomeImagem = basename($_FILES['image_mod']['name']);
+                                $caminhoImagem = '../img/uploads' . $nomeImagem;
+                                
+                                // Move o arquivo para a pasta 'uploads'
+                                if (move_uploaded_file($_FILES['image_mod']['tmp_name'], $caminhoImagem)) {
+                                    $metodos_principais->setImagePath($caminhoImagem);
+                                } else {
+                                    echo "Erro ao fazer o upload da imagem.";
+                                }
+                            }
 
                             $nome = $_POST['name'];
                             $cpf = $_POST['cpf'];
