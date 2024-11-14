@@ -96,8 +96,11 @@
                         </span>
                         <span class = "titulo">Cursos</span>
                     </a>
-                    </li>
+                </li>
 
+                <?php 
+                if($_SESSION["user"]['tabela'] == "aluno")
+                {?>
                 <li>
                     <a href = "#">
                         <span class = "icone">
@@ -106,6 +109,7 @@
                         <span class = "titulo">Certificados</span>
                     </a>
                 </li>
+                <?php } ?>
 
                 <li>
                     <a href = "editar-perfil.php">
@@ -134,7 +138,9 @@
                     <ion-icon name = "menu-outline"></ion-icon>
                 </div>
                 <div class = "user">  
-                    <img src = "../img/avaliacao/pic-1.png" alt = "Foto do Usuário">
+                    <a href="editar-perfil.php">
+                        <img src="<?php if($_SESSION["user"]['tabela'] == "aluno") { echo $_SESSION['dados_user']['img']; } elseif($_SESSION["user"]['tabela'] == "professor") { echo "../img/icon.png";} ?>" alt="foto de perfil">
+                    </a>
                 </div>
             </div>
             

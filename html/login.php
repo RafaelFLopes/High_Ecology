@@ -5,9 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/lg.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/all.css">
+
     <title>High Ecology</title>
+
 </head>
 <body>
+
+    <!--COMEÇO DA NAVBAR-->
+    <nav class="nav">
+        <a href="index.html" class="logo"><img src="../img/logo-tres.svg" alt="logo"></a>
+        <div class="menu-btn">
+            <i class="fa fa-bars fa-2x" onclick="menuShow()"></i>
+        </div>
+        <ul>
+            <li><a href="../html/matricula.html" class="active"> Matricule-se</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../html/especializacoes.php">Especializações</a></li>
+            <li><a href="../html/login.php">Login</a></li>
+        </ul>
+    </nav>
+    <!--FINAL DA NAVBAR-->
+
     <div class="container">
         <div class="containerContent">
             <h3><i>Bem-Vindo(a)</i></h3>
@@ -70,7 +90,7 @@
                     exit();
                 } else if ($_SESSION["user"]['tabela'] === "professor") {
                     $_SESSION['dados_user'] = $metodos_principais->getProfessorPorId($_SESSION['user']['id']);
-                    header("Location: perfil.php");
+                    header("Location: gerenciar-cursos.php");
                     exit();
                 }
             } else {

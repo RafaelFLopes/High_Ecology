@@ -78,8 +78,11 @@ session_start();
                         </span>
                         <span class = "titulo">Cursos</span>
                     </a>
-                    </li>
+                </li>
 
+                <?php 
+                if($_SESSION["user"]['tabela'] == "aluno")
+                {?>
                 <li>
                     <a href = "#">
                         <span class = "icone">
@@ -88,6 +91,7 @@ session_start();
                         <span class = "titulo">Certificados</span>
                     </a>
                 </li>
+                <?php } ?>
 
                 <li>
                     <a href = "#">
@@ -117,8 +121,9 @@ session_start();
                 </div>
 
                 <div class = "user">
-                    
-                    <img src = "../img/avaliacao/pic-1.png" alt = "Foto do Usuário">
+                    <a href="editar-perfil.php">
+                        <img src="<?php if($_SESSION["user"]['tabela'] == "aluno") { echo $_SESSION['dados_user']['img']; } elseif($_SESSION["user"]['tabela'] == "professor") { echo "../img/icon.png";} ?>" alt="foto de perfil">
+                    </a>
                 </div>
             </div>
             
@@ -131,7 +136,7 @@ session_start();
                         <div class="col" id="perfil-imagem">
                             
                             <div class="imagem">
-                                <img src="<?php echo $_SESSION['dados_user']['img'];?>" alt="">
+                                <img src="<?php if($_SESSION["user"]['tabela'] == "aluno") { echo $_SESSION['dados_user']['img']; } elseif($_SESSION["user"]['tabela'] == "professor") { echo "../img/icon.png";} ?>" alt="foto de perfil">
                             </div>
 
                         </div>
@@ -142,8 +147,14 @@ session_start();
                                 <input type="text" id="name" name="name" placeholder="Nome" required value="<?php echo $_SESSION['dados_user']['nome'];?>">
                             </div>
                             <div class="inputBox-editar-perfil">
-                                <span>Alterar Email:</span>
-                                <input type="email" id="email" name="email" placeholder="Email" required value="<?php echo $_SESSION['dados_user']['email'];?>">
+                                <span>
+                                    <?php if($_SESSION["user"]['tabela'] == "professor") { ?>
+                                    Email:
+                                    <?php } else {?>
+                                    Alterar Email:
+                                    <?php } ?>
+                                </span>
+                                <input type="email" id="email" name="email" placeholder="Email" required value="<?php echo $_SESSION['dados_user']['email'];?>" <?php if($_SESSION["user"]['tabela'] == "professor") echo "readonly style='background-color:#5a8854; color:#f2f2f2;'"; ?>>
                             </div>
                             <?php
                             if($_SESSION["user"]['tabela'] == "aluno")
@@ -155,7 +166,7 @@ session_start();
                             <?php } ?>
                             <div class="inputBox-editar-perfil">
                                 <span>Alterar senha:</span>
-                                <input type="password" name="password"placeholder="Senha" required value="<?php echo $_SESSION['dados_user']['senha'];?>">>
+                                <input type="password" name="password"placeholder="Senha" required value="<?php echo $_SESSION['dados_user']['senha'];?>">
                             </div>
                         </div>
                     </div>

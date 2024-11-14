@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $input_hidden = $_POST['txt_nome_do_curso'];
+    $_SESSION['nome_do_curso'] = $input_hidden;
+    header("Location: modulos2.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -27,66 +39,40 @@
         <ul>
             <li><a href="../html/matricula.html" class="active"> Matricule-se</a></li>
             <li><a href="../index.html">Home</a></li>
-            <li><a href="../html/especializacoes.html">Especializações</a></li>
+            <li><a href="../html/especializacoes.php">Especializações</a></li>
             <li><a href="../html/login.php">Login</a></li>
         </ul>
     </nav>
     <!--FINAL DA NAVBAR-->
 
     <!--COMEÇO DOS CURSOS-->
-    <div class="container">
-        <div class="card__container">
-           <article class="card__article">
-              <img src="../img/especializacoes/biologia - curso.png" alt="image" class="card__img">
 
-              <div class="card__data">
-                 <span class="card__description">Biologia é a ciência natural que estuda a vida e os organismos vivos.</span>
-                 <h2 class="card__title">Biologia</h2>
-                 <a href="../html/modulos/modulo-biologia.html" class="card__button">Começar</a>
-              </div>
-           </article>
+    <?php
+            include('../php/config.php');
 
-           <article class="card__article">
-              <img src="../img/especializacoes/ecologia-curso.jpg" alt="image" class="card__img">
+            $stmt = $pdo->query('SELECT * FROM cursos');
+            $courses = $stmt->fetchAll();
+            ?>
 
-              <div class="card__data">
-                 <span class="card__description">Ecologia é a especialidade da biologia que estuda o meio ambiente e os seres vivos que vivem nele.</span>
-                 <h2 class="card__title">Ecologia</h2>
-                 <a href="../html/modulos/modulo-ecologia.html" class="card__button">Começar</a>
-              </div>
-           </article>
+            <div class="container">
+            <form action="#" method="POST">
+               <div class="card__container">
+               <?php foreach ($courses as $course): ?>
+                  <article class="card__article">
+                     <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" alt="image" class="card__img">
 
-           <article class="card__article">
-              <img src="../img/especializacoes/oceanografia-curso.png" alt="image" class="card__img">
-
-              <div class="card__data">
-                 <span class="card__description">A Oceanografia é estudo dos oceanos e zonas costeiras sob todos os aspetos.</span>
-                 <h2 class="card__title">Oceanografia</h2>
-                 <a href="../html/modulos/modulo-oceanografia.html" class="card__button">Começar</a>
-              </div>
-           </article>
-
-           <article class="card__article">
-               <img src="../img/especializacoes/silvicultura-curso.jpg" alt="image" class="card__img">
-
-               <div class="card__data">
-                  <span class="card__description">Silvicultura é o estudo dos métodos naturais e artificiais de regenerar os povoamentos florestais.</span>
-                  <h2 class="card__title">Silvicultura</h2>
-                  <a href="../html/modulos/modulo-silvicultura.html" class="card__button">Começar</a>
+                     <div class="card__data">
+                        <span class="card__description"><?php echo htmlspecialchars($course['description']); ?></span>
+                        <h2 class="card__title"><?php echo htmlspecialchars($course['title']); ?></h2>
+                        <a  href="cadastro.php" type="button" class="card__button">Começar</a>
+                     </div>
+                  </article>
+                  <?php endforeach; ?>
                </div>
-            </article>
+            </div>
+            </form>
+         </div>
 
-            <article class="card__article">
-               <img src="../img/especializacoes/sustentabilidade-curso.png" alt="image" class="card__img">
-
-               <div class="card__data">
-                  <span class="card__description">Sustentabilidade é o estudo de estratégias para o estabelecimento de prioridades conservacionistas.</span>
-                  <h2 class="card__title">Sustentabilidade</h2>
-                  <a href="../html/modulos/modulo-sustentabilidade.html" class="card__button">Começar</a>
-               </div>
-            </article>
-        </div>
-     </div>
     <!--FINAL DOS CURSOS-->
 
     <!--COMEÇO DO FOOTER-->
