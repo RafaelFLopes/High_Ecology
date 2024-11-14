@@ -1,88 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="../css/all.css">
-    <link rel="stylesheet" href="../css/login.css">
-    <title>Cadastro - High Ecology</title>
+    <link rel="stylesheet" href="../css/cad.css">
+    <title>Formulário</title>
 </head>
+
 <body>
-    <section class="inputlogin">
-        <div class="wrapper">
-            <form action="#" method="POST" enctype="multipart/form-data">
-                <h1>Cadastro</h1>
-                <div class="input-box">
-                    <input type="text" id="name" name="name" placeholder="Nome completo" required>
+    <div class="container">
+        <div class="form-image">
+            <img src="../img/cadImg.svg" alt="Imagem do Cadastro">
+        </div>
+        <div class="form">
+            <form action="#" method="POST">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Cadastre-se</h1>
+                    </div>
+                    <div class="login-button">
+                        <button><a href="login.php">Entrar</a></button>
+                    </div>
                 </div>
-                <div class="input-box">
-                    <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="firstname">Primeiro Nome</label>
+                        <input id="firstname" type="text" name="name" placeholder="Seu nome aqui" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="lastname">Sobrenome</label>
+                        <input id="lastname" type="text" name="lastname" placeholder="Seu sobrenome aqui" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="email">E-mail</label>
+                        <input id="email" type="email" name="email" placeholder="alguem@gmail.com" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="cpf">CPF</label>
+                        <input id="cpf" type="pattern" name="cpf" placeholder="XXX-XXX-XXX-XX" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="password">Senha</label>
+                        <input id="password" type="password" name="password" placeholder="Digite aqui" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="confirmPassword">Confirmar Senha</label>
+                        <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Repita aqui" required>
+                    </div>
+
                 </div>
-                <div class="input-box">
-                    <input type="email" id="email" name="email" placeholder="E-mail" required>
+
+                <div class="continue-button">
+                    <button type="submit" name="continue_button">Confirmar</button>
                 </div>
-                <div class="input-box">
-                    <input type="password" id="password" name="password" placeholder="Senha" required>  
-                </div>
-                <div>
-                    <input type="file" name="image_mod" class="form-control" required>
-                </div>
-                <button type="submit" class="btnlogin" name="btn_cadastrar">
-                    Cadastrar
-                </button>
-                <div class="linkderegistro">
-                    <p>Já possui uma conta?</p>
-                    <p><a href="login.php">Entrar</a></p>
-                </div>
+
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
                 <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        if (isset($_POST['btn_cadastrar'])) {  // Verifica se o botão 'btn_cadastrar' foi pressionado (se o formulário foi submetido corretamente)
-                            include_once '../php/metodos_principais.php'; // Inclui o arquivo contendo a classe 'metodos_principais', onde estão os métodos de login
-                            $metodos_principais = new metodos_principais(); // Cria uma nova instância da classe 'metodos_principais'
-
-                            // Processa o upload da imagem
-                            if (isset($_FILES['image_mod']) && $_FILES['image_mod']['error'] == 0) {
-                                $nomeImagem = basename($_FILES['image_mod']['name']);
-                                $caminhoImagem = '../img/uploads' . $nomeImagem;
-                                
-                                // Move o arquivo para a pasta 'uploads'
-                                if (move_uploaded_file($_FILES['image_mod']['tmp_name'], $caminhoImagem)) {
-                                    $metodos_principais->setImagePath($caminhoImagem);
-                                } else {
-                                    echo "Erro ao fazer o upload da imagem.";
-                                }
-                            }
+                    if($_SERVER["REQUEST_METHOD"] == "POST") {
+                        if(isset($_POST['continue_button'])) {
+                            include_once '..\php/metodos_principais.php';
+                            $metodos_principais = new metodos_principais();
 
                             $nome = $_POST['name'];
                             $cpf = $_POST['cpf'];
-                            $email = $_POST['email'];
-                            $senha = $_POST['password'];
+                            $email = $_POST ['email'];
+                            $senha = $_POST ['password'];
 
-                            // Passa as variáveis
-                            $metodos_principais->setNomeAluno($nome);
-                            $metodos_principais->setCpfAluno($cpf);
-                            $metodos_principais->setEmailAluno($email);
-                            $metodos_principais->setSenhaAluno($senha);
+                            $metodos_principais->setNomeAluno(nome_aluno: $nome);
+                            $metodos_principais->setCpfAluno(cpf_aluno: $cpf);
+                            $metodos_principais->setEmailAluno(email_aluno: $email);
+                            $metodos_principais->setSenhaAluno(senha_aluno: $senha);
 
-                             // Chama o método 'login' da classe 'metodos_principais' para verificar se o login é válido
                             $result = $metodos_principais->cadastro();
 
-                            if ($result == "registrado") {
-                                header("Location:login.php"); // Altere para o caminho desejado
-                                exit(); // Importante para parar a execução do script
+                            if($result == "Registrado") {
+                                header(header: "Location: login.php");
+                                exit(); 
                             }
                             else {
-                                echo "<p style='color: #5a2323; font-size: 15px; text-align: center; transition: all 0.5s;'>Email Já registrado</p>";
-                                echo $result;
-                            }
-                        }
+                                 echo "<script>
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Email já existente!'',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                </script>";
                     }
+                }
+            }
                 ?>
+
             </form>
         </div>
-    </section>
+    </div>
 </body>
-</html>
 
+</html>
