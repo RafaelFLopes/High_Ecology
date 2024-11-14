@@ -67,7 +67,7 @@
                 <?php
                     if($_SERVER["REQUEST_METHOD"] == "POST") {
                         if(isset($_POST['continue_button'])) {
-                            include_once '..\php/metodos_principais.php';
+                            include_once '../php/metodos_principais.php';
                             $metodos_principais = new metodos_principais();
 
                             $nome = $_POST['name'];
@@ -75,15 +75,15 @@
                             $email = $_POST ['email'];
                             $senha = $_POST ['password'];
 
-                            $metodos_principais->setNomeAluno(nome_aluno: $nome);
-                            $metodos_principais->setCpfAluno(cpf_aluno: $cpf);
-                            $metodos_principais->setEmailAluno(email_aluno: $email);
-                            $metodos_principais->setSenhaAluno(senha_aluno: $senha);
+                            $metodos_principais->setNomeAluno($nome);
+                            $metodos_principais->setCpfAluno($cpf);
+                            $metodos_principais->setEmailAluno($email);
+                            $metodos_principais->setSenhaAluno($senha);
 
                             $result = $metodos_principais->cadastro();
 
                             if($result == "Registrado") {
-                                header(header: "Location: login.php");
+                                header("Location: login.php");
                                 exit(); 
                             }
                             else {

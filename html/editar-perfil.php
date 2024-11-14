@@ -180,8 +180,13 @@ session_start();
                             
                             // Caso a atualização seja bem-sucedida, atualiza os dados na sessão
                             if ($resultado) {
-                                $_SESSION['dados_user'] = $metodos_principais->getAlunoPorId($_SESSION["user"]['id']);  // ou getProfessorPorId(), dependendo do tipo de usuário
-
+                                if ($_SESSION["user"]['tabela'] == "aluno"){
+                                    $_SESSION['dados_user']= $metodos_principais->getAlunoPorId($_SESSION["user"]['id']);  // ou getProfessorPorId(), dependendo do tipo de usuário
+                                }
+                                else if ($_SESSION["user"]['tabela'] == "professor"){
+                                    $_SESSION['dados_user']= $metodos_principais->getProfessorPorId($_SESSION["user"]['id']);  // ou getProfessorPorId(), dependendo do tipo de usuário
+                                }
+                                
                                 echo "<p style='text-align: center; color: white; padding-top: 20px;'>Perfil atualizado com sucesso!</p>";
                             } else {
                                 echo "<p>Erro ao atualizar perfil. Tente novamente.</p>";

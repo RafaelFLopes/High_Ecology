@@ -50,7 +50,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['btn_entrar'])) {
-            include_once '..\php/metodos_principais.php';
+            include_once '../php/metodos_principais.php';
             $metodos_principais = new metodos_principais();
 
             $email = $_POST['email'];

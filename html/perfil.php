@@ -24,6 +24,7 @@ session_start();
     <?php } ?>
 
     <link rel="stylesheet" href="../css/perfil.css">
+    <link rel="stylesheet" href="../css/mensagembemvindo.css">
     <script src="../js/perfil.js" defer></script>
 </head>
 <body>

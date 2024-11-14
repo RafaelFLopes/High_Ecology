@@ -5,12 +5,13 @@
             $id_mod = $_GET['id_mod'];
             $stmt = $pdo->prepare('SELECT * FROM modulos WHERE id_mod = ?');
             $stmt->execute([$id_mod]);
-            $course = $stmt->fetch();
+            $modulo = $stmt->fetch();
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $titulo_mod = $_POST['titulo_mod'];
                 $descricao_mod = $_POST['descricao_mod'];
                 $image_mod = $modulo['image_mod'];
+                $id_curso = $_SESSION['id_do_curso'];
 
                 if (!empty($_FILES['image_mod']['name'])) {
                     $image = $_FILES['image_mod']['name'];
@@ -19,8 +20,8 @@
                     move_uploaded_file($_FILES['image_mod']['tmp_name'], $target_file);
                 }
 
-                $stmt = $pdo->prepare('UPDATE modulos SET titulo_mod = ?, descricao_mod = ?, image_mod = ? WHERE id_mod = ?');
-                $stmt->execute([$titulo_mod, $descricao_mod, $image_mod, $id_mod]);
+                $stmt = $pdo->prepare('UPDATE modulos SET id_curso = ?, titulo_mod = ?, descricao_mod = ?, image_mod = ? WHERE id_mod = ?');
+                $stmt->execute([$id_curso,$titulo_mod, $descricao_mod, $image_mod, $id_mod]);
 
                 header('Location: gerenciar-modulos.php'); 
             }
@@ -160,7 +161,7 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="titulo_mod" class="form-label">Título</label>
-                    <input type="text" name="titulo_mod" value="<?php echo htmlspecialchars($modulo['id_curso']['titulo_mod']); ?>" class="form-control" required>
+                    <input type="text" name="titulo_mod" value="<?php echo htmlspecialchars($modulo['id_curso']['id_modulo']['titulo_mod']); ?>" class="form-control" required>
                 </div>
 
                 <div class="mb-3">

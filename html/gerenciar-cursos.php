@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="../css/topbar.css">
     <?php } ?>
     <link rel="stylesheet" href="../css/editar-perfil.css">
+    <link rel="stylesheet" href="../css/mensagembemvindo.css">
 
     <script src="../js/perfil.js" defer></script>
     <script type = "module" src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -141,7 +142,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt = $pdo->query('SELECT * FROM cursos');
             $courses = $stmt->fetchAll();
             ?>
-
+            <div class="mensagemBemvindo">
+                <h1>Seja bem-vindo(a) <?php echo $_SESSION['user']['tabela'], " ", $_SESSION['dados_user']['nome'];?></h1>
+            </div>
             <header>
                 <h1>Gerenciamento de Cursos</h1>
             </header>
