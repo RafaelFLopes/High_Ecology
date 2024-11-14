@@ -111,7 +111,7 @@ a {
 .wrapper .form button {
   width: 100%;
   height: 40px;
-  background: linear-gradient(#F2F2F2,  #F2F2F2 0%, #4CAF50 0%, #4c6e48);
+  background-color: #4c6e48e8;
   outline: none;
   border: none;
   font-weight: 560;
@@ -122,9 +122,7 @@ a {
 
 .wrapper .form button:hover {
   border: 2px solid #4CAF50;
-  background-color: transparent;
-  border-top-right-radius: 40px ;
-  border-bottom-left-radius: 40px;
+  transform: scale(1.05);
 }
 
 #btnPagar {

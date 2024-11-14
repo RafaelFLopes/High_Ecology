@@ -1,6 +1,6 @@
 /* Gradiente de fundo */
 body {
-    background: linear-gradient(to bottom right, #F2F2F2, #F2F2F2 47.5%, #4CAF50 47%, #4c6e48);
+    background: linear-gradient(to bottom right, #F2F2F2, #F2F2F2 47.5%, #3f9442 47%, #4c6e48);
     display: flex;
     flex-direction: column;
     align-items: center;

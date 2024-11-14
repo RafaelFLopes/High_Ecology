@@ -39,7 +39,7 @@ a {
 	padding: 20px 100px;
 	font-size: 1.5rem; /* Tamanho da fonte do botão */
 	color: white; /* Cor do texto */
-	background: linear-gradient(270deg, #4c6e48, #8BC34A);
+	background: #4c6e48;
 	background-size: 400% 400%;
 	border: none;
 	border-bottom-right-radius: 40px ;
@@ -67,7 +67,6 @@ a {
   
   .plan {
 	text-transform: uppercase;
-	text-shadow: #000 1px 2px 1px;
   }
 
 .return-link {
@@ -75,15 +74,12 @@ a {
     left: 20px; 
     top: 25px; 
     text-decoration: none; 
-    transition: .5s;
+    transition: .3s;
 }
 
 .return-link:hover {
-    background-color: #4c6e48;
-    color: #E9E9E9;
-    border-bottom: 1px;
-    border-top-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    color: #5A2323;
+    transform: scale(1.5);
 }
 
 .button-group {
@@ -108,8 +104,8 @@ a {
 
 .button-group .button-action:hover {
     background-color: #4c6e48e8;
-    border-top-left-radius: 40px ;
-    border-bottom-right-radius: 40px;
+    transform: scale(1.05);
+    
 }
 
 .button-group .button-action.disable {
