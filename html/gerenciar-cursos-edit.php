@@ -1,6 +1,8 @@
 <?php
     session_start();
             include('../php/config.php');
+            
+            $id_mod = isset($_GET['id_mod']) ? $_GET['id_mod'] : null;
 
             $id = $_GET['id'];
             $stmt = $pdo->prepare('SELECT * FROM cursos WHERE id = ?');
@@ -18,9 +20,10 @@
                     $target_file = $target_dir . basename($_FILES['image']['name']);
                     move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
                 }
-
+              
                 $stmt = $pdo->prepare('UPDATE cursos SET title = ?, description = ?, image = ? WHERE id = ?');
                 $stmt->execute([$title, $description, $image, $id]);
+               
 
                 header('Location: gerenciar-cursos.php'); 
             }
@@ -146,6 +149,7 @@
             <header>
             <h1>Editar Curso</h1>
             </header>
+            
 
             <div class="container">
             <form action="" method="POST" enctype="multipart/form-data">

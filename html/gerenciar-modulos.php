@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $input_hidden = $_POST['txt_nome_do_modulo'];
+    $_SESSION['nome_do_modulo'] = $input_hidden;
+    header("Location: gerenciar-conteudo.php");
+    exit();
+}
+
 ?>
 
 
@@ -118,7 +126,13 @@ session_start();
             
             
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
+                <?php
+            include('../php/config.php');
 
+            $stmt = $pdo->query('SELECT * FROM modulos');
+            $cursos = $stmt->fetchAll();
+            ?>
+            
             <?php
             include('../php/config.php');
 
@@ -140,7 +154,7 @@ session_start();
             <div class="container my-5">
                 <a href="gerenciar-modulos-create.php" class="btn btn-success add-course mb-4">Criar Novo Módulo</a>
 
-                <div class="row">
+                <form class="row" action="#" method="POST">
                     <?php foreach ($modulos as $modulo): ?>
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
@@ -150,13 +164,17 @@ session_start();
                                 <p class="card-text"><?php echo htmlspecialchars($modulo['descricao_mod']); ?></p>
                             </div>
                             <div class="card-footer">
-                                <a href="gerenciar-cursos-edit.php?id=<?php echo $modulo['id_mod']; ?>" class="btn btn-primary">Editar</a>
-                                <a href="gerenciar-modulos.php?id=<?php echo $modulo['id_mod']; ?>" class="btn btn-warning">Conteúdo</a>
+                                <a href="gerenciar-modulos-edit.php?id=<?php echo $modulo['id_mod']; ?>" class="btn btn-primary">Editar</a>
+                                <a href="gerenciar-conteudo.php?id=<?php echo $modulo['id_mod']; ?>" class=
+                                "btn_conteudo btn btn-warning">Conteúdo</a>
                                 <a href="../php/delete_mod.php?id_mod=<?php echo $modulo['id_mod']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este módulo?')">Deletar</a>
                             </div>
                         </div>
                     </div>
                     <?php endforeach; ?>
+                    
+                  <input type="hidden" name="txt_nome_do_modulo" class="txt_nome_do_modulo" value="">
+                  </form>
                 </div>
             </div>
 
@@ -164,5 +182,24 @@ session_start();
 
 
         </div>
+        <script>
+        // Seleciona todos os botões de módulo
+        let btn_conteudos = document.querySelectorAll(".btn_conteudo");
+        let input_hidden_nome_modulo = document.querySelector('.txt_nome_do_modulo');
+
+        // Itera sobre cada botão e adiciona um evento de clique
+        btn_conteudos.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                // Localiza o título do curso no mesmo cartão do botão clicado
+                let nome_modulo = btn.closest('.card').querySelector('.card-title').textContent;
+                
+                // Define o valor do curso no input oculto
+                input_hidden_nome_modulo.value = nome_modulo;
+                
+                // Envia o formulário
+                btn.closest('form').submit();
+            });
+        });
+    </script>
 </body>
 </html>
