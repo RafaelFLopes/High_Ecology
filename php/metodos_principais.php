@@ -6,6 +6,8 @@ class metodos_principais {
     private $cpf_aluno;
     private $email_aluno;
     private $senha_aluno;
+
+    private $imagem;
     
     private $nome_editar_aluno;
     private $cpf_editar_aluno;
@@ -20,6 +22,15 @@ class metodos_principais {
     private $senha_editar_professor;
 
 
+
+    public function getImagePath() {
+        return $this->imagem;
+    }
+
+    public function setImagePath($caminhoImagem) {
+        $this->imagem = $caminhoImagem;
+    }
+    
 
 
     // Getters e Setters para $nome_aluno
@@ -213,14 +224,16 @@ class metodos_principais {
             }
 
             // Cadastro do aluno
-            $sql = $this->conn->prepare("INSERT INTO aluno (Nome, CPF, Email, Senha) VALUES (?, ?, ?, ?)");
+            $sql = $this->conn->prepare("INSERT INTO aluno (Nome, CPF, Email, Senha, Imagem) VALUES (?, ?, ?, ?, ?)");
             $nome = $this->getNomeAluno();  // Armazena o valor de getNomeAluno em uma variável
             $cpf = $this->getCpfAluno();  // Armazena o valor de getNomeAluno em uma variável
             $senha = $this->getSenhaAluno();  // Armazena o valor de getSenhaAluno em uma variável
+            $imagem = $this->getImagePath();
             $sql->bindParam(1, $nome, PDO::PARAM_STR);
             $sql->bindParam(2, $cpf, PDO::PARAM_STR);
             $sql->bindParam(3, $email, PDO::PARAM_STR); // Aqui já usa a variável $email
             $sql->bindParam(4, $senha, PDO::PARAM_STR); // Aqui já usa a variável $senha
+            $sql->bindParam(5, $imagem, PDO::PARAM_STR);
 
             if ($sql->execute()) {
                 return "registrado"; // Se cadastrado com sucesso
@@ -300,5 +313,35 @@ class metodos_principais {
             return false;
         }
     }
+    public function editarPerfil($id, $nome, $email, $cpf, $senha)
+{
+    try {
+        $this->conn = new Conectar();
+        $tabela = $_SESSION["user"]['tabela'];
+        // Verifica se a tabela é "aluno" ou "professor" e executa a atualização
+        if ($tabela == 'aluno') {
+            $sql = $this->conn->prepare("UPDATE aluno SET Nome = ?, Email = ?, CPF = ?, Senha = ? WHERE Cod_Aluno = ?");
+            $sql->bindParam(1, $nome);
+            $sql->bindParam(2, $email);
+            $sql->bindParam(3, $cpf);
+            $sql->bindParam(4, $senha);
+            $sql->bindParam(5, $id);
+        } else if ($tabela == 'professor') {
+            $sql = $this->conn->prepare("UPDATE professor SET Nome = ?, Email = ?, Senha = ? WHERE Cod_Adm = ?");
+            $sql->bindParam(1, $nome);
+            $sql->bindParam(2, $email);
+            $sql->bindParam(3, $senha);
+            $sql->bindParam(4, $id);
+        }
+
+        $sql->execute();
+        $this->conn = null;
+
+        return true;
+    } catch (PDOException $e) {
+        echo "Erro: " . $e->getMessage();
+        return false;
+    }
+}
 }
 ?>

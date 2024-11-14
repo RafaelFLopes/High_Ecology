@@ -24,8 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/conteudo-main-logado.css">
-    <link rel="stylesheet" href="../css/leftnavbar.css">
-    <link rel="stylesheet" href="../css/topbar.css">
+    <?php  if($_SESSION["user"]['tabela'] == "professor") {?>
+        <link rel="stylesheet" href="../css/leftnavbarprofessor.css">
+        <link rel="stylesheet" href="../css/topbarprofessor.css">
+    <?php } else{?>
+        <link rel="stylesheet" href="../css/leftnavbar.css">
+        <link rel="stylesheet" href="../css/topbar.css">
+    <?php } ?>
     <link rel="stylesheet" href="../css/editar-perfil.css">
 
     <script src="../js/perfil.js" defer></script>
@@ -50,14 +55,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </a>
                 </li>
 
-                <li>
-                    <a href = "perfil.php">
-                        <span class = "icone">
-                            <ion-icon name = "home-outline"></ion-icon>
-                        </span>
-                        <span class = "titulo">Home</span>
-                    </a>
-                </li>
+                <?php 
+                if($_SESSION["user"]['tabela'] == "aluno")
+                {?>
+                    <li>
+                        <a href = "perfil.php">
+                            <span class = "icone">
+                                <ion-icon name = "home-outline"></ion-icon>
+                            </span>
+                            <span class = "titulo">Home</span>
+                        </a>
+                    </li>
+                <?php }?>
 
                 <?php 
                 if($_SESSION["user"]['tabela'] == "professor") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
@@ -140,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt = $pdo->query('SELECT * FROM cursos WHERE title LIKE "' . $_SESSION['nome_do_curso'] . '"');
             $id_do_curso = $stmt->fetch(PDO::FETCH_ASSOC); // Usando fetch() para obter uma única linha e colocando na variavel $id_do_curso
             
-            $_SESSION['id_do_curso'] = $id_do_curso['id']; // Criei um varaivel de s
+            $_SESSION['id_do_curso'] = $id_do_curso['id']; // Criei um varaivel de sessão
 
             // Armazene o ID do curso na variável de sessão
             $stmt = $pdo->query('SELECT * FROM modulos WHERE id_curso = ' . $_SESSION['id_do_curso']);

@@ -1,14 +1,23 @@
 <?php
-session_start();
+    session_start();
+            include('../php/config.php');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $input_hidden = $_POST['txt_nome_do_curso'];
-    $_SESSION['nome_do_curso'] = $input_hidden;
-    header("Location: gerenciar-modulos.php");
-    exit();
-}
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $title = $_POST['title'];
+                $description = $_POST['description'];
+                $image = $_FILES['image']['name'];
 
+                $target_dir = "../img/uploads/";
+                $target_file = $target_dir . basename($_FILES['image']['name']);
+                move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
+
+                $stmt = $pdo->prepare('INSERT INTO cursos (title, description, image) VALUES (?, ?, ?)');
+                $stmt->execute([$title, $description, $image]);
+
+                header('Location: gerenciar-cursos.php');
+            }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="../css/topbar.css">
     <?php } ?>
     <link rel="stylesheet" href="../css/editar-perfil.css">
-    <link rel="stylesheet" href="../css/mensagembemvindo.css">
 
     <script src="../js/perfil.js" defer></script>
     <script type = "module" src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -68,9 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </li>
                 <?php }?>
 
-                <?php 
-                if($_SESSION["user"]['tabela'] == "professor") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
-                {?>
+                 
+                <?php if($_SESSION["user"]['tabela'] == "professor"){?>
                     <li>
                     <a href = "gerenciar-cursos.php">
                         <span class = "icone">
@@ -126,74 +133,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class = "toggle">
                     <ion-icon name = "menu-outline"></ion-icon>
                 </div>
-
-                <div class = "user">
-                    
+                <div class = "user">  
                     <img src = "../img/avaliacao/pic-1.png" alt = "Foto do Usuário">
                 </div>
             </div>
             
             
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
-
-            <?php
-            include('../php/config.php');
-
-            $stmt = $pdo->query('SELECT * FROM cursos');
-            $courses = $stmt->fetchAll();
-            ?>
-            <div class="mensagemBemvindo">
-                <h1>Seja bem-vindo(a) <?php echo $_SESSION['user']['tabela'], " ", $_SESSION['dados_user']['nome'];?></h1>
-            </div>
             <header>
-                <h1>Gerenciamento de Cursos</h1>
+                <h1>Criar Novo Curso</h1>
             </header>
 
             <div class="container my-5">
-            <a href="gerenciar-cursos-create.php" class="btn btn-success add-course mb-4">Criar Novo Curso</a>
-            <form class="row" action="#" method="POST">
-                <?php foreach ($courses as $course): ?>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" class="card-img-top" alt="Imagem do Curso">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($course['title']); ?></h5>
-                            <p class="card-text"><?php echo htmlspecialchars($course['description']); ?></p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="gerenciar-cursos-edit.php?id=<?php echo $course['id']; ?>" class="btn btn-primary">Editar</a>
-                            <!-- Ajuste no botão "Módulos" para submeter o formulário -->
-                            <button type="button" class="btn_modulo btn btn-warning">Módulos</button>
-                            <a href="../php/delete.php?id=<?php echo $course['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este curso?')">Deletar</a>
-                        </div>
+                <form action="" method="POST" enctype="multipart/form-data" class="form">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Título</label>
+                        <input type="text" name="title" class="form-control" required>
                     </div>
-                </div>
-                <?php endforeach; ?>
-                
-                <!-- Campo oculto para armazenar o nome do curso -->
-                <input type="hidden" name="txt_nome_do_curso" class="txt_nome_do_curso" value="">
-            </form>
-            </div>   
-        </div>
-        
-        <script>
-        // Seleciona todos os botões de módulo
-        let btn_modulos = document.querySelectorAll(".btn_modulo");
-        let input_hidden_nome_curso = document.querySelector('.txt_nome_do_curso');
 
-        // Itera sobre cada botão e adiciona um evento de clique
-        btn_modulos.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                // Localiza o título do curso no mesmo cartão do botão clicado
-                let nome_curso = btn.closest('.card').querySelector('.card-title').textContent;
-                
-                // Define o valor do curso no input oculto
-                input_hidden_nome_curso.value = nome_curso;
-                
-                // Envia o formulário
-                btn.closest('form').submit();
-            });
-        });
-    </script>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descrição</label>
+                        <textarea name="description" class="form-control" rows="4" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Imagem</label>
+                        <input type="file" name="image" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Criar Curso</button>
+                </form>
+            </div>
+                <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
+
+
+        </div>
 </body>
 </html>

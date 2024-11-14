@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+*,
+*::before,
+*::after,
+html {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+:root {
+	--corFundo: #F2F2F2;          /* Cor de fundo */
+	--corFormulario: #e9e9e9;     /* Cor do formulário */
+	--corBotoes: #527d4de3;         /* Cor dos botões */
+	--corRotulos: #000;        /* Cor dos rótulos */
+	--corPlaceholder: #9CA3AF;    /* Cor do texto de placeholder */
+	--corErro: #FB7185;           /* Cor para mensagens de erro */
+	--corBordasFormulario: #B9CEB9; /* Cor das bordas do formulário */
+	--corNomeCartao: #F9FAFB;     /* Cor do nome do cartão */
+	--corBordaInputPadrao: #B9CEB9; /* Cor da borda dos inputs */
+	--corBordaInputFocus: #476B43; /* Cor da borda com hover */
+}
+
+li {
+	list-style: none; 	
+}
+
+a {
+	text-decoration: none;
+}
+
+.gradient-button {
+	display: inline-block;
+	text-transform: uppercase;
+	padding: 20px 100px;
+	font-size: 1.5rem; /* Tamanho da fonte do botão */
+	color: white; /* Cor do texto */
+	background: #4c6e48;
+	background-size: 400% 400%;
+	border: none;
+	border-bottom-right-radius: 40px ;
+	border-top-left-radius: 40px;
+	text-align: center;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	animation: gradient-animation 4s ease infinite;
+	margin: 40px 0;
+	margin-bottom: -20px; 
+	cursor: default;
+  }
+  
+  @keyframes gradient-animation {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 10%;
+	}
+  }
+  
+  .plan {
+	text-transform: uppercase;
+  }
+
+.return-link {
+    position: absolute;
+    left: 20px; 
+    top: 25px; 
+    text-decoration: none; 
+    transition: .3s;
+}
+
+.return-link:hover {
+    color: #5A2323;
+    transform: scale(1.5);
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem; 
+    margin-top: 1rem;
+}
+
+.button-group .button-action {
+    height: 3.5rem;
+    flex: 1;
+    border-radius: 0.25rem;
+    background-color: var(--corBotoes);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.125rem;
+    text-align: center;
+    padding: 15px;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.button-group .button-action:hover {
+    background-color: #4c6e48e8;
+    transform: scale(1.05);
+    
+}
+
+.button-group .button-action.disable {
+    opacity: 50%;
+    pointer-events: none;
+}
+
+.button-separator {
+  color: #5a2323;
+  font-size: 1.5rem; 
+  align-self: center; 
+}
+
+input, button {
+	outline: none;
+	border: 0;
+}
+
+span.icon img {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.button-action {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-action:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 745px) {
+
+    .gradient-button {
+        position: relative;
+        top: -10px; 
+        padding: 15px 60px; 
+        font-size: 1.2rem; 
+        margin-bottom: 0px; 
+    }
+
+    .button-group {
+        gap: 1rem;
+        margin-top: 0.5rem; 
+        position: relative;
+        top: -15px; 
+    }
+
+    .button-group .button-action {
+        height: 3rem; 
+        font-size: 1rem;
+        padding: 10px 20px; 
+    }
+}
+
+@media (max-width: 375px) {
+    
+    .gradient-button {
+        padding: 10px 40px; 
+        font-size: 1rem; 
+        top: -5px; 
+    }
+
+    .button-group {
+        gap: 1rem;
+        margin-top: 0.3rem; 
+        top: -20px; 
+    }
+
+    .button-group .button-action {
+        height: 2.8rem; 
+        font-size: 0.9rem;
+        padding: 8px 16px; 
+    }
+
+	.return-link {
+		top: 5px;
+	}
+
+	.body {
+		background: linear-gradient(to bottom right, #F2F2F2, #F2F2F2 59.5%, #4CAF50 47%, #4c6e48);
+	}
+}
+
+@media (min-width: 350px) {
+	.body {
+		background: linear-gradient(to bottom right, #F2F2F2, #F2F2F2 59.5%, #4CAF50 47%, #4c6e48);
+	}
+
+}

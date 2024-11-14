@@ -1,7 +1,14 @@
 <?php
 session_start();
-?>
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $input_hidden = $_POST['txt_nome_do_curso'];
+    $_SESSION['nome_do_curso'] = $input_hidden;
+    header("Location: modulos2.php");
+    exit();
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,8 +23,13 @@ session_start();
 
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/conteudo-main-logado.css">
-    <link rel="stylesheet" href="../css/leftnavbar.css">
-    <link rel="stylesheet" href="../css/topbar.css">
+    <?php  if($_SESSION["user"]['tabela'] == "professor") {?>
+        <link rel="stylesheet" href="../css/leftnavbarprofessor.css">
+        <link rel="stylesheet" href="../css/topbarprofessor.css">
+    <?php } else if($_SESSION["user"]['tabela'] == "aluno") {?>
+        <link rel="stylesheet" href="../css/leftnavbar.css">
+        <link rel="stylesheet" href="../css/topbar.css">
+    <?php } ?>
     <link rel="stylesheet" href="../css/especializacoes.css">
 
     <script src="../js/perfil.js" defer></script>
@@ -42,14 +54,18 @@ session_start();
                     </a>
                 </li>
 
-                <li>
-                    <a href = "perfil.php">
-                        <span class = "icone">
-                            <ion-icon name = "home-outline"></ion-icon>
-                        </span>
-                        <span class = "titulo">Home</span>
-                    </a>
-                </li>
+                <?php 
+                if($_SESSION["user"]['tabela'] == "aluno")
+                {?>
+                    <li>
+                        <a href = "perfil.php">
+                            <span class = "icone">
+                                <ion-icon name = "home-outline"></ion-icon>
+                            </span>
+                            <span class = "titulo">Home</span>
+                        </a>
+                    </li>
+                <?php }?>
 
                 <?php 
                 if($_SESSION["user"]['tabela'] == "professor") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
@@ -125,7 +141,9 @@ session_start();
             $stmt = $pdo->query('SELECT * FROM cursos');
             $courses = $stmt->fetchAll();
             ?>
+
             <div class="container">
+            <form action="#" method="POST">
                <div class="card__container">
                <?php foreach ($courses as $course): ?>
                   <article class="card__article">
@@ -134,12 +152,35 @@ session_start();
                      <div class="card__data">
                         <span class="card__description"><?php echo htmlspecialchars($course['description']); ?></span>
                         <h2 class="card__title"><?php echo htmlspecialchars($course['title']); ?></h2>
-                        <a href="../html/modulos/modulo-biologia.html" class="card__button">Começar</a>
+                        <a type="button" class="card__button">Começar</a>
                      </div>
                   </article>
                   <?php endforeach; ?>
+
+                  <input type="hidden" name="txt_nome_do_curso" class="txt_nome_do_curso" value="">
                </div>
             </div>
+            </form>
          </div>
+
+         <script>
+        // Seleciona todos os botões de módulo
+        let btn_modulos = document.querySelectorAll(".card__button");
+        let input_hidden_nome_curso = document.querySelector('.txt_nome_do_curso');
+
+        // Itera sobre cada botão e adiciona um evento de clique
+        btn_modulos.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                // Localiza o título do curso no mesmo cartão do botão clicado
+                let nome_curso = btn.closest('.card__data').querySelector('.card__title').textContent;
+                
+                // Define o valor do curso no input oculto
+                input_hidden_nome_curso.value = nome_curso;
+                
+                // Envia o formulário
+                btn.closest('form').submit();
+            });
+        });
+    </script>
 </body>
 </html>

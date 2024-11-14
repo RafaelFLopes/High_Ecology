@@ -1,0 +1,10 @@
+
+.mensagemBemvindo {
+    padding: 15px 17px 0 17px;
+  }
+  .mensagemBemvindo h1{
+    color: #476b43;
+    font-weight: 400;
+    font-size: 30px;
+  }
+

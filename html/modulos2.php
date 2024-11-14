@@ -1,14 +1,7 @@
 <?php
 session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $input_hidden = $_POST['txt_nome_do_curso'];
-    $_SESSION['nome_do_curso'] = $input_hidden;
-    header("Location: gerenciar-modulos.php");
-    exit();
-}
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    <link rel="stylesheet" href="../css/all.css">
 
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/conteudo-main-logado.css">
@@ -30,15 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="../css/leftnavbar.css">
         <link rel="stylesheet" href="../css/topbar.css">
     <?php } ?>
-    <link rel="stylesheet" href="../css/editar-perfil.css">
-    <link rel="stylesheet" href="../css/mensagembemvindo.css">
+    <link rel="stylesheet" href="../css/especializacoes.css">
 
     <script src="../js/perfil.js" defer></script>
     <script type = "module" src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/gerenciar-cursos.css">
 
     <title>Editar Perfil - High Ecology</title>
 </head>
@@ -133,67 +123,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
             
-            
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
 
             <?php
             include('../php/config.php');
 
-            $stmt = $pdo->query('SELECT * FROM cursos');
-            $courses = $stmt->fetchAll();
+            // Pegando o id do curso
+            $stmt = $pdo->query('SELECT * FROM cursos WHERE title LIKE "' . $_SESSION['nome_do_curso'] . '"');
+            $id_do_curso = $stmt->fetch(PDO::FETCH_ASSOC); // Usando fetch() para obter uma única linha e colocando na variavel $id_do_curso
+            
+            $_SESSION['id_do_curso'] = $id_do_curso['id']; // Criei um varaivel de sessão
+
+            // Armazene o ID do curso na variável de sessão
+            $stmt = $pdo->query('SELECT * FROM modulos WHERE id_curso = ' . $_SESSION['id_do_curso']);
+            $modulos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
-            <div class="mensagemBemvindo">
-                <h1>Seja bem-vindo(a) <?php echo $_SESSION['user']['tabela'], " ", $_SESSION['dados_user']['nome'];?></h1>
+
+            <div class="container">
+               <div class="card__container">
+               <?php foreach ($modulos as $modulo): ?>
+                  <article class="card__article">
+                     <img src="../img/uploads/<?php echo htmlspecialchars($modulo['image_mod']); ?>" alt="image" class="card__img">
+
+                     <div class="card__data">
+                        <span class="card__description"><?php echo htmlspecialchars($modulo['descricao_mod']); ?></span>
+                        <h2 class="card__title"><?php echo htmlspecialchars($modulo['titulo_mod']);?></h2>
+                        <a type="button" class="card__button">Começar</a>
+                     </div>
+                  </article>
+                  <?php endforeach; ?>
+               </div>
             </div>
-            <header>
-                <h1>Gerenciamento de Cursos</h1>
-            </header>
-
-            <div class="container my-5">
-            <a href="gerenciar-cursos-create.php" class="btn btn-success add-course mb-4">Criar Novo Curso</a>
-            <form class="row" action="#" method="POST">
-                <?php foreach ($courses as $course): ?>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" class="card-img-top" alt="Imagem do Curso">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($course['title']); ?></h5>
-                            <p class="card-text"><?php echo htmlspecialchars($course['description']); ?></p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="gerenciar-cursos-edit.php?id=<?php echo $course['id']; ?>" class="btn btn-primary">Editar</a>
-                            <!-- Ajuste no botão "Módulos" para submeter o formulário -->
-                            <button type="button" class="btn_modulo btn btn-warning">Módulos</button>
-                            <a href="../php/delete.php?id=<?php echo $course['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este curso?')">Deletar</a>
-                        </div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-                
-                <!-- Campo oculto para armazenar o nome do curso -->
-                <input type="hidden" name="txt_nome_do_curso" class="txt_nome_do_curso" value="">
-            </form>
-            </div>   
-        </div>
-        
-        <script>
-        // Seleciona todos os botões de módulo
-        let btn_modulos = document.querySelectorAll(".btn_modulo");
-        let input_hidden_nome_curso = document.querySelector('.txt_nome_do_curso');
-
-        // Itera sobre cada botão e adiciona um evento de clique
-        btn_modulos.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                // Localiza o título do curso no mesmo cartão do botão clicado
-                let nome_curso = btn.closest('.card').querySelector('.card-title').textContent;
-                
-                // Define o valor do curso no input oculto
-                input_hidden_nome_curso.value = nome_curso;
-                
-                // Envia o formulário
-                btn.closest('form').submit();
-            });
-        });
-    </script>
+         </div>
 </body>
 </html>

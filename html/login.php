@@ -3,163 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../img/icon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous"
-    referrerpolicy="no-referrer"/> 
-    
-    <link rel="stylesheet" href="../css/all.css">
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/footer.css">
-
-    <link rel="stylesheet" href="../css/login.css">
-
-    <script src="../js/main.js" defer></script>
-    <script src="../js/login.js" defer></script>
-    
-    <title>Login - High Ecology</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/lg.css">
+    <title>High Ecology</title>
 </head>
 <body>
+    <div class="container">
+        <div class="containerContent">
+            <h3><i>Bem-Vindo(a)</i></h3>
+            <h1><i>Pode Entrar</i> </h1>
 
-    <!--COMEÇO DA NAVBAR-->
-    <nav class="nav">
-        <a href="../index.html" class="logo"><img src="../img/logo-tres.svg" alt="logo"></a>
-        <div class="menu-btn">
-            <i class="fa fa-bars fa-2x" onclick="menuShow()"></i>
-        </div>
-        <ul>
-            <li><a href="../html/matricula.html"class="active"> Matricule-se</a></li>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../html/especializacoes.html">Especializações</a></li>
-            <li><a href="../html/login.php">Login</a></li>
-        </ul>
-    </nav>
-    <!--FINAL DA NAVBAR-->
-
-    <!--COMEÇO DO LOGIN-->
-    <section class="inputlogin">
-        <div class="wrapper">
+            
             <form action="#" method="POST">
-                <h1>Login</h1>
-                <div class="input-box">
-                    <input type="email" id="emaillogin" name="email" placeholder="E-mail" required>
+                <label for="email"><i>E-mail</i></label>
+                <div class="inputRow">
+                    <input type="email" name="email" maxlength="65" placeholder="alguem@gmail.com" required> 
                 </div>
-                <div class="input-box">
-                    <input type="password" id="password" name="password" placeholder="Senha" required>  
+                <label for="password"><i>Senha</i></label>
+                <div class="inputRow">
+                    <input type="password" id="password" name="password" maxlength="16" placeholder="Sua senha aqui" required> 
+                    <span id="password-eye"><i class="ri-eye-off-line"></i> </span>
                 </div>
-                <div class="LembreDeMim">
-                    <a href="#">Esqueceu a senha?</a>
+                <div class="inputES" id="password-recovery">
+                    <a href="#"> <i> Esqueci Minha Senha</i></a>
                 </div>
-                <button type="submit" class="btnlogin" name="btn_entrar">
-                    Entrar
-                </button>
-                <div class="linkderegistro">
-                    <p>Não possui uma conta?</p>
-                    <p><a href="cadastro.php">Cadastrar</a></p>
-                </div>
-                
+                <button type="submit" name="btn_entrar"><i>LOGIN</i></button>
             </form>
-                <?php
-                    session_start();
-
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        if (isset($_POST['btn_entrar'])) {  // Verifica se o botão 'btn_entrar' foi pressionado (se o formulário foi submetido corretamente)
-                            include_once '../php/metodos_principais.php'; // Inclui o arquivo contendo a classe 'metodos_principais', onde estão os métodos de login
-                            $metodos_principais = new metodos_principais(); // Cria uma nova instância da classe 'metodos_principais'
-
-                            // Armazena os valores do email e login em variáveis
-                            $email = $_POST['email'];
-                            $senha = $_POST['password'];
-
-                            // Passa as variáveis
-                            $metodos_principais->setEmailAluno($email);
-                            $metodos_principais->setSenhaAluno($senha);
-                            $metodos_principais->setEmailProfessor($email);
-                            $metodos_principais->setSenhaProfessor($senha);
-
-                             // Chama o método 'login' da classe 'metodos_principais' para verificar se o login é válido
-                             $_SESSION["user"] = $metodos_principais->login();
-
-                            // Verifica se o login foi bem-sucedido (USAR TRY CATCH())
-                            if ($_SESSION["user"] && is_array($_SESSION["user"])) {
-                                if ($_SESSION["user"]['tabela'] === "aluno") {
-                                    $_SESSION['dados_user'] = $metodos_principais->getAlunoPorId($_SESSION["user"]['id']);     
-                                    header("Location: perfil.php"); // Altere para o caminho desejado
-                                    exit(); // Importante para parar a execução do script
-                                } else if ($_SESSION["user"]['tabela'] === "professor") {
-                                    $_SESSION['dados_user'] = $metodos_principais->getProfessorPorId($_SESSION["user"]['id']);     
-                                    header("Location: perfil.php"); // Altere para o caminho desejado
-                                    exit(); // Importante para parar a execução do script
-                                }
-                            } else {
-                                echo "<p style='color: #5a2323; font-size: 15px; text-align: center; transition: all 0.5s;'>Email ou Senha inválidos</p>";  
-                            }
-                        }
-                    }
-                ?>
-        </div>
-    </section>
-    
-    <!--FINAL DO LOGIN-->
-
-    <!--COMEÇO DO FOOTER-->
-    <footer>
-        <div id="footer_content">
-            <div id="footer_contacts">
-                <ul class="footer-list">
-                    <li>
-                        <h2>Redes sociais</h2>
-                    </li>
-                    <li>
-                        <div id="footer_social_media">
-                            <a href="https://instagram.com/high.ecology?igshid=OGQ5ZDc2ODk2ZA==" class="footer-link" id="instagram">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                            <a href="high.ecology@hotmail.com" class="footer-link" id="emailfooter">
-                                <i class="fa-regular fa-envelope"></i>
-                            </a>
-                            <a href="https://github.com/RafaelFLopes/High_Ecology" class="footer-link" id="github">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
+            <h6>Fazer login com</h6>
+            <div class="logins">
+                <a href="#"> <img src="../img/login/google.png" alt="Google"></a>
+                <a href="#"> <img src="../img/login/github.png" alt="Github"></a>
+                <a href="#"> <img src="../img/login/facebook.png" alt="Facebook"></a>
             </div>
-            <ul class="footer-list">
-                <li>
-                    <h2>Links</h2>
-                </li>
-                <li>
-                    <a href="#" class="footer-link">Termos de uso</a>
-                </li>
-                <li>
-                    <a href="#" class="footer-link">Privicidade</a>
-                </li>
-                <li>
-                    <a href="#" class="footer-link">Sobre</a>
-                </li>
-            </ul>
-            <ul class="footer-list">
-                <li>
-                    <h2>Sobre</h2>
-                </li>
-                <li id="footer-sobre-texto">
-                    Uma rede online de ensino focado em incentivar os nossos estudantes a cuidar melhor do lugar onde eles moram, a Terra.
-                    Temos o objetivo de disponibilizar cursos que abrangem as mais diversas matérias dos estudos ecológicos. 
-               </li>
-                </li>
-            </ul>
+            <p>Ainda não é aluno? <a href="cadastro.php">Matrícule-se!</a></p>
         </div>
-        <div id="footer_copyright">
-            &#169
-            2023 all rights reserved
+        <div class="containerImg">
+            <img src="../img/login/terrinha.svg" alt="Terra animação"/> 
         </div>
-    </footer>
-    <!--FINAL DO FOOTER-->
+    </div>
+ 
+    <script src="../js/lg.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <?php
+    session_start();
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['btn_entrar'])) {
+            include_once '../php/metodos_principais.php';
+            $metodos_principais = new metodos_principais();
+
+            $email = $_POST['email'];
+            $senha = $_POST['password'];
+            
+            $metodos_principais->setEmailAluno($email);
+            $metodos_principais->setSenhaAluno($senha);
+            $metodos_principais->setEmailProfessor($email);
+            $metodos_principais->setSenhaProfessor($senha);
+
+            $_SESSION["user"] = $metodos_principais->login();
+
+            if ($_SESSION["user"] && is_array($_SESSION["user"])) {
+                if ($_SESSION["user"]['tabela'] === "aluno") {
+                    $_SESSION["dados_user"] = $metodos_principais->getAlunoPorId($_SESSION["user"]['id']);
+                    header("Location: perfil.php");
+                    exit();
+                } else if ($_SESSION["user"]['tabela'] === "professor") {
+                    $_SESSION['dados_user'] = $metodos_principais->getProfessorPorId($_SESSION['user']['id']);
+                    header("Location: perfil.php");
+                    exit();
+                }
+            } else {
+                echo "<script>
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'E-mail ou senha incorretos. Tente novamente!',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                </script>";
+            }
+        }
+    }
+?>
+
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 </body>
 </html>
+
