@@ -1,8 +1,9 @@
 <?php
     session_start();
             include('../php/config.php');
+            
+            $id_mod = isset($_GET['id_mod']) ? $_GET['id_mod'] : null;
 
-            $id_mod = $_GET['id_mod'];
             $stmt = $pdo->prepare('SELECT * FROM modulos WHERE id_mod = ?');
             $stmt->execute([$id_mod]);
             $modulo = $stmt->fetch();
