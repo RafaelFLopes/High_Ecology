@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <div class="form-image">
-            <img src="../img/cadImg.svg" alt="Imagem do Cadastro">
+            <img src="../img/login/cadImg.svg" alt="Imagem do Cadastro">
         </div>
         <div class="form">
             <form action="#" method="POST" enctype="multipart/form-data">
@@ -31,11 +31,6 @@
                         <label for="firstname">Primeiro Nome</label>
                         <input id="firstname" type="text" name="name" placeholder="Seu nome aqui" required>
                     </div>
-
-                    <div class="input-box">
-                        <label for="lastname">Sobrenome</label>
-                        <input id="lastname" type="text" name="lastname" placeholder="Seu sobrenome aqui" required>
-                    </div>
                     <div class="input-box">
                         <label for="email">E-mail</label>
                         <input id="email" type="email" name="email" placeholder="alguem@gmail.com" required>
@@ -49,11 +44,6 @@
                     <div class="input-box">
                         <label for="password">Senha</label>
                         <input id="password" type="password" name="password" placeholder="Digite aqui" required>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="confirmPassword">Confirmar Senha</label>
-                        <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Repita aqui" required>
                     </div>
                     <div class="input-box">
                         <label for="file">Foto de perfil</label>

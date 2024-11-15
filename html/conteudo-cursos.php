@@ -1,13 +1,6 @@
 <?php
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $input_hidden = $_POST['txt_nome_do_modulo'];
-    $_SESSION['nome_do_modulo'] = $input_hidden;
-    header("Location: conteudo-cursos.php");
-    exit();
-}
-
 ?>
 
 
@@ -31,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="../css/topbar.css">
     <?php } ?>
     <link rel="stylesheet" href="../css/especializacoes.css">
+    <link rel="stylesheet" href="../css/conteudoCurso.css">
 
     <script src="../js/perfil.js" defer></script>
     <script type = "module" src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -135,60 +129,107 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </a>
                 </div>
             </div>
-            
-                <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
 
             <?php
             include('../php/config.php');
 
-            // Pegando o id do curso
-            $stmt = $pdo->query('SELECT * FROM cursos WHERE title LIKE "' . $_SESSION['nome_do_curso'] . '"');
-            $id_do_curso = $stmt->fetch(PDO::FETCH_ASSOC); // Usando fetch() para obter uma única linha e colocando na variavel $id_do_curso
+            $stmt = $pdo->query('SELECT * FROM conteudos');
+            $modulos = $stmt->fetchAll();
+            ?>
             
-            $_SESSION['id_do_curso'] = $id_do_curso['id']; // Criei um varaivel de sessão
+            <?php
+            include('../php/config.php');
+
+            // Pegando o id do curso
+            $stmt = $pdo->query('SELECT * FROM modulos WHERE titulo_mod LIKE "' . $_SESSION['nome_do_modulo'] . '"');
+            $id_do_modulo = $stmt->fetch(PDO::FETCH_ASSOC); // Usando fetch() para obter uma única linha e colocando na variavel $id_do_modulo
+            
+            $_SESSION['id_do_modulo'] = $id_do_modulo['id_mod']; // Criei um varaivel de sessão
 
             // Armazene o ID do curso na variável de sessão
-            $stmt = $pdo->query('SELECT * FROM modulos WHERE id_curso = ' . $_SESSION['id_do_curso']);
-            $modulos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $pdo->query('SELECT * FROM conteudos WHERE id_modulo = ' . $_SESSION['id_do_modulo']);
+            $conteudos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
-
-            <div class="container">
-               <form class="card__container" method="POST">
-               <?php foreach ($modulos as $modulo): ?>
-                  <article class="card__article">
-                     <img src="../img/uploads/<?php echo htmlspecialchars($modulo['image_mod']); ?>" alt="image" class="card__img">
-
-                     <div class="card__data">
-                        <span class="card__description"><?php echo htmlspecialchars($modulo['descricao_mod']); ?></span>
-                        <h2 class="card__title"><?php echo htmlspecialchars($modulo['titulo_mod']);?></h2>
-                        <a type="button" class="card__button">Começar</a>
-                     </div>
-                  </article>
-                  <?php endforeach; ?>
-
-                  <input type="hidden" name="txt_nome_do_modulo" class="txt_nome_do_modulo" value="">
-               </form>
+            
+            <?php foreach ($conteudos as $conteudo): ?>
+            <div class="container-titles">
+                <div class="titles">
+                    <h1><?php echo htmlspecialchars($conteudo['titulo_principal']); ?></h1>
+                    
+                </div>
             </div>
-         </div>
+            
+            <section class="conteudo-curso">
+                <h1><?php echo htmlspecialchars($conteudo['titulo1']); ?></h1>
+                <div class="conteudo">
 
-         <script>
-        // Seleciona todos os botões de módulo
-        let btn_conteudo_cursos = document.querySelectorAll(".card__button");
-        let input_hidden_nome_modulo = document.querySelector('.txt_nome_do_modulo');
+                <div class="conteudo-left">
+                <img src="../img/uploads/<?php echo htmlspecialchars($conteudo['imagem1']); ?>" alt="imagem" class="card__img">
+                </div>
+                <div class="conteudo-right">
+                    <div class="content-textos">
+                    <p>
+                    <?php echo htmlspecialchars($conteudo['texto1']); ?>
+                    </p>
+                    </div>
+                </div>
+                </div>
+            </section>
 
-        // Itera sobre cada botão e adiciona um evento de clique
-        btn_conteudo_cursos.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                // Localiza o título do curso no mesmo cartão do botão clicado
-                let nome_modulo = btn.closest('.card__data').querySelector('.card__title').textContent;
-                
-                // Define o valor do curso no input oculto
-                input_hidden_nome_modulo.value = nome_modulo;
-                
-                // Envia o formulário
-                btn.closest('form').submit();
-            });
-        });
-    </script>
+            <section class="conteudo-curso-dois">
+                <h1><?php echo htmlspecialchars($conteudo['titulo2']); ?></h1>
+                <div class="conteudo-dois">
+
+                <div class="conteudo-left-dois">
+                    <div class="content-textos-dois">
+                    <?php echo htmlspecialchars($conteudo['texto2']); ?>
+                    </div>
+                </div>
+                <div class="conteudo-right-dois">
+                    <img src="../img/uploads/<?php echo htmlspecialchars($conteudo['imagem2']); ?>" alt="ecologia">
+                </div>
+                </div>
+            </section>
+
+            <section class="conteudo-curso">
+                <h1><?php echo htmlspecialchars($conteudo['titulo3']); ?></h1>
+                <div class="conteudo">
+
+                <div class="conteudo-left">
+                    <img src="../img/uploads/<?php echo htmlspecialchars($conteudo['imagem3']); ?>" alt="ecologia">
+                </div>
+                <div class="conteudo-right">
+                    <div class="content-textos">
+                    <?php echo htmlspecialchars($conteudo['texto3']); ?>
+                    </div>
+                </div>
+                </div>
+            </section>
+
+            <div class="rodape">
+                <div class="rodape-text">
+                <h1><?php echo htmlspecialchars($conteudo['titulo_principal']); ?></h1>
+                <p>(COMPLETO)</p>
+                </div>
+                <div class="rodape-buttons-dois">
+                <div class="rodape-button">
+                    <a href="../cursos/curso-biologia-um.html">
+                    <button>
+                        Voltar
+                    </button>
+                    </a>
+                </div>
+
+                <div class="rodape-button">
+                    <a href="../cursos/curso-biologia-tres.html">
+                    <button>
+                        Avançar
+                    </button>
+                    </a>
+                </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+
 </body>
 </html>

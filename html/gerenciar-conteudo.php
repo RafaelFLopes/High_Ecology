@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 ?>
 
 
@@ -19,8 +17,13 @@ session_start();
 
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/conteudo-main-logado.css">
-    <link rel="stylesheet" href="../css/leftnavbar.css">
-    <link rel="stylesheet" href="../css/topbar.css">
+    <?php  if($_SESSION["user"]['tabela'] == "professor") {?>
+        <link rel="stylesheet" href="../css/leftnavbarprofessor.css">
+        <link rel="stylesheet" href="../css/topbarprofessor.css">
+    <?php } else{?>
+        <link rel="stylesheet" href="../css/leftnavbar.css">
+        <link rel="stylesheet" href="../css/topbar.css">
+    <?php } ?>
     <link rel="stylesheet" href="../css/editar-perfil.css">
     <link rel="stylesheet" href="../css/conteudo.css">
 
@@ -35,155 +38,179 @@ session_start();
 </head>
 
 <body>
-    <div class="container-p">
-        <div class="navegacao">
+    <div class = "container-p">
+        <div class = "navegacao">
             <ul style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
                 <li>
-                    <a href="#">
-                        <span class="icone">
+                    <a href = "#">
+                        <span class = "icone">
                             <img src="" alt="">
                         </span>
-                        <span class="titulo">HIGH ECOLOGY</span>
+                        <span class = "titulo">HIGH ECOLOGY</span>
                     </a>
                 </li>
 
-                <li>
-                    <a href="perfil.php">
-                        <span class="icone">
-                            <ion-icon name="home-outline"></ion-icon>
-                        </span>
-                        <span class="titulo">Home</span>
-                    </a>
-                </li>
-
-                <?php
-                if ($_SESSION["user"]['tabela'] == "professor") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
-                { ?>
+                <?php 
+                if($_SESSION["user"]['tabela'] == "aluno")
+                {?>
                     <li>
-                        <a href="gerenciar-cursos.php">
-                            <span class="icone">
-                                <ion-icon name="pencil-outline"></ion-icon>
+                        <a href = "perfil.php">
+                            <span class = "icone">
+                                <ion-icon name = "home-outline"></ion-icon>
                             </span>
-                            <span class="titulo">Gerenciar Cursos</span>
+                            <span class = "titulo">Home</span>
                         </a>
                     </li>
-                <?php } ?>
+                <?php }?>
+
+                <?php 
+                if($_SESSION["user"]['tabela'] == "professor") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
+                {?>
+                    <li>
+                    <a href = "gerenciar-cursos.php">
+                        <span class = "icone">
+                            <ion-icon name="pencil-outline"></ion-icon>
+                        </span>
+                        <span class = "titulo">Gerenciar Cursos</span>
+                    </a>
+                    </li>
+                <?php }?>
 
 
                 <li>
-                    <a href="#">
-                        <span class="icone">
+                    <a href = "#">
+                        <span class = "icone">
                             <ion-icon name="library-outline"></ion-icon>
                         </span>
-                        <span class="titulo">Cursos</span>
+                        <span class = "titulo">Cursos</span>
                     </a>
                 </li>
 
+                <?php 
+                if($_SESSION["user"]['tabela'] == "aluno")
+                {?>
                 <li>
-                    <a href="#">
-                        <span class="icone">
+                    <a href = "#">
+                        <span class = "icone">
                             <ion-icon name="trophy-outline"></ion-icon>
                         </span>
-                        <span class="titulo">Certificados</span>
+                        <span class = "titulo">Certificados</span>
+                    </a>
+                </li>
+                <?php } ?>
+
+                <li>
+                    <a href = "editar-perfil.php">
+                        <span class = "icone">
+                            <ion-icon name = "settings-outline"></ion-icon>
+                        </span>
+                        <span class = "titulo">Editar Perfil</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="editar-perfil.php">
-                        <span class="icone">
-                            <ion-icon name="settings-outline"></ion-icon>
+                    <a href = "../php/logout.php">
+                        <span class = "icone">
+                            <ion-icon name = "log-out-outline"></ion-icon>
                         </span>
-                        <span class="titulo">Editar Perfil</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="../php/logout.php">
-                        <span class="icone">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="titulo">Sair</span>
+                        <span class = "titulo">Sair</span>
                     </a>
                 </li>
 
             </ul>
         </div>
-
-        <div class="main-p">
-            <div class="topbar">
-                <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
+        
+        <div class = "main-p">
+            <div class = "topbar">
+                <div class = "toggle">
+                    <ion-icon name = "menu-outline"></ion-icon>
                 </div>
 
-                <div class="user">
-
-                    <img src="../img/avaliacao/pic-1.png" alt="Foto do Usuário">
+                <div class = "user">
+                    <a href="editar-perfil.php">
+                        <img src="<?php if($_SESSION["user"]['tabela'] == "aluno") { echo $_SESSION['dados_user']['img']; } elseif($_SESSION["user"]['tabela'] == "professor") { echo "../img/icon.png";} ?>" alt="foto de perfil">
+                    </a>
                 </div>
             </div>
 
 
-            <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
             <?php
             include('../php/config.php');
 
             $stmt = $pdo->query('SELECT * FROM conteudos');
             $modulos = $stmt->fetchAll();
             ?>
-            <!-- Botão para criar novo conteúdo -->
+            
             <?php
             include('../php/config.php');
-             
-            // Pegando o id do modulo
+
+            // Pegando o id do curso
             $stmt = $pdo->query('SELECT * FROM modulos WHERE titulo_mod LIKE "' . $_SESSION['nome_do_modulo'] . '"');
             $id_do_modulo = $stmt->fetch(PDO::FETCH_ASSOC); // Usando fetch() para obter uma única linha e colocando na variavel $id_do_modulo
             
-            $_SESSION['id_do_modulo'] = $id_do_modulo['id_mod']; // Criei um varaivel de s
+            $_SESSION['id_do_modulo'] = $id_do_modulo['id_mod']; // Criei um varaivel de sessão
 
             // Armazene o ID do curso na variável de sessão
             $stmt = $pdo->query('SELECT * FROM conteudos WHERE id_modulo = ' . $_SESSION['id_do_modulo']);
             $conteudos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
-                <div class="novo-conteudo">
-                    <a href="gerenciar-conteudo-create.php">Criar Novo Conteúdo</a>
-                </div>
+
                 
 
             <header>
-                <h1>Gerenciamento de Conteúdo</h1>
+                <h1>Gerenciamento de Conteúdos</h1>
             </header>
-            <div class="container">
-              
+
+            <div class="container my-5">
+                <a href="gerenciar-conteudo-create.php" class="btn btn-success add-course mb-4">Criar Conteúdo</a>
+
+                <form class="row" action="#" method="POST">
+                    <?php foreach ($conteudos as $conteudo): ?>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="../img/uploads/<?php echo htmlspecialchars($conteudo['imagem1']); ?>" class="card-img-top" alt="Imagem do Módulo">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo htmlspecialchars($conteudo['titulo_principal']); ?></h5>
+                                <p class="card-text"><?php echo htmlspecialchars($conteudo['descricao']); ?></p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="gerenciar-conteudo-edit.php?id=<?php echo $conteudo['id']; ?>" class="btn btn-primary">Editar</a>
+                                <a href="../php/delete-conteudo.php?id=<?php echo $conteudo['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este conteúdo?')">Deletar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                    
+                  <input type="hidden" name="txt_nome_do_conteudo" class="txt_nome_do_conteudo" value="">
+                  </form>
+                </div>
+            </div>
 
 
-            <?php
-               
-                if ($result->num_rows > 0) {
-                    // Exibir cada conteúdo
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<div class="conteudo-item">';
-                        echo '<h2>' . htmlspecialchars($row['titulo']) . '</h2>';
-                        echo '<p>' . htmlspecialchars($row['texto']) . '</p>';
+            </div>
+            <script>
+                // Seleciona todos os botões de módulo
+                let btn_conteudos = document.querySelectorAll(".btn_conteudo");
+                let input_hidden_nome_modulo = document.querySelector('.txt_nome_do_modulo');
 
-                        if ($row['imagem']) {
-                            echo '<img src="../img/uploads/' . htmlspecialchars($row['imagem']) . '" alt="Imagem do Conteúdo">';
-                        }
-
-                        echo '<p>Interativo: ' . htmlspecialchars($row['interativo']) . '</p>';
-                        echo '<div class="acoes">';
-                        echo '<a href="gerenciar-conteudo-edit.php?id=' . $row['id'] . '">Editar</a>';
-                        echo '<a href="../php/delete-conteudo.php?id=' . $row['id'] . '">Excluir</a>';
-                        echo '</div>';
-                        echo '</div>';
-                    }
-                } else {
-                    echo "<p>Nenhum conteúdo encontrado.</p>";
-                }
-
-                $conn->close();
-                ?>
+                // Itera sobre cada botão e adiciona um evento de clique
+                btn_conteudos.forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        // Localiza o título do curso no mesmo cartão do botão clicado
+                        let nome_modulo = btn.closest('.card').querySelector('.card-title').textContent;
+                        
+                        // Define o valor do curso no input oculto
+                        input_hidden_nome_modulo.value = nome_modulo;
+                        
+                        // Envia o formulário
+                        btn.closest('form').submit();
+                    });
+                });
+            </script>
         </div>
-
-        
+    </div>
+</body>
+</html>
 
         <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
 

@@ -1,10 +1,9 @@
 <?php
 session_start();
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $input_hidden = $_POST['txt_nome_do_modulo'];
     $_SESSION['nome_do_modulo'] = $input_hidden;
-    header("Location: gerenciar-conteudo.php");
+    header("Location: gerenciar-conteudo.php?id=" . $modulo['id_mod']);
     exit();
 }
 
@@ -140,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
-                <?php
+            <?php
             include('../php/config.php');
 
             $stmt = $pdo->query('SELECT * FROM modulos');
@@ -159,6 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Armazene o ID do curso na variável de sessão
             $stmt = $pdo->query('SELECT * FROM modulos WHERE id_curso = ' . $_SESSION['id_do_curso']);
             $modulos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $_SESSION['$modulos'] = $modulos;
             ?>
 
             <header>
@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="container my-5">
                 <a href="gerenciar-modulos-create.php" class="btn btn-success add-course mb-4">Criar Novo Módulo</a>
 
-                <form class="row" action="#" method="POST">
+                <form class="row" method="POST">
                     <?php foreach ($modulos as $modulo): ?>
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
@@ -179,8 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="card-footer">
                                 <a href="gerenciar-modulos-edit.php?id=<?php echo $modulo['id_mod']; ?>" class="btn btn-primary">Editar</a>
-                                <a href="gerenciar-conteudo.php?id=<?php echo $modulo['id_mod']; ?>" class=
-                                "btn_conteudo btn btn-warning">Conteúdo</a>
+                                <button type="button" class="btn_modulo btn btn-warning">Conteúdo</button>
                                 <a href="../php/delete_mod.php?id_mod=<?php echo $modulo['id_mod']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este módulo?')">Deletar</a>
                             </div>
                         </div>
@@ -198,7 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <script>
         // Seleciona todos os botões de módulo
-        let btn_conteudos = document.querySelectorAll(".btn_conteudo");
+        let btn_conteudos = document.querySelectorAll(".btn_modulo");
         let input_hidden_nome_modulo = document.querySelector('.txt_nome_do_modulo');
 
         // Itera sobre cada botão e adiciona um evento de clique

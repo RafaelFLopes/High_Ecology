@@ -1,0 +1,235 @@
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+    :root{
+        --max-width: 1200px;
+    } 
+
+    body {
+        font-family: "IBM Plex Sans", sans-serif;
+        background-color: #F2F2F2;
+    }
+
+    .container {
+        min-height: 100vh;
+        padding-inline: 1rem;
+        display: grid;
+        overflow: hidden;
+    }
+
+    .containerContent {
+        width: 100%;
+        padding-block: 2rem;
+        max-width: 400px;
+        margin-inline: auto;
+    }
+
+    .containerContent h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #5A2323;
+    }
+
+    .containerContent h1 {
+        margin-bottom: 1rem;
+        font-size: 3rem;
+        font-weight: 600;
+        color: #5A2323;
+    }
+
+    .containerContent h1::after {
+        content: '';
+        display: block;
+        width: 6.1rem;
+        height: 0.3rem;
+        background-color: #4CAF50;
+        margin: 0 auto;
+        position: absolute;
+        border-radius: 10px;
+    }
+
+    .containerContent form {
+        display: grid;
+        gap: 10px;
+      
+    }
+
+    .containerContent label {
+        padding: 5px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #5A2323
+    }
+
+    .inputRow {
+        margin-bottom: 1rem;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background-color: #ffffff;
+        box-shadow: 0px 10px 40px #a09f9f;
+        border-radius: 5px;
+    }
+
+    .containerContent input {
+        width: 100%;
+        outline: none;
+        border: none;
+        font-size: 1rem;
+        color: #000;
+        background-color: transparent;
+    }
+
+    .containerContent input::placeholder {
+        color: #0000007e;
+    }
+
+    #password-eye {
+        color: #4b1d1d;
+    }
+    
+    .inputES {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 10px;
+    }
+
+    .inputES a {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #5a2323;
+        text-decoration: none;
+        transition: all 0.5s;
+        position: relative; 
+    }
+    
+    .inputES a::after {
+        content: '';
+        display: block;
+        width: 5rem;
+        height: 0.1rem;
+        background-color: #4CAF50;
+        margin: 0 auto;
+        position: absolute;
+        bottom: -0.2rem; 
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 10px;
+        transition: all 0.3s;
+    }    
+
+    .containerContent button {
+        max-width: 80%;
+        margin-left: 10%;
+        margin-block: 1rem 2rem;
+        padding: 0.75rem 2rem;
+        outline: none;
+        border: none;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-size: 1rem;
+        color: #fff;
+        font-weight: 600;
+        background-color: #4caf4f;
+        box-shadow: 0px 10px 40px -12px #00ff806c;
+        cursor: pointer;
+        transition: all 0.5s;
+    }
+
+    .containerContent button:hover {
+        background-color: #409142e8;
+        border-top-left-radius: 40px ;
+        border-bottom-right-radius: 40px;
+    }
+
+
+    .containerContent h6 {
+        margin-bottom: 2rem;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #5a2323;
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    .logins {
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .logins a {
+        padding: 0.5rem 2.5rem;
+        border: 2px solid #4caf4f;
+        border-radius: 5rem;
+    }
+
+    .logins a:hover {
+        background:  #0000000c;
+        transition: all 0.5s;
+    }
+
+    .logins img {
+        display: flex;
+        max-width: 20px;
+    }
+
+    .containerContent p {
+        font-weight: 500;
+        color: #000000;
+        text-align: center;
+    }
+
+    .containerContent p a {
+        text-decoration: none;
+        font-weight: 500;
+        color: #803737;
+    }
+
+    .containerImg {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+    }
+
+    .containerImg::before {
+        position: absolute;
+        content: "";
+        top: 20px;
+        left: 11rem;
+        height: 96%;
+        width: 100vw;
+        background-color: #b9ceb9;
+        border-top-left-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+        z-index: -1;
+    }
+
+   
+    .containerImg img {
+        width: 120%;
+        max-width: 1000px;
+        align-self: flex-end;
+        filter: drop-shadow(0px 0px 50px #212c20);
+    }
+
+
+    @media (width > 768px) {
+        .container {
+            grid-template-columns: 
+            minmax(1rem, 1fr) minmax(0, calc(var(--max-width) /2)) minmax(0, calc(var(--max-width) / 2)) minmax(1rem, 1fr); 
+        }
+        .containerContent {
+            margin-inline-start: unset;
+            grid-area: 1/2/2/3;
+            align-self: center;
+        }
+        .containerImg {
+            padding-block: 2rem;
+            grid-area: 1/3/2/4;
+        }
+    }

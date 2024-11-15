@@ -169,23 +169,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          </div>
 
          <script>
-        // Seleciona todos os botões de módulo
-        let btn_modulos = document.querySelectorAll(".card__button");
-        let input_hidden_nome_curso = document.querySelector('.txt_nome_do_curso');
+            // Seleciona todos os botões de módulo
+            let btn_modulos = document.querySelectorAll(".card__button");
+            let input_hidden_nome_curso = document.querySelector('.txt_nome_do_curso');
 
-        // Itera sobre cada botão e adiciona um evento de clique
-        btn_modulos.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                // Localiza o título do curso no mesmo cartão do botão clicado
-                let nome_curso = btn.closest('.card__data').querySelector('.card__title').textContent;
-                
-                // Define o valor do curso no input oculto
-                input_hidden_nome_curso.value = nome_curso;
-                
-                // Envia o formulário
-                btn.closest('form').submit();
+            // Itera sobre cada botão e adiciona um evento de clique
+            btn_modulos.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    // Localiza o título do curso no mesmo cartão do botão clicado
+                    let nome_curso = btn.closest('.card__data').querySelector('.card__title').textContent;
+                    
+                    // Define o valor do curso no input oculto
+                    input_hidden_nome_curso.value = nome_curso;
+                    
+                    // Envia o formulário
+                    btn.closest('form').submit();
+                });
             });
-        });
-    </script>
+        </script>
 </body>
 </html>
