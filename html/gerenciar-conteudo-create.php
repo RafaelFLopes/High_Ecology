@@ -230,7 +230,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="texto3" class="form-label">STerceiro bloco de texto</label>
+                        <label for="texto3" class="form-label">Terceiro bloco de texto</label>
                         <textarea name="texto3" class="form-control" rows="4" required></textarea>
                     </div>
 
