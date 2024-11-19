@@ -1,0 +1,178 @@
+/*====================PAGAMENTO======================*/
+
+
+.titulo-col{
+    text-align: center;
+}
+.titulo-col h1{
+    color: #5A2323;
+    font-weight: 400;
+}
+
+.form-header {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-button {
+    display: flex;
+    align-items: center;
+}
+
+.login-button a{
+    border: none;
+    background-color: #5a8854;
+    padding: 0.5rem 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.login-button a:hover {
+    background-color: #4a6b45;
+    border-top-left-radius: 40px ;
+    border-bottom-right-radius: 40px;
+}
+
+.login-button a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+}
+
+.form-header h1 {
+    color: #5A2323;
+    font-weight: 600;
+}
+
+.form-header h1::after {
+    content: '';
+    display: block;
+    width: 5rem;
+    height: 0.3rem;
+    background-color: #5a8854;
+    margin: 0 auto;
+    position: absolute;
+    border-radius: 10px;
+}
+
+
+.container-editar-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #F2F2F2, #F2F2F2 1.5%, #E9E9E9 10%, #E9E9E9);
+}
+
+.container-editar-perfil form {
+    padding: 20px;
+    width: 1200px;
+    background: #f2f2f2;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.212);
+    border-radius: 10px;
+}
+
+.container-editar-perfil form .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.container-editar-perfil form .row .col {
+    flex: 1 1 250px;
+}
+
+.container-editar-perfil form .row .col .inputBox-editar-perfil {
+    margin: 15px 0;
+}
+.container-editar-perfil form .row .col .inputBox-radio {
+    margin: 15px 0;
+}
+
+
+.container-editar-perfil form .row .col .inputBox-editar-perfil span {
+    margin-bottom: 8px;
+    display: block;
+    color: #333;
+}
+
+.container-editar-perfil form .row .col .inputBox-editar-perfil input {
+    width: 100%;
+    border: 1px solid;
+    padding: 10px 15px;
+    font-size: 15px;
+    outline: none;
+    text-transform: none;
+    background-color: #d3d3d3;
+    color: black;
+    border: none;
+    text-decoration: none;
+    transition: 0.5s;
+    border-radius: 10px;
+}
+
+.container-editar-perfil form .row .col .flex {
+    display: flex;
+    gap: 15px;
+}
+
+
+.container-editar-perfil form button {
+    border: none;
+    width: 100%;
+    padding: 12px;
+    font-size: 17px;
+    background: #5a8854;
+    color: #f2f2f2;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.container-pagamentos form .submit-btn:hover {
+    background: #476b43;
+}
+
+button.button-editar-perfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-editar-perfil {
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 50px;
+    margin-top: 15px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #5a8854;
+    color: #f2f2f2;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+
+.button-editar-perfil:hover {
+    background-color: #41613d;
+
+    letter-spacing: 1.5px;
+}
+
+
+
+.imagem img {
+    width: 200px; /* Define a largura da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 50%; /* Faz a imagem ficar circular, opcional */
+}
+#perfil-imagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*====================FINAL PAGAMENTO======================*/

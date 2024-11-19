@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<a href="#" class="return-link">
+<a href="matricula.html" class="return-link">
 	<img src="../img/pagamento\arrow.svg" width="20px" alt="">
 </a>
 
@@ -124,7 +124,7 @@
     </form>
 </div>
 
-<script src="../js\pagamento.js"></script>
+<script src="../js/pagamento.js"></script>
 
 </body>
 </html>

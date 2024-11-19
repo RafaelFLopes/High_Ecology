@@ -142,15 +142,6 @@ session_start();
 
 
             <div class = "cardGrupo">
-                <div class = "cards">
-                    <div>
-                        <div class = "numeros">12 Dias</div>
-                        <div class = "nomeCard">Estudos Consecutivos</div>
-                    </div>
-                    <div class = "iconeGp">
-                        <ion-icon name="barbell-outline"></ion-icon>
-                    </div>
-                </div>
             
                 <div class = "cards">
                     <div>
@@ -173,6 +164,13 @@ session_start();
                 </div>
             
 
+                <?php
+                    include('../php/config.php');
+
+                    $stmt = $pdo->query('SELECT * FROM assinaturas');
+                    $assinaturas = $stmt->fetchAll();
+                ?>
+
                 <div class="page-content page-container" id="page-content">
                     <div class="padding">
                         <div class="row container d-flex">
@@ -186,44 +184,25 @@ session_start();
                                   <div class="table-responsive">
                                     <table class="table">
                                       <thead>
+                                        
                                         <tr>
                                           <th>Data</th>
+                                          <th>Plano</th>
                                           <th>Valor</th>
-                                          <th>Vencimento</th>
-                                          <th>Status</th>
+                                          <th>Pagamento</th>
                                         </tr>
+                                        
                                       </thead>
                                       <tbody>
+                                      <?php foreach ($assinaturas as $assinatura): ?>
                                         <tr>
-                                          <td>25/10</td>
-                                          <td>R$ 59,99</td>
-                                          <td>18 Jun 2024</td>
-                                          <td><label class="badge badge-warning">Pendente</label></td>
+                                          <td><?php echo htmlspecialchars($assinatura['Data_Assinatura']);?></td>
+                                          <td><?php echo htmlspecialchars($assinatura['Plano']);?></,td>
+                                          <td>69,99</td>
+                                          <td><label class="badge badge-warning"><?php echo htmlspecialchars($assinatura['Forma_Pagamento']);?></label></td>
                                         </tr>
-                                        <tr>
-                                           <td>17/09</td>
-                                           <td>R$ 49,99</td>
-                                           <td>18 Jun 2024</td>
-                                          <td><label class="badge badge-danger">Cancelado</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td>02/08</td>
-                                            <td>R$ 49,99</td>
-                                            <td>18 Jun 2024</td>
-                                          <td><label class="badge badge-success">Pago</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td>07/07</td>
-                                            <td>R$ 49,99</td>
-                                            <td>18 Jun 2024</td>
-                                          <td><label class="badge badge-success">Pago</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td>04/06</td>
-                                            <td>R$ 49,99</td>
-                                          <td>18 Jun 2024</td>
-                                          <td><label class="badge badge-success">Pago</label></td>
-                                        </tr>
+                                      <?php endforeach; ?>
+                                        
                                       </tbody>
                                     </table>
                                   </div>

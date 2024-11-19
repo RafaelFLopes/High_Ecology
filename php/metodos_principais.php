@@ -6,6 +6,8 @@ class metodos_principais {
     private $cpf_aluno;
     private $email_aluno;
     private $senha_aluno;
+    private $forma_pagamento_aluno;
+    private $plano_aluno;
 
     private $imagem;
     
@@ -55,6 +57,26 @@ class metodos_principais {
     public function getEmailAluno() {
         return $this->email_aluno;
     }
+
+    public function setFormaPagamentoAluno($forma_pagamento_aluno) {
+        $this->forma_pagamento_aluno = $forma_pagamento_aluno;
+    }
+
+    // Getters e Setters para $email_aluno
+    public function getFormaPagamentoAluno() {
+        return $this->forma_pagamento_aluno;
+    }
+
+    public function setPlanoAluno($plano_aluno) {
+        $this->plano_aluno = $plano_aluno;
+    }
+
+    // Getters e Setters para $email_aluno
+    public function getPlanoAluno() {
+        return $this->plano_aluno;
+    }
+
+
 
     public function setEmailAluno($email_aluno) {
         $this->email_aluno = $email_aluno;
@@ -224,20 +246,35 @@ class metodos_principais {
             }
 
             // Cadastro do aluno
-            $sql = $this->conn->prepare("INSERT INTO aluno (Nome, CPF, Email, Senha, Imagem) VALUES (?, ?, ?, ?, ?)");
-            $nome = $this->getNomeAluno();  // Armazena o valor de getNomeAluno em uma variável
-            $cpf = $this->getCpfAluno();  // Armazena o valor de getNomeAluno em uma variável
-            $senha = $this->getSenhaAluno();  // Armazena o valor de getSenhaAluno em uma variável
-            $imagem = $this->getImagePath();
-            $sql->bindParam(1, $nome, PDO::PARAM_STR);
-            $sql->bindParam(2, $cpf, PDO::PARAM_STR);
-            $sql->bindParam(3, $email, PDO::PARAM_STR); // Aqui já usa a variável $email
-            $sql->bindParam(4, $senha, PDO::PARAM_STR); // Aqui já usa a variável $senha
-            $sql->bindParam(5, $imagem, PDO::PARAM_STR);
+        $sqlAluno = $this->conn->prepare("INSERT INTO aluno (Nome, CPF, Email, Senha, Imagem, Matriculado) VALUES (?, ?, ?, ?, ?, ?)");
+        $nome = $this->getNomeAluno();
+        $cpf = $this->getCpfAluno();
+        $senha = $this->getSenhaAluno();
+        $imagem = $this->getImagePath();
+        $matriculado = 1;
+        
+        $sqlAluno->bindParam(1, $nome, PDO::PARAM_STR);
+        $sqlAluno->bindParam(2, $cpf, PDO::PARAM_STR);
+        $sqlAluno->bindParam(3, $email, PDO::PARAM_STR);
+        $sqlAluno->bindParam(4, $senha, PDO::PARAM_STR);
+        $sqlAluno->bindParam(5, $imagem, PDO::PARAM_STR);
+        $sqlAluno->bindParam(6, $matriculado, PDO::PARAM_STR);
 
-            if ($sql->execute()) {
-                return "registrado"; // Se cadastrado com sucesso
-            }
+        if (!$sqlAluno->execute()) {
+            return false; // Retorna se o primeiro INSERT falhar
+        }
+
+        // Cadastro na tabela de assinaturas
+        $sqlAssinatura = $this->conn->prepare("INSERT INTO assinaturas (Plano, Forma_Pagamento) VALUES (?, ?)");
+        $plano = $this->getPlanoAluno();
+        $forma_pagamento = $this->getFormaPagamentoAluno();
+
+        $sqlAssinatura->bindParam(1, $plano, PDO::PARAM_STR);
+        $sqlAssinatura->bindParam(2, $forma_pagamento, PDO::PARAM_STR);
+
+        if ($sqlAssinatura->execute()) {
+            return "registrado"; // Se ambos os INSERTs foram bem-sucedidos
+        }
 
             $this->conn = null;
 

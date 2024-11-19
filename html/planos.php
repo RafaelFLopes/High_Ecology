@@ -37,62 +37,42 @@
     <!--FINAL DA NAVBAR-->
 
     <!--COMEÇO DE PLANOS-->
+
+    <?php
+            include('../php/config.php');
+
+            $stmt = $pdo->query('SELECT * FROM planos');
+            $planos = $stmt->fetchAll();
+    ?>
+
+
     <section class="conteiner card grid">
         <div class="card-conteiner grid">
+        <?php foreach ($planos as $plano): ?>
             <div class="card-content grid">
-                <h3 class="card-title">SEED</h3>
-                <h1 class="card-price">R$69,99</h1>
+                <h3 class="card-title"><?php echo htmlspecialchars($plano['Tipo']); ?></h3>
+                <h1 class="card-price">R$<?php echo htmlspecialchars($plano['Valor']); ?></h1>
+
                 <ul class="card-list grid">
                     <li class="list-item">
-                        <span class="icon"><i class="bi bi-check-lg"></i></span>
-                        <span>Acesso a todos os Cursos</span>
+                        <span><?php echo htmlspecialchars($plano['Descricao']); ?></span>
                     </li>
                     <li class="list-item">
                         <span class="icon"><i class="bi bi-check-lg"></i></span>
-                        <span>Certificados</span>
+                        <span><?php echo htmlspecialchars($plano['Vantagem1']); ?></span>
                     </li>
                     <li class="list-item">
                         <span class="icon"><i class="bi bi-check-lg"></i></span>
-                        <span>Troféus e Conquistas</span>
+                        <span><?php echo htmlspecialchars($plano['Vantagem2']); ?></span>
                     </li>
                     <li class="list-item">
                         <span class="icon"><i class="bi bi-check-lg"></i></span>
-                        <span>Atendimento 24h</span>
-                    </li>
-                    <li class="list-item">
-                        <span class="icon"><i class="bi bi-check-lg"></i></span>
-                        <span>Calendário de Eventos</span>
+                        <span><?php echo htmlspecialchars($plano['Vantagem3']); ?></span>
                     </li>   
                 </ul>
                 <a class="card-button" href="pagamento.php">Matricule-se</a>
-            </div>   
-            <div class="card-content premium grid">
-                <h3 class="card-title">GROWTH</h3>
-                <h1 class="card-price">R$99,99</h1>
-                <ul class="card-list grid">
-                    <li class="list-item">
-                        <span class="icon"><i class="bi bi-check-lg"></i></span>
-                        <span>Acesso a todos os Cursos</span>
-                    </li>
-                    <li class="list-item">
-                        <span class="icon"><i class="bi bi-check-lg"></i></span>
-                        <span>Certificados</span>
-                    </li>
-                    <li class="list-item">
-                        <span class="icon"><i class="bi bi-check-lg"></i></span>
-                        <span>Troféus e Conquistas</span>
-                    </li>
-                    <li class="list-item">
-                        <span class="icon"><i class="bi bi-check-lg"></i></span>
-                        <span>Atendimento 24h</span>
-                    </li>
-                    <li class="list-item">
-                        <span class="icon"><i class="bi bi-check-lg"></i></span>
-                        <span>Calendário de Eventos</span>
-                    </li>                    
-                </ul>
-                <a class="card-button" href="pagamento.php">Matricule-se</a>
             </div>
+        <?php endforeach; ?>
         </div>
     </section>
     <!--FINAL DE PLANOS-->
