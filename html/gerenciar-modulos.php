@@ -178,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <p class="card-text"><?php echo htmlspecialchars($modulo['descricao_mod']); ?></p>
                             </div>
                             <div class="card-footer">
-                                <a href="gerenciar-modulos-edit.php?id=<?php echo $modulo['id_mod']; ?>" class="btn btn-primary">Editar</a>
+                                <a href="gerenciar-modulos-edit.php?id_mod=<?php echo $modulo['id_mod']; ?>" class="btn btn-primary">Editar</a>
                                 <button type="button" class="btn_modulo btn btn-warning">Conteúdo</button>
                                 <a href="../php/delete_mod.php?id_mod=<?php echo $modulo['id_mod']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este módulo?')">Deletar</a>
                             </div>

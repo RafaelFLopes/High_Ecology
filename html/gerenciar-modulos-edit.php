@@ -1,32 +1,53 @@
 <?php
-    session_start();
-            include('../php/config.php');
-            
-            $id_mod = isset($_GET['id_mod']) ? $_GET['id_mod'] : null;
+session_start();
+include('../php/config.php');
 
-            $stmt = $pdo->prepare('SELECT * FROM modulos WHERE id_mod = ?');
-            $stmt->execute([$id_mod]);
-            $modulo = $stmt->fetch();
+// Verifica se o ID do módulo foi fornecido
+$id_mod = isset($_GET['id_mod']) ? $_GET['id_mod'] : null;
+if ($id_mod === null) {
+    die('ID do módulo não fornecido.');
+}
 
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $titulo_mod = $_POST['titulo_mod'];
-                $descricao_mod = $_POST['descricao_mod'];
-                $image_mod = $modulo['image_mod'];
-                $id_curso = $_SESSION['id_do_curso'];
+// Prepara a consulta para buscar o módulo
+$stmt = $pdo->prepare('SELECT * FROM modulos WHERE id_mod = ?');
+$stmt->execute([$id_mod]);
+$modulo = $stmt->fetch();
 
-                if (!empty($_FILES['image_mod']['name'])) {
-                    $image = $_FILES['image_mod']['name'];
-                    $target_dir = "../img/uploads/";
-                    $target_file = $target_dir . basename($_FILES['image_mod']['name']);
-                    move_uploaded_file($_FILES['image_mod']['tmp_name'], $target_file);
-                }
+// Verifica se o módulo foi encontrado
+if (!$modulo) {
+    die('Módulo não encontrado.');
+}
 
-                $stmt = $pdo->prepare('UPDATE modulos SET id_curso = ?, titulo_mod = ?, descricao_mod = ?, image_mod = ? WHERE id_mod = ?');
-                $stmt->execute([$id_curso,$titulo_mod, $descricao_mod, $image_mod, $id_mod]);
+// Se for uma requisição POST, processa os dados do formulário
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $titulo_mod = $_POST['titulo_mod'];
+    $descricao_mod = $_POST['descricao_mod'];
+    $image_mod = $modulo['image_mod']; // Define a imagem atual como padrão
+    $id_curso = $_SESSION['id_do_curso'];
 
-                header('Location: gerenciar-modulos.php'); 
-            }
+    // Processa o upload da imagem, se fornecida
+    if (!empty($_FILES['imagem_mod']['name'])) {
+        $imagem1 = basename($_FILES['imagem_mod']['name']);
+        $target_dir = "../img/uploads/";
+        $target_file = $target_dir . $imagem1;
+
+        if (move_uploaded_file($_FILES['imagem_mod']['tmp_name'], $target_file)) {
+            echo "Imagem atualizada com sucesso!";
+        } else {
+            echo "Erro ao enviar a imagem 1!";
+        }
+    }
+
+    // Atualiza os dados do módulo
+    $stmt = $pdo->prepare('UPDATE modulos SET id_curso = ?, titulo_mod = ?, descricao_mod = ?, image_mod = ? WHERE id_mod = ?');
+    $stmt->execute([$id_curso, $titulo_mod, $descricao_mod, $image_mod, $id_mod]);
+
+    // Redireciona após a atualização
+    header('Location: gerenciar-modulos.php');
+    exit();
+}
 ?>
+
 
 
 <!DOCTYPE html>
@@ -177,10 +198,10 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="image_mod" class="form-label">Imagem Atual</label>
-                
-                </div>
-
+                        <label for="imagem_mod" class="form-label">Trocar Imagem </label>
+                        <input type="file" name="imagem_mod" class="form-control">
+                    </div>
+            <button type="submit" class = "btn bnt-sucess">Enviar</button>
             </form>
 
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
