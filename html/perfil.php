@@ -167,8 +167,20 @@ session_start();
                 <?php
                     include('../php/config.php');
 
-                    $stmt = $pdo->query('SELECT * FROM assinaturas');
-                    $assinaturas = $stmt->fetchAll();
+                    // Recupera a assinatura do aluno
+                    $stmt = $pdo->query('SELECT * FROM assinaturas WHERE Cod_Aluno = ' . $_SESSION['dados_user']['cod_aluno']);
+                    $assinatura = $stmt->fetch(); // Pega apenas uma linha
+
+                    if ($assinatura) {
+                        // Pega o plano da assinatura
+                        $plano = $assinatura['Plano'];
+
+                        // Recupera o valor do plano correspondente
+                        $stmt = $pdo->query('SELECT Valor FROM planos WHERE Tipo = "' . $plano . '"');
+                        $valorAssinatura = $stmt->fetch(); // Pega apenas uma linha
+                    } else {
+                        $valorAssinatura = null; // Caso não haja assinatura
+                    }
                 ?>
 
                 <div class="page-content page-container" id="page-content">
@@ -194,12 +206,12 @@ session_start();
                                         
                                       </thead>
                                       <tbody>
-                                      <?php foreach ($assinaturas as $assinatura): ?>
+                                      <?php foreach ($assinatura as $assinaturas): ?>
                                         <tr>
-                                          <td><?php echo htmlspecialchars($assinatura['Data_Assinatura']);?></td>
-                                          <td><?php echo htmlspecialchars($assinatura['Plano']);?></,td>
-                                          <td>69,99</td>
-                                          <td><label class="badge badge-warning"><?php echo htmlspecialchars($assinatura['Forma_Pagamento']);?></label></td>
+                                          <td><?php echo htmlspecialchars($assinaturas['Data_Assinatura']);?></td>
+                                          <td><?php echo htmlspecialchars($assinaturas['Plano']);?></td>
+                                          <td><?php echo htmlspecialchars($valorAssinatura);?></td>
+                                          <td><label class="badge badge-warning"><?php echo htmlspecialchars($assinaturas['Forma_Pagamento']);?></label></td>
                                         </tr>
                                       <?php endforeach; ?>
                                         

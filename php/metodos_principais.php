@@ -173,8 +173,10 @@ class metodos_principais {
 
             $result = $sql->fetch();
 
-            if ($result == true) {
+            if ($result == true) { 
+
                 $this->conn = null;
+
                 return [
                     'tabela' => $result['tabela'],
                     'id' => $result['Cod_Aluno']
@@ -282,6 +284,34 @@ class metodos_principais {
             echo "Erro ao cadastrar. " . $exc->getMessage();
             return false;
         }
+    }
+
+
+
+    public function cadastroAssinatura($Cod_Aluno)
+    {
+            try {
+            $this->conn = new Conectar();
+
+            // Cadastro na tabela de assinaturas
+            $sqlAssinatura = $this->conn->prepare("INSERT INTO assinaturas (Cod_Aluno, Plano, Forma_Pagamento) VALUES (?, ?, ?)");
+            $plano = $this->getPlanoAluno();
+            $forma_pagamento = $this->getFormaPagamentoAluno();
+
+            $sqlAssinatura->bindParam(1, $Cod_Aluno, PDO::PARAM_STR);
+            $sqlAssinatura->bindParam(2, $plano, PDO::PARAM_STR);
+            $sqlAssinatura->bindParam(3, $forma_pagamento, PDO::PARAM_STR);
+
+            if ($sqlAssinatura->execute()) {
+                return true; // Se ambos os INSERTs foram bem-sucedidos
+            }
+
+                $this->conn = null;
+
+            } catch (PDOException $exc) {
+                echo "Erro ao cadastrar. " . $exc->getMessage();
+                return false;
+            }
     }
 
     // Método para buscar informações do aluno por ID

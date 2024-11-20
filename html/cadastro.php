@@ -102,7 +102,6 @@
                             }
 
 
-
                             $nome = $_POST['name'];
                             $cpf = $_POST['cpf'];
                             $email = $_POST ['email'];
@@ -120,8 +119,12 @@
                             $result = $metodos_principais->cadastro();
 
                             if($result == "registrado") {
-                                header("Location: login.php");
-                                exit(); 
+                                $user_assinatura = $metodos_principais->login();
+                                $result_assinatura = $metodos_principais->cadastroAssinatura($user_assinatura['id']);
+                                echo $result_assinatura;
+                                //header("Location: login.php");
+                                //exit(); 
+
                             }
                             else {
                                  echo "<script>
