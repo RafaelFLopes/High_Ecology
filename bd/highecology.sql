@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/11/2024 às 01:19
+-- Tempo de geração: 20/11/2024 às 19:28
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -48,7 +48,8 @@ INSERT INTO `aluno` (`Cod_Aluno`, `Nome`, `Senha`, `Email`, `CPF`, `Imagem`, `Ma
 (1127, 'Vinicius', '12345', 'vinicius@gmail.com', '12345678', 0x2e2e2f696d672f75706c6f61647376696e692070657266696c2e6a7067, 0, NULL, NULL),
 (1128, 'Murillo', '12345', 'murillo@gmail.com', '12345678', 0x2e2e2f696d672f75706c6f6164736d7572696c6c6f2070657266696c2e706e67, 0, NULL, NULL),
 (1129, 'Rafael', '12345', 'rafael@gmail.com', '12345678', 0x2e2e2f696d672f75706c6f616473696d6167656d5f323032342d31312d31345f3035343135303536312e706e67, 0, NULL, NULL),
-(1138, 'Jovana', '123', 'jovana@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f616473696d6167656d5f323032342d31312d31375f3030313532333035392e706e67, 1, NULL, NULL);
+(1138, 'Jovana', '123', 'jovana@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f616473696d6167656d5f323032342d31312d31375f3030313532333035392e706e67, 1, NULL, NULL),
+(1141, 'Mohamed Pereira', '123', 'mohamed@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f61647376696e692070657266696c2e6a7067, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -69,7 +70,9 @@ CREATE TABLE `assinaturas` (
 --
 
 INSERT INTO `assinaturas` (`Cod_Assinatura`, `Cod_Aluno`, `Plano`, `Forma_Pagamento`, `Data_Assinatura`) VALUES
-(12, 0, 'seed', 'Cartão', '2024-11-17');
+(12, 0, 'seed', 'Cartão', '2024-11-17'),
+(15, 0, 'seed', 'Pix', '2024-11-20'),
+(16, 1141, 'seed', 'Pix', '2024-11-20');
 
 -- --------------------------------------------------------
 
@@ -176,8 +179,8 @@ CREATE TABLE `planos` (
 --
 
 INSERT INTO `planos` (`Cod_Plano`, `Valor`, `Tipo`, `Descricao`, `Vantagem1`, `Vantagem2`, `Vantagem3`) VALUES
-(4, '69,99', 'Seed', 'Acesso moderado aos conteúdos fornecidos pela plataforma High Ecology', 'Certificados', 'Conquistas', 'Acesso moderado aos cursos'),
-(5, '99,99', 'Growth', 'Acesso total a gama de cursos disponibilizado por professor da plataforma High Ecology', 'Certificados', 'Conquistas', 'Acesso total aos cursos');
+(4, '69,99', 'seed', 'Acesso moderado aos conteúdos fornecidos pela plataforma High Ecology', 'Certificados', 'Conquistas', 'Acesso moderado aos cursos'),
+(5, '99,99', 'growth', 'Acesso total a gama de cursos disponibilizado por professor da plataforma High Ecology', 'Certificados', 'Conquistas', 'Acesso total aos cursos');
 
 -- --------------------------------------------------------
 
@@ -253,13 +256,13 @@ ALTER TABLE `professor`
 -- AUTO_INCREMENT de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `Cod_Aluno` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1139;
+  MODIFY `Cod_Aluno` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1142;
 
 --
 -- AUTO_INCREMENT de tabela `assinaturas`
 --
 ALTER TABLE `assinaturas`
-  MODIFY `Cod_Assinatura` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Cod_Assinatura` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `conteudos`
