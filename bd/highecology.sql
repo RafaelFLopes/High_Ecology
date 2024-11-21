@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20/11/2024 às 19:28
+-- Tempo de geração: 21/11/2024 às 14:44
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -44,12 +44,8 @@ CREATE TABLE `aluno` (
 --
 
 INSERT INTO `aluno` (`Cod_Aluno`, `Nome`, `Senha`, `Email`, `CPF`, `Imagem`, `Matriculado`, `Cod_Curso`, `Cod_Plano`) VALUES
-(1126, 'Rodrigo', '12345', 'rodrigo@gmail.com', '123456789', 0x2e2e2f696d672f75706c6f616473646967c3a36f202d2070657266696c2e706e67, 0, NULL, NULL),
-(1127, 'Vinicius', '12345', 'vinicius@gmail.com', '12345678', 0x2e2e2f696d672f75706c6f61647376696e692070657266696c2e6a7067, 0, NULL, NULL),
-(1128, 'Murillo', '12345', 'murillo@gmail.com', '12345678', 0x2e2e2f696d672f75706c6f6164736d7572696c6c6f2070657266696c2e706e67, 0, NULL, NULL),
-(1129, 'Rafael', '12345', 'rafael@gmail.com', '12345678', 0x2e2e2f696d672f75706c6f616473696d6167656d5f323032342d31312d31345f3035343135303536312e706e67, 0, NULL, NULL),
-(1138, 'Jovana', '123', 'jovana@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f616473696d6167656d5f323032342d31312d31375f3030313532333035392e706e67, 1, NULL, NULL),
-(1141, 'Mohamed Pereira', '123', 'mohamed@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f61647376696e692070657266696c2e6a7067, 1, NULL, NULL);
+(1144, 'Rafael Lopes', '123', 'rafael@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f616473696d6167656d5f323032342d31312d32305f3230343434333831392e706e67, 1, NULL, NULL),
+(1145, 'Murillo Castro', '123', 'murillo@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f6164736d7572696c6c6f2070657266696c2e706e67, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -70,9 +66,14 @@ CREATE TABLE `assinaturas` (
 --
 
 INSERT INTO `assinaturas` (`Cod_Assinatura`, `Cod_Aluno`, `Plano`, `Forma_Pagamento`, `Data_Assinatura`) VALUES
-(12, 0, 'seed', 'Cartão', '2024-11-17'),
-(15, 0, 'seed', 'Pix', '2024-11-20'),
-(16, 1141, 'seed', 'Pix', '2024-11-20');
+(29, 0, 'growth', 'Pix', '2024-11-20'),
+(30, 1144, 'growth', 'Pix', '2024-11-20'),
+(31, 0, 'seed', 'Pix', '2024-11-20'),
+(32, 1145, 'seed', 'Pix', '2024-09-20'),
+(47, 1145, 'growth', 'Cartão', '2024-10-19'),
+(48, 1145, 'seed', 'Pix', '2024-08-20'),
+(49, 1145, 'seed', 'Pix', '2024-05-21'),
+(50, 1145, 'growth', 'Cartão', '2024-03-21');
 
 -- --------------------------------------------------------
 
@@ -202,6 +203,20 @@ CREATE TABLE `professor` (
 INSERT INTO `professor` (`Cod_Adm`, `Senha`, `Nome`, `Email`) VALUES
 (2, '123', 'Rafael', 'professor@gmail.com');
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `progresso`
+--
+
+CREATE TABLE `progresso` (
+  `Cod_Aluno` int(11) NOT NULL,
+  `id_curso` int(11) NOT NULL,
+  `id_modulo1` int(11) NOT NULL,
+  `id_modulo2` int(11) NOT NULL,
+  `id_modulo3` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Índices para tabelas despejadas
 --
@@ -256,13 +271,13 @@ ALTER TABLE `professor`
 -- AUTO_INCREMENT de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `Cod_Aluno` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1142;
+  MODIFY `Cod_Aluno` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1146;
 
 --
 -- AUTO_INCREMENT de tabela `assinaturas`
 --
 ALTER TABLE `assinaturas`
-  MODIFY `Cod_Assinatura` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `Cod_Assinatura` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de tabela `conteudos`
@@ -274,7 +289,7 @@ ALTER TABLE `conteudos`
 -- AUTO_INCREMENT de tabela `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de tabela `modulos`
