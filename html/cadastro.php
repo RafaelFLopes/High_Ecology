@@ -121,9 +121,8 @@
                             if($result == "registrado") {
                                 $user_assinatura = $metodos_principais->login();
                                 $result_assinatura = $metodos_principais->cadastroAssinatura($user_assinatura['id']);
-                                echo $result_assinatura;
-                                //header("Location: login.php");
-                                //exit(); 
+                                header("Location: login.php");
+                                exit(); 
 
                             }
                             else {

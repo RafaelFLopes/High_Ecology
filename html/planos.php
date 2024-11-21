@@ -70,7 +70,7 @@
                         <span><?php echo htmlspecialchars($plano['Vantagem3']); ?></span>
                     </li>   
                 </ul>
-                <a class="card-button" href="pagamento.php">Matricule-se</a>
+                <a class="card-button" href="cadastro.php">Matricule-se</a>
             </div>
         <?php endforeach; ?>
         </div>

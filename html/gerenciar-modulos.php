@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class = "container-p">
         <div class = "navegacao">
             <ul style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-                <li>
+            <li>
                     <a href = "#">
                         <span class = "icone">
                             <img src="" alt="">
@@ -55,20 +55,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </li>
 
                 <?php 
-                if($_SESSION["user"]['tabela'] == "aluno")
-                {?>
+                if($_SESSION["user"]['tabela'] == "aluno"){
+                    if($_SESSION['dados_user']['matriculado'] == false)
+                    {?>
                     <li>
-                        <a href = "perfil.php">
+                        <a href = "renovarAssinatura.php">
                             <span class = "icone">
-                                <ion-icon name = "home-outline"></ion-icon>
+                                <ion-icon name="repeat-outline"></ion-icon>
                             </span>
-                            <span class = "titulo">Home</span>
+                            <span class = "titulo">Renovar Assinatura</span>
                         </a>
                     </li>
-                <?php }?>
+                <?php } }?>
 
                 <?php 
-                if($_SESSION["user"]['tabela'] == "professor") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
+                if($_SESSION["user"]['tabela'] == "aluno")
+                {?>
+
+                <li>
+                    <a href = "perfil.php">
+                        <span class = "icone">
+                            <ion-icon name = "home-outline"></ion-icon>
+                        </span>
+                        <span class = "titulo">Home</span>
+                    </a>
+                </li>
+                <?php } ?>
+
+                <?php 
+                if($_SESSION["user"]['tabela'] == "professor")
                 {?>
                     <li>
                     <a href = "gerenciar-cursos.php">
@@ -78,23 +93,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class = "titulo">Gerenciar Cursos</span>
                     </a>
                     </li>
-                <?php }?>
+                <?php } ?>
 
-
+                <?php
+                if($_SESSION["user"]['tabela'] == "aluno"){
+                    if($_SESSION['dados_user']['matriculado'] == true)
+                    {?>
+                    <li>
+                        <a href = "cursos.php">
+                            <span class = "icone">
+                                <ion-icon name="library-outline"></ion-icon>
+                            </span>
+                            <span class = "titulo">Cursos</span>
+                        </a>
+                    </li>
+                <?php }}
+                elseif($_SESSION["user"]['tabela'] == "professor")
+                {?>
                 <li>
-                    <a href = "#">
+                    <a href = "cursos.php">
                         <span class = "icone">
                             <ion-icon name="library-outline"></ion-icon>
                         </span>
                         <span class = "titulo">Cursos</span>
                     </a>
                 </li>
+                <?php } ?>
 
                 <?php 
                 if($_SESSION["user"]['tabela'] == "aluno")
                 {?>
                 <li>
-                    <a href = "#">
+                    <a href = "certificados.php">
                         <span class = "icone">
                             <ion-icon name="trophy-outline"></ion-icon>
                         </span>
@@ -120,7 +150,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class = "titulo">Sair</span>
                     </a>
                 </li>
-
             </ul>
         </div>
         
@@ -166,7 +195,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </header>
 
             <div class="container my-5">
+                <!--Botão tem que desaparecer após ser criado 3 módulos-->
+                <?php
+                include_once '../php/metodos_principais.php';
+                $metodos_principais = new metodos_principais();
+                $result = $metodos_principais->verificarModulos($_SESSION['id_do_curso']);
+                
+                if($result == false){ ?>
                 <a href="gerenciar-modulos-create.php" class="btn btn-success add-course mb-4">Criar Novo Módulo</a>
+                <?php }?>
 
                 <form class="row" method="POST">
                     <?php foreach ($modulos as $modulo): ?>

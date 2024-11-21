@@ -113,80 +113,111 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container-p">
         <div class="navegacao">
             <ul style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-                <li>
-                    <a href="#">
-                        <span class="icone">
+            <li>
+                    <a href = "#">
+                        <span class = "icone">
                             <img src="" alt="">
                         </span>
-                        <span class="titulo">HIGH ECOLOGY</span>
+                        <span class = "titulo">HIGH ECOLOGY</span>
                     </a>
                 </li>
 
-                <?php
-                if ($_SESSION["user"]['tabela'] == "aluno") { ?>
+                <?php 
+                if($_SESSION["user"]['tabela'] == "aluno"){
+                    if($_SESSION['dados_user']['matriculado'] == false)
+                    {?>
                     <li>
-                        <a href="perfil.php">
-                            <span class="icone">
-                                <ion-icon name="home-outline"></ion-icon>
+                        <a href = "renovarAssinatura.php">
+                            <span class = "icone">
+                                <ion-icon name="repeat-outline"></ion-icon>
                             </span>
-                            <span class="titulo">Home</span>
+                            <span class = "titulo">Renovar Assinatura</span>
                         </a>
                     </li>
-                <?php } ?>
+                <?php } }?>
 
-                <?php
-                if ($_SESSION["user"]['tabela'] == "professor") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
-                { ?>
-                    <li>
-                        <a href="gerenciar-cursos.php">
-                            <span class="icone">
-                                <ion-icon name="pencil-outline"></ion-icon>
-                            </span>
-                            <span class="titulo">Gerenciar Cursos</span>
-                        </a>
-                    </li>
-                <?php } ?>
-
+                <?php 
+                if($_SESSION["user"]['tabela'] == "aluno")
+                {?>
 
                 <li>
-                    <a href="#">
-                        <span class="icone">
+                    <a href = "perfil.php">
+                        <span class = "icone">
+                            <ion-icon name = "home-outline"></ion-icon>
+                        </span>
+                        <span class = "titulo">Home</span>
+                    </a>
+                </li>
+                <?php } ?>
+
+                <?php 
+                if($_SESSION["user"]['tabela'] == "professor")
+                {?>
+                    <li>
+                    <a href = "gerenciar-cursos.php">
+                        <span class = "icone">
+                            <ion-icon name="pencil-outline"></ion-icon>
+                        </span>
+                        <span class = "titulo">Gerenciar Cursos</span>
+                    </a>
+                    </li>
+                <?php } ?>
+
+                <?php
+                if($_SESSION["user"]['tabela'] == "aluno"){
+                    if($_SESSION['dados_user']['matriculado'] == true)
+                    {?>
+                    <li>
+                        <a href = "cursos.php">
+                            <span class = "icone">
+                                <ion-icon name="library-outline"></ion-icon>
+                            </span>
+                            <span class = "titulo">Cursos</span>
+                        </a>
+                    </li>
+                <?php }}
+                elseif($_SESSION["user"]['tabela'] == "professor")
+                {?>
+                <li>
+                    <a href = "cursos.php">
+                        <span class = "icone">
                             <ion-icon name="library-outline"></ion-icon>
                         </span>
-                        <span class="titulo">Cursos</span>
+                        <span class = "titulo">Cursos</span>
                     </a>
                 </li>
+                <?php } ?>
 
-                <?php
-                if ($_SESSION["user"]['tabela'] == "aluno") { ?>
-                    <li>
-                        <a href="#">
-                            <span class="icone">
-                                <ion-icon name="trophy-outline"></ion-icon>
-                            </span>
-                            <span class="titulo">Certificados</span>
-                        </a>
-                    </li>
+                <?php 
+                if($_SESSION["user"]['tabela'] == "aluno")
+                {?>
+                <li>
+                    <a href = "certificados.php">
+                        <span class = "icone">
+                            <ion-icon name="trophy-outline"></ion-icon>
+                        </span>
+                        <span class = "titulo">Certificados</span>
+                    </a>
+                </li>
                 <?php } ?>
 
                 <li>
-                    <a href="editar-perfil">
-                        <span class="icone">
-                            <ion-icon name="settings-outline"></ion-icon>
+                    <a href = "editar-perfil.php">
+                        <span class = "icone">
+                            <ion-icon name = "settings-outline"></ion-icon>
                         </span>
-                        <span class="titulo">Editar Perfil</span>
+                        <span class = "titulo">Editar Perfil</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="../php/logout.php">
-                        <span class="icone">
-                            <ion-icon name="log-out-outline"></ion-icon>
+                    <a href = "../php/logout.php">
+                        <span class = "icone">
+                            <ion-icon name = "log-out-outline"></ion-icon>
                         </span>
-                        <span class="titulo">Sair</span>
+                        <span class = "titulo">Sair</span>
                     </a>
                 </li>
-
             </ul>
         </div>
 

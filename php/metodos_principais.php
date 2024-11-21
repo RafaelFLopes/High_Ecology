@@ -165,7 +165,7 @@ class metodos_principais {
         try {
             $this->conn = new Conectar();
             
-            // Verificação na tabela de aluno
+
             $sql = $this->conn->prepare("SELECT Cod_Aluno, 'aluno' AS tabela FROM aluno WHERE Email = ? AND Senha = ?");
             @$sql->bindParam(1, $this->getEmailAluno(), PDO::PARAM_STR);
             @$sql->bindParam(2, $this->getSenhaAluno(), PDO::PARAM_STR);
@@ -313,6 +313,91 @@ class metodos_principais {
                 return false;
             }
     }
+    
+    public function renovarAssinatura($Cod_Aluno)
+    {
+        try {
+            $this->conn = new Conectar();
+
+            // Cadastro na tabela de assinaturas
+            $sqlAssinatura = $this->conn->prepare("INSERT INTO assinaturas (Cod_Aluno, Plano, Forma_Pagamento) VALUES (?, ?, ?)");
+            $plano = $this->getPlanoAluno();
+            $forma_pagamento = $this->getFormaPagamentoAluno();
+
+            $sqlAssinatura->bindParam(1, $Cod_Aluno, PDO::PARAM_STR);
+            $sqlAssinatura->bindParam(2, $plano, PDO::PARAM_STR);
+            $sqlAssinatura->bindParam(3, $forma_pagamento, PDO::PARAM_STR);
+
+            // Verifica o sucesso do INSERT antes de continuar
+            if ($sqlAssinatura->execute()) {
+                // Atualiza a matrícula do aluno
+                $sqlUpdate = $this->conn->prepare("UPDATE aluno SET Matriculado = 1 WHERE Cod_Aluno = :Cod_Aluno");
+                $sqlUpdate->bindParam(':Cod_Aluno', $Cod_Aluno, PDO::PARAM_INT);
+
+                // Executa o UPDATE e verifica o sucesso
+                if ($sqlUpdate->execute()) {
+                    $this->conn = null; // Fecha a conexão
+                    return true; // Se ambos os INSERT e UPDATE foram bem-sucedidos
+                } else {
+                    throw new PDOException("Erro ao atualizar a matrícula do aluno.");
+                }
+            } else {
+                throw new PDOException("Erro ao cadastrar a assinatura.");
+            }
+        } catch (PDOException $exc) {
+            echo "Erro ao cadastrar. " . $exc->getMessage();
+            return false;
+        }
+    }
+    
+    public function passouUmMesDesdeUltimaAssinatura($Cod_Aluno)
+    {
+        try {
+            $this->conn = new Conectar();
+    
+            // Consulta para pegar apenas a última assinatura
+            $query = "SELECT Data_Assinatura FROM assinaturas WHERE Cod_Aluno = '$Cod_Aluno' ORDER BY Data_Assinatura DESC LIMIT 1";
+            $result = $this->conn->query($query);
+            $ultimaAssinatura = $result->fetch(PDO::FETCH_ASSOC);
+    
+            // Fechar conexão
+            $this->conn = null;
+    
+            // Verifica se encontrou uma assinatura
+            if ($ultimaAssinatura) {
+                // Converter para objeto DateTime
+                $dataAssinatura = new DateTime($ultimaAssinatura['Data_Assinatura']);
+                $dataAtual = new DateTime();
+    
+                // Calcular a diferença
+                $diferenca = $dataAtual->diff($dataAssinatura);
+    
+                // Se passou 1 mês ou mais
+                if ($diferenca->m >= 1 || $diferenca->y > 0) {
+                    // Atualizar o campo 'matriculado' para false na tabela 'alunos'
+                    $this->conn = new Conectar();
+                    $updateQuery = "UPDATE aluno SET matriculado = 0 WHERE Cod_Aluno = :Cod_Aluno";
+                    $stmt = $this->conn->prepare($updateQuery);
+                    $stmt->bindParam(':Cod_Aluno', $Cod_Aluno, PDO::PARAM_INT);
+                    $stmt->execute();
+    
+                    // Fechar conexão
+                    $this->conn = null;
+    
+                    // Retornar true, pois o campo foi atualizado
+                    return true;
+                }
+            }
+    
+            // Se não houver assinatura registrada ou não passou 1 mês
+            return false;
+    
+        } catch (PDOException $exc) {
+            echo "Erro ao verificar assinatura: " . $exc->getMessage();
+            return false;
+        }
+    }
+
 
     // Método para buscar informações do aluno por ID
     public function getAlunoPorId($id)
@@ -321,7 +406,7 @@ class metodos_principais {
             $this->conn = new Conectar();
             
             // Prepara a consulta SQL
-            $sql = $this->conn->prepare("SELECT Cod_Aluno AS 'cod_aluno', Nome AS 'nome', Senha AS 'senha', Email AS 'email', CPF AS 'cpf', Imagem AS 'img', Cod_Curso AS 'cod_curso', Cod_Plano AS 'cod_plano' FROM aluno WHERE Cod_Aluno = ?");
+            $sql = $this->conn->prepare("SELECT Cod_Aluno AS 'cod_aluno', Nome AS 'nome', Senha AS 'senha', Email AS 'email', CPF AS 'cpf', Imagem AS 'img', Matriculado AS 'matriculado', Cod_Curso AS 'cod_curso', Cod_Plano AS 'cod_plano' FROM aluno WHERE Cod_Aluno = ?");
             @$sql->bindParam(1, $id, PDO::PARAM_INT);
             $sql->execute();
 
@@ -335,6 +420,7 @@ class metodos_principais {
                     'email' => $resultado['email'],
                     'cpf' => $resultado['cpf'],
                     'img' => $resultado['img'],
+                    'matriculado' => $resultado['matriculado'],
                     'cod_curso' => $resultado['cod_curso'],
                     'cod_plano' => $resultado['cod_plano'],
                     'cod_aluno' => $resultado['cod_aluno']
@@ -349,6 +435,31 @@ class metodos_principais {
         }
     }
 
+    public function verificarModulos($id_curso)
+    {
+        try {
+            // Instancia a conexão com o banco de dados
+            $this->conn = new Conectar();
+
+            // Consulta SQL direta (não segura)
+            $sql = "SELECT COUNT(*) AS total
+                FROM modulos
+                WHERE id_curso = $id_curso";
+
+            // Executa a consulta
+            $result = $this->conn->query($sql)->fetch(PDO::FETCH_ASSOC);
+
+            // Fecha a conexão com o banco
+            $this->conn = null;
+
+            // Verifica se o total de registros é maior ou igual a 3
+            return $result['total'] >= 3;
+
+        } catch (PDOException $exc) {
+            echo "Erro ao consultar. " . $exc->getMessage();
+            return false;
+        }
+    }
     // Método para buscar informações do professor por ID
     public function getProfessorPorId($id)
     {

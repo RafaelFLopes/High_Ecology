@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <i class="fa fa-bars fa-2x" onclick="menuShow()"></i>
         </div>
         <ul>
-            <li><a href="../html/matricula.html" class="active"> Matricule-se</a></li>
+            <li><a href="../html/planos.php" class="active"> Matricule-se</a></li>
             <li><a href="../index.html">Home</a></li>
             <li><a href="../html/especializacoes.php">Especializações</a></li>
             <li><a href="../html/login.php">Login</a></li>

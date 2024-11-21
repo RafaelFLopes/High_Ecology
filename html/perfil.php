@@ -26,13 +26,15 @@ session_start();
     <link rel="stylesheet" href="../css/perfil.css">
     <link rel="stylesheet" href="../css/mensagembemvindo.css">
     <script src="../js/perfil.js" defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
 
     <div class = "container-p">
         <div class = "navegacao">
             <ul>
-                <li>
+            <li>
                     <a href = "#">
                         <span class = "icone">
                             <img src="" alt="">
@@ -42,11 +44,25 @@ session_start();
                 </li>
 
                 <?php 
+                if($_SESSION["user"]['tabela'] == "aluno"){
+                    if($_SESSION['dados_user']['matriculado'] == false)
+                    {?>
+                    <li>
+                        <a href = "renovarAssinatura.php">
+                            <span class = "icone">
+                                <ion-icon name="repeat-outline"></ion-icon>
+                            </span>
+                            <span class = "titulo">Renovar Assinatura</span>
+                        </a>
+                    </li>
+                <?php } }?>
+
+                <?php 
                 if($_SESSION["user"]['tabela'] == "aluno")
                 {?>
 
                 <li>
-                    <a href = "#">
+                    <a href = "perfil.php">
                         <span class = "icone">
                             <ion-icon name = "home-outline"></ion-icon>
                         </span>
@@ -68,7 +84,21 @@ session_start();
                     </li>
                 <?php } ?>
 
-
+                <?php
+                if($_SESSION["user"]['tabela'] == "aluno"){
+                    if($_SESSION['dados_user']['matriculado'] == true)
+                    {?>
+                    <li>
+                        <a href = "cursos.php">
+                            <span class = "icone">
+                                <ion-icon name="library-outline"></ion-icon>
+                            </span>
+                            <span class = "titulo">Cursos</span>
+                        </a>
+                    </li>
+                <?php }}
+                elseif($_SESSION["user"]['tabela'] == "professor")
+                {?>
                 <li>
                     <a href = "cursos.php">
                         <span class = "icone">
@@ -77,12 +107,13 @@ session_start();
                         <span class = "titulo">Cursos</span>
                     </a>
                 </li>
-                
+                <?php } ?>
+
                 <?php 
                 if($_SESSION["user"]['tabela'] == "aluno")
                 {?>
                 <li>
-                    <a href = "#">
+                    <a href = "certificados.php">
                         <span class = "icone">
                             <ion-icon name="trophy-outline"></ion-icon>
                         </span>
@@ -99,7 +130,6 @@ session_start();
                         <span class = "titulo">Editar Perfil</span>
                     </a>
                 </li>
-                
 
                 <li>
                     <a href = "../php/logout.php">
@@ -109,7 +139,6 @@ session_start();
                         <span class = "titulo">Sair</span>
                     </a>
                 </li>
-
             </ul>
         </div>
         
@@ -163,66 +192,59 @@ session_start();
                     </div>
                 </div>
             
-
                 <?php
-                    include('../php/config.php');
+include('../php/config.php');
 
-                    // Recupera a assinatura do aluno
-                    $stmt = $pdo->query('SELECT * FROM assinaturas WHERE Cod_Aluno = ' . $_SESSION['dados_user']['cod_aluno']);
-                    $assinatura = $stmt->fetch(); // Pega apenas uma linha
+// Recupera as assinaturas do aluno
+$stmt = $pdo->query('SELECT * FROM assinaturas WHERE Cod_Aluno = ' . $_SESSION['dados_user']['cod_aluno']);
+$assinaturas = $stmt->fetchAll(PDO::FETCH_ASSOC); // Pega todas as linhas como um array associativo
+?>
 
-                    if ($assinatura) {
-                        // Pega o plano da assinatura
-                        $plano = $assinatura['Plano'];
-
-                        // Recupera o valor do plano correspondente
-                        $stmt = $pdo->query('SELECT Valor FROM planos WHERE Tipo = "' . $plano . '"');
-                        $valorAssinatura = $stmt->fetch(); // Pega apenas uma linha
-                    } else {
-                        $valorAssinatura = null; // Caso não haja assinatura
-                    }
-                ?>
-
-                <div class="page-content page-container" id="page-content">
-                    <div class="padding">
-                        <div class="row container d-flex">
-
-                              <div class="card">
-                                <div class="card-body">
-                                  <h4 class="card-title">Histórico</h4>
-                                  <p class="card-description">
-                                    Pagamentos realizados no ano
-                                  </p>
-                                  <div class="table-responsive">
-                                    <table class="table">
-                                      <thead>
-                                        
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Histórico</h4>
+                    <p class="card-description">
+                        Pagamentos realizados no ano
+                    </p>
+                    <div class="table-responsive">
+                        <?php if ($assinaturas): ?>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Plano</th>
+                                        <th>Valor</th>
+                                        <th>Pagamento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($assinaturas as $assinatura): 
+                                        // Recupera o valor do plano correspondente
+                                        $stmt = $pdo->query('SELECT Valor FROM planos WHERE Tipo = "' . $assinatura['Plano'] . '"');
+                                        $valorPlano = $stmt->fetch(PDO::FETCH_ASSOC); // Pega apenas uma linha
+                                    ?>
                                         <tr>
-                                          <th>Data</th>
-                                          <th>Plano</th>
-                                          <th>Valor</th>
-                                          <th>Pagamento</th>
+                                            <td><?php echo htmlspecialchars($assinatura['Data_Assinatura']); ?></td>
+                                            <td><?php echo htmlspecialchars($assinatura['Plano']); ?></td>
+                                            <td><?php echo htmlspecialchars($valorPlano['Valor'] ?? 'N/A'); ?></td>
+                                            <td><label class="badge badge-warning"><?php echo htmlspecialchars($assinatura['Forma_Pagamento']); ?></label></td>
                                         </tr>
-                                        
-                                      </thead>
-                                      <tbody>
-                                      <?php foreach ($assinatura as $assinaturas): ?>
-                                        <tr>
-                                          <td><?php echo htmlspecialchars($assinaturas['Data_Assinatura']);?></td>
-                                          <td><?php echo htmlspecialchars($assinaturas['Plano']);?></td>
-                                          <td><?php echo htmlspecialchars($valorAssinatura);?></td>
-                                          <td><label class="badge badge-warning"><?php echo htmlspecialchars($assinaturas['Forma_Pagamento']);?></label></td>
-                                        </tr>
-                                      <?php endforeach; ?>
-                                        
-                                      </tbody>
-                                    </table>
-                                  </div>
-                                </div>
-                              </div>
-                        </div>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        <?php else: ?>
+                            <p>Nenhuma assinatura encontrada.</p>
+                        <?php endif; ?>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
    
                 </div>
         </div>
@@ -245,5 +267,4 @@ session_start();
       </script>
 </body>
 </html>
-
 
