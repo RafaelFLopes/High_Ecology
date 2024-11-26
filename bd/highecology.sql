@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/11/2024 às 14:44
+-- Tempo de geração: 26/11/2024 às 13:58
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -34,18 +34,16 @@ CREATE TABLE `aluno` (
   `Email` varchar(320) NOT NULL,
   `CPF` varchar(15) NOT NULL,
   `Imagem` blob DEFAULT NULL,
-  `Matriculado` tinyint(1) NOT NULL,
-  `Cod_Curso` int(7) DEFAULT NULL,
-  `Cod_Plano` int(7) DEFAULT NULL
+  `Matriculado` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `aluno`
 --
 
-INSERT INTO `aluno` (`Cod_Aluno`, `Nome`, `Senha`, `Email`, `CPF`, `Imagem`, `Matriculado`, `Cod_Curso`, `Cod_Plano`) VALUES
-(1144, 'Rafael Lopes', '123', 'rafael@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f616473696d6167656d5f323032342d31312d32305f3230343434333831392e706e67, 1, NULL, NULL),
-(1145, 'Murillo Castro', '123', 'murillo@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f6164736d7572696c6c6f2070657266696c2e706e67, 0, NULL, NULL);
+INSERT INTO `aluno` (`Cod_Aluno`, `Nome`, `Senha`, `Email`, `CPF`, `Imagem`, `Matriculado`) VALUES
+(1144, 'Rafael Lopes', '123', 'rafael@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f616473696d6167656d5f323032342d31312d32305f3230343434333831392e706e67, 1),
+(1145, 'Murillo Castro', '123', 'murillo@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f6164736d7572696c6c6f2070657266696c2e706e67, 0);
 
 -- --------------------------------------------------------
 
@@ -97,6 +95,13 @@ CREATE TABLE `conteudos` (
   `imagem3` varchar(255) DEFAULT NULL,
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `conteudos`
+--
+
+INSERT INTO `conteudos` (`id`, `id_modulo`, `titulo_principal`, `descricao`, `titulo1`, `texto1`, `imagem1`, `titulo2`, `texto2`, `imagem2`, `titulo3`, `texto3`, `imagem3`, `criado_em`) VALUES
+(10, 68, 'TESTE SUPREMO', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 'TESTE', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'vini perfil.jpg', 'TESTEAAAAAA', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 'vini perfil.jpg', 'TESTE', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 'murillo perfil.png', '2024-11-26 11:39:00');
 
 -- --------------------------------------------------------
 
@@ -212,9 +217,9 @@ INSERT INTO `professor` (`Cod_Adm`, `Senha`, `Nome`, `Email`) VALUES
 CREATE TABLE `progresso` (
   `Cod_Aluno` int(11) NOT NULL,
   `id_curso` int(11) NOT NULL,
-  `id_modulo1` int(11) NOT NULL,
-  `id_modulo2` int(11) NOT NULL,
-  `id_modulo3` int(11) NOT NULL
+  `id_modulo1` int(11) DEFAULT NULL,
+  `id_modulo2` int(11) DEFAULT NULL,
+  `id_modulo3` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -283,7 +288,7 @@ ALTER TABLE `assinaturas`
 -- AUTO_INCREMENT de tabela `conteudos`
 --
 ALTER TABLE `conteudos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `cursos`
