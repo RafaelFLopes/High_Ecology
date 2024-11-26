@@ -8,6 +8,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['btn_curso_comecar'])) {
+            include_once '../php/metodos_principais.php';
+            $metodos_principais = new metodos_principais();
+
+            $metodos_principais->preencherProgresso($_SESSION["user"]['id'], $_SESSION["id_do_curso"]); //passar parametros
+
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -196,19 +206,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                </div>
             </div>
             </form>
-            <?php
-                session_start();
-
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    if (isset($_POST['btn_curso_comecar'])) {
-                        include_once '../php/metodos_principais.php';
-                        $metodos_principais = new metodos_principais();
-
-                        $metodos_principais->preencherProgresso(); //passar parametros
-
-                        }
-                    }
-            ?>
          </div>
 
          <script>

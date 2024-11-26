@@ -291,7 +291,7 @@ class metodos_principais {
         try {
             $this->conn = new Conectar();
 
-            $consultaSQL = $this->conn->prepare("INSERT INTO progresso (Cod_aluno, id_curso) VALUES (?, ?)");
+            $consultaSQL = $this->conn->prepare("INSERT INTO progresso (Cod_Aluno, id_curso) VALUES (?, ?)");
 
             $consultaSQL->bindParam(1, $Cod_Aluno, PDO::PARAM_STR);
             $consultaSQL->bindParam(2, $id_do_curso, PDO::PARAM_STR);
