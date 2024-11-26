@@ -187,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                      <div class="card__data">
                         <span class="card__description"><?php echo htmlspecialchars($course['description']); ?></span>
                         <h2 class="card__title"><?php echo htmlspecialchars($course['title']); ?></h2>
-                        <a type="button" class="card__button">Começar</a>
+                        <button type="submit" class="card__button" name="btn_curso_comecar">Começar</button>
                      </div>
                   </article>
                   <?php endforeach; ?>
@@ -196,6 +196,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                </div>
             </div>
             </form>
+            <?php
+                session_start();
+
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (isset($_POST['btn_curso_comecar'])) {
+                        include_once '../php/metodos_principais.php';
+                        $metodos_principais = new metodos_principais();
+
+                        $metodos_principais->preencherProgresso(); //passar parametros
+
+                        }
+                    }
+            ?>
          </div>
 
          <script>

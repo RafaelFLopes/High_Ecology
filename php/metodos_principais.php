@@ -247,7 +247,7 @@ class metodos_principais {
                 return ""; //TEMPORARIO
             }
 
-            // Cadastro do aluno
+        // Cadastro do aluno
         $sqlAluno = $this->conn->prepare("INSERT INTO aluno (Nome, CPF, Email, Senha, Imagem, Matriculado) VALUES (?, ?, ?, ?, ?, ?)");
         $nome = $this->getNomeAluno();
         $cpf = $this->getCpfAluno();
@@ -286,7 +286,24 @@ class metodos_principais {
         }
     }
 
+    public function preencherProgresso($Cod_Aluno, $id_do_curso) //método preencherProgresso
+    {
+        try {
+            $this->conn = new Conectar();
 
+            $consultaSQL = $this->conn->prepare("INSERT INTO progresso (Cod_aluno, id_curso) VALUES (?, ?)");
+
+            $consultaSQL->bindParam(1, $Cod_Aluno, PDO::PARAM_STR);
+            $consultaSQL->bindParam(2, $id_do_curso, PDO::PARAM_STR);
+            $consultaSQL->execute();
+
+            $this->conn = null;
+
+        } catch (PDOException $exc) {
+            echo "Erro ao cadastrar. " . $exc->getMessage();
+            return false;
+        }
+    }
 
     public function cadastroAssinatura($Cod_Aluno)
     {
@@ -406,7 +423,7 @@ class metodos_principais {
             $this->conn = new Conectar();
             
             // Prepara a consulta SQL
-            $sql = $this->conn->prepare("SELECT Cod_Aluno AS 'cod_aluno', Nome AS 'nome', Senha AS 'senha', Email AS 'email', CPF AS 'cpf', Imagem AS 'img', Matriculado AS 'matriculado', Cod_Curso AS 'cod_curso', Cod_Plano AS 'cod_plano' FROM aluno WHERE Cod_Aluno = ?");
+            $sql = $this->conn->prepare("SELECT Cod_Aluno AS 'cod_aluno', Nome AS 'nome', Senha AS 'senha', Email AS 'email', CPF AS 'cpf', Imagem AS 'img', Matriculado AS 'matriculado' FROM aluno WHERE Cod_Aluno = ?");
             @$sql->bindParam(1, $id, PDO::PARAM_INT);
             $sql->execute();
 
@@ -421,8 +438,6 @@ class metodos_principais {
                     'cpf' => $resultado['cpf'],
                     'img' => $resultado['img'],
                     'matriculado' => $resultado['matriculado'],
-                    'cod_curso' => $resultado['cod_curso'],
-                    'cod_plano' => $resultado['cod_plano'],
                     'cod_aluno' => $resultado['cod_aluno']
                 ]; // Retorna os dados no formato desejado
             }
@@ -491,8 +506,7 @@ class metodos_principais {
             return false;
         }
     }
-    public function editarPerfil($id, $nome, $email, $cpf, $senha)
-{
+    public function editarPerfil($id, $nome, $email, $cpf, $senha){
     try {
         $this->conn = new Conectar();
         $tabela = $_SESSION["user"]['tabela'];
