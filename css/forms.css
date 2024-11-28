@@ -1,0 +1,120 @@
+/* Estilo geral */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f8f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Centralizar formulário */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #2b282349;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    color: #27ae60; /* Verde para o título */
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+/* Labels */
+.form-label {
+    font-weight: bold;
+    color: #27ae60; /* Verde para os rótulos */
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Inputs e Textareas */
+input[type="text"], 
+textarea, 
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:hover, 
+textarea:hover, 
+input[type="file"]:hover {
+    border-color: #27ae60; /* Verde interativo ao passar o mouse */
+    background-color: #f9fdfb;
+}
+
+input[type="text"]:focus, 
+textarea:focus, 
+input[type="file"]:focus {
+    border-color: #27ae60;
+    outline: none;
+    background-color: #f9fdfb;
+}
+
+/* Botão de envio */
+button[type="submit"] {
+    display: block;
+    width: auto; /* Ajusta a largura ao tamanho do texto */
+    background-color: #27ae60;
+    color: #ffffff;
+    padding: 8px 16px; /* Tamanho reduzido */
+    border: none;
+    border-radius: 5px;
+    font-size: 14px; /* Fonte menor */
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 auto; /* Centraliza o botão */
+}
+
+button[type="submit"]:hover {
+    background-color: #219150; /* Verde mais escuro no hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+    background-color: #1c7e46;
+    transform: translateY(0);
+}
+/* Animação de foco no campo */
+input:focus, textarea:focus {
+    box-shadow: 0 0 8px rgba(39, 174, 96, 0.4);
+}
+
+/* Espaçamento extra */
+.mb-3 {
+    margin-bottom: 20px;
+}
+
+/* Texto para campos */
+textarea::placeholder,
+input::placeholder {
+    font-style: italic;
+    color: #aaa;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    button[type="submit"] {
+        font-size: 14px;
+    }
+}
