@@ -176,7 +176,7 @@ session_start();
             
                 <div class = "cards">
                     <div>
-                        <div class = "numeros">9</div>
+                        <div class = "numeros">0</div>
                         <div class = "nomeCard">Badges</div>
                     </div>
                     <div class = "iconeGp">
