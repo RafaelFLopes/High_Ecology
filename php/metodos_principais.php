@@ -290,17 +290,68 @@ class metodos_principais {
     {
         try {
             $this->conn = new Conectar();
-
-            $consultaSQL = $this->conn->prepare("INSERT INTO progresso (Cod_Aluno, id_curso) VALUES (?, ?)");
-
-            $consultaSQL->bindParam(1, $Cod_Aluno, PDO::PARAM_STR);
-            $consultaSQL->bindParam(2, $id_do_curso, PDO::PARAM_STR);
+    
+            // Verifica se já existe um registro com o mesmo Cod_Aluno e id_curso
+            $consultaSQL = $this->conn->prepare("SELECT * FROM progresso WHERE Cod_Aluno = $Cod_Aluno AND id_curso = $id_do_curso");
             $consultaSQL->execute();
+    
+            if ($consultaSQL->rowCount() == 0) { // Se não existir, faz o insert
+                $insertSQL = $this->conn->prepare("INSERT INTO progresso (Cod_Aluno, id_curso, status) VALUES ($Cod_Aluno, $id_do_curso, 'visualizado')");
+                $insertSQL->execute();
+                echo "Progresso cadastrado com sucesso.";
+            } else {
 
+                $query = "SELECT data_inicio FROM progresso WHERE Cod_Aluno = '$Cod_Aluno' AND id_curso = '$id_do_curso' ORDER BY data_inicio";
+            $result = $this->conn->query($query);
+            $passouDias = $result->fetch(PDO::FETCH_ASSOC);
+    
+            // Fechar conexão
             $this->conn = null;
+    
+            // Verifica se encontrou uma assinatura
+            if ($passouDias) {
+                // Converter para objeto DateTime
+                $dataInicio = new DateTime($passouDias['data_inicio']);
+                $dataAtual = new DateTime();
+    
+                // Calcular a diferença
+                $diferenca = $dataAtual->diff($dataInicio);
+    
+                // Se passou 1 mês ou mais
+                if ($diferenca->days >= 1) {
+                    return true;
+                }
+            }
+    
+            // Se não houver assinatura registrada ou não passou 1 mês
+            return false;
+            }
+    
+            $this->conn = null;
+    
+        } catch (Exception $exc) {
+            echo "Erro ao preencher progresso. " . $exc->getMessage();
 
-        } catch (PDOException $exc) {
-            echo "Erro ao cadastrar. " . $exc->getMessage();
+        }
+    }
+
+    public function cursosIniciado($Cod_Aluno){
+        try{
+
+            $this->conn = new Conectar();
+
+            $consultaSQL = $this->conn->prepare("SELECT * FROM progresso WHERE Cod_Aluno = $Cod_Aluno");
+            $consultaSQL->execute();
+            $result = $consultaSQL->fetchAll();
+            
+            $numeroDeRegistros = $consultaSQL->rowCount();
+
+            return $numeroDeRegistros;
+
+
+        }
+        catch(PDOException $exc){
+            echo "Erro ao verificar. " . $exc->getMessage();
             return false;
         }
     }
@@ -469,6 +520,31 @@ class metodos_principais {
 
             // Verifica se o total de registros é maior ou igual a 3
             return $result['total'] >= 3;
+
+        } catch (PDOException $exc) {
+            echo "Erro ao consultar. " . $exc->getMessage();
+            return false;
+        }
+    }
+    public function verificarConteudo($id_modulo)
+    {
+        try {
+            // Instancia a conexão com o banco de dados
+            $this->conn = new Conectar();
+
+            // Consulta SQL direta (não segura)
+            $sql = "SELECT COUNT(*) AS total
+                FROM conteudos
+                WHERE id_modulo = $id_modulo";
+
+            // Executa a consulta
+            $result = $this->conn->query($sql)->fetch(PDO::FETCH_ASSOC);
+
+            // Fecha a conexão com o banco
+            $this->conn = null;
+
+            // Verifica se o total de registros é maior ou igual a 3
+            return $result['total'] >= 1;
 
         } catch (PDOException $exc) {
             echo "Erro ao consultar. " . $exc->getMessage();

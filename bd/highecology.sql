@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26/11/2024 às 13:58
+-- Tempo de geração: 28/11/2024 às 14:51
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -43,7 +43,8 @@ CREATE TABLE `aluno` (
 
 INSERT INTO `aluno` (`Cod_Aluno`, `Nome`, `Senha`, `Email`, `CPF`, `Imagem`, `Matriculado`) VALUES
 (1144, 'Rafael Lopes', '123', 'rafael@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f616473696d6167656d5f323032342d31312d32305f3230343434333831392e706e67, 1),
-(1145, 'Murillo Castro', '123', 'murillo@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f6164736d7572696c6c6f2070657266696c2e706e67, 0);
+(1145, 'Murillo Castro', '123', 'murillo@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f6164736d7572696c6c6f2070657266696c2e706e67, 0),
+(1146, 'Mohamed', '123', 'mohamed@gmail.com', '1234567890', 0x2e2e2f696d672f75706c6f616473646967c3a36f202d2070657266696c2e706e67, 1);
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,20 @@ INSERT INTO `assinaturas` (`Cod_Assinatura`, `Cod_Aluno`, `Plano`, `Forma_Pagame
 (47, 1145, 'growth', 'Cartão', '2024-10-19'),
 (48, 1145, 'seed', 'Pix', '2024-08-20'),
 (49, 1145, 'seed', 'Pix', '2024-05-21'),
-(50, 1145, 'growth', 'Cartão', '2024-03-21');
+(50, 1145, 'growth', 'Cartão', '2024-03-21'),
+(51, 0, 'growth', 'Pix', '2024-11-28'),
+(52, 1146, 'growth', 'Pix', '2024-11-28');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `certificado`
+--
+
+CREATE TABLE `certificado` (
+  `Cod_Aluno` int(11) NOT NULL,
+  `id_curso` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -217,10 +231,26 @@ INSERT INTO `professor` (`Cod_Adm`, `Senha`, `Nome`, `Email`) VALUES
 CREATE TABLE `progresso` (
   `Cod_Aluno` int(11) NOT NULL,
   `id_curso` int(11) NOT NULL,
-  `id_modulo1` int(11) DEFAULT NULL,
-  `id_modulo2` int(11) DEFAULT NULL,
-  `id_modulo3` int(11) DEFAULT NULL
+  `status` varchar(100) NOT NULL,
+  `data_inicio` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `progresso`
+--
+
+INSERT INTO `progresso` (`Cod_Aluno`, `id_curso`, `status`, `data_inicio`) VALUES
+(1144, 38, 'visualizado', '2024-11-27'),
+(1144, 39, 'visualizado', '2024-11-27'),
+(1146, 38, 'visualizado', '2024-11-28'),
+(1146, 39, 'visualizado', '2024-11-28'),
+(1146, 40, 'visualizado', '2024-11-28'),
+(1146, 42, 'visualizado', '2024-11-28'),
+(1146, 41, 'visualizado', '2024-11-28'),
+(2, 38, 'visualizado', '2024-11-28'),
+(1144, 40, 'visualizado', '2024-11-28'),
+(1144, 41, 'visualizado', '2024-11-28'),
+(1144, 42, 'visualizado', '2024-11-28');
 
 --
 -- Índices para tabelas despejadas
@@ -276,13 +306,13 @@ ALTER TABLE `professor`
 -- AUTO_INCREMENT de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `Cod_Aluno` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1146;
+  MODIFY `Cod_Aluno` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1147;
 
 --
 -- AUTO_INCREMENT de tabela `assinaturas`
 --
 ALTER TABLE `assinaturas`
-  MODIFY `Cod_Assinatura` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `Cod_Assinatura` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de tabela `conteudos`

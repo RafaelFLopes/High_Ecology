@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -181,16 +183,27 @@ session_start();
                         <ion-icon name="trophy-outline"></ion-icon>
                     </div>
                 </div>
-            
+                <a href="cursos.php" style="text-decoration:none">
                 <div class = "cards">
                     <div>
-                        <div class = "numeros">2</div>
-                        <div class = "nomeCard">Em Aberto</div>
+                        <div class = "numeros">
+                            <?php                 
+                                include_once '../php/metodos_principais.php';
+                                $metodos_principais = new metodos_principais();
+
+                                $result = $metodos_principais->cursosIniciado($_SESSION["user"]['id']);
+
+                                echo $result;
+                                
+                            ?>
+                        </div>
+                        <div class = "nomeCard">Cursos iniciados</div>
                     </div>
                     <div class = "iconeGp">
                         <ion-icon name="book-outline"></ion-icon>
                     </div>
                 </div>
+                </a>
             
                 <?php
 include('../php/config.php');

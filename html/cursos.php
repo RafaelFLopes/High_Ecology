@@ -2,21 +2,23 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['btn_curso_comecar'])) {
+        include_once '../php/metodos_principais.php';
+        $metodos_principais = new metodos_principais();
+
+        $metodos_principais->preencherProgresso($_SESSION["user"]['id'], $_SESSION["id_do_curso"]); //passar parametros
+
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $input_hidden = $_POST['txt_nome_do_curso'];
     $_SESSION['nome_do_curso'] = $input_hidden;
     header("Location: modulos2.php");
     exit();
 }
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST['btn_curso_comecar'])) {
-            include_once '../php/metodos_principais.php';
-            $metodos_principais = new metodos_principais();
 
-            $metodos_principais->preencherProgresso($_SESSION["user"]['id'], $_SESSION["id_do_curso"]); //passar parametros
-
-        }
-    }
 
 ?>
 
@@ -47,7 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script nomodule src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/gerenciar-cursos.css">
 
     <title>Editar Perfil - High Ecology</title>
 </head>
@@ -184,6 +185,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $stmt = $pdo->query('SELECT * FROM cursos');
             $courses = $stmt->fetchAll();
+
+            $consultaSQL = $pdo->query('SELECT status FROM progresso WHERE Cod_Aluno AND id_curso');
             ?>
 
             <div class="container">
@@ -191,13 +194,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                <div class="card__container">
                <?php foreach ($courses as $course): ?>
                   <article class="card__article">
-                     
+                        <img src="../img/eye.webp">
+
                      <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" alt="image" class="card__img">
 
                      <div class="card__data">
                         <span class="card__description"><?php echo htmlspecialchars($course['description']); ?></span>
                         <h2 class="card__title"><?php echo htmlspecialchars($course['title']); ?></h2>
-                        <button type="submit" class="card__button" name="btn_curso_comecar">Começar</button>
+                        <button type="submit" class="card__button" name="btn_curso_comecar">Iniciar curso</button>
                      </div>
                   </article>
                   <?php endforeach; ?>

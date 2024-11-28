@@ -191,7 +191,15 @@ session_start();
             </header>
 
             <div class="container my-5">
-                <a href="gerenciar-conteudo-create.php" class="btn btn-success add-course mb-4">Criar Conteúdo</a>
+            <?php
+                    include_once '../php/metodos_principais.php';
+                    $metodos_principais = new metodos_principais();
+                    $result = $metodos_principais->verificarConteudo($_SESSION['id_do_modulo']);
+                    
+                    if($result == false){ ?>
+                    <a href="gerenciar-conteudo-create.php" class="btn btn-success add-course mb-4">Criar Conteúdo</a>
+            <?php }?>
+                
 
                 <form class="row" action="#" method="POST">
                     <?php foreach ($conteudos as $conteudo): ?>

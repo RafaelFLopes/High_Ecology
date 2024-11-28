@@ -116,6 +116,13 @@ img {
   font-weight: 500;
   color: var(--first-color);
 }
+.card__button button {  
+  border: none;
+  text-decoration: none;
+  font-size: var(--small-font-size);
+  font-weight: 500;
+  color: var(--first-color);
+}
 
 .card__button:hover {
   text-decoration: underline;
@@ -126,6 +133,20 @@ img {
   animation: show-data 1s forwards;
   opacity: 1;
   transition: opacity .3s;
+}
+.button_emitir_certificado{ 
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.button_emitir_certificado button{
+  margin-top: 20px;
+  background-color: #476b43;
+  color: #f2f2f2;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px 30px 10px 30px;
 }
 
 .card__article:hover {

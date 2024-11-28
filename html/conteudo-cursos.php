@@ -240,22 +240,12 @@ session_start();
                 <h1><?php echo htmlspecialchars($conteudo['titulo_principal']); ?></h1>
                 <p>(COMPLETO)</p>
                 </div>
-                <div class="rodape-buttons-dois">
                 <div class="rodape-button">
-                    <a href="../cursos/curso-biologia-um.html">
+                    <a href="../html/cursos.php">
                     <button>
-                        Voltar
+                        Finalizar Módulo
                     </button>
                     </a>
-                </div>
-
-                <div class="rodape-button">
-                    <a href="../cursos/curso-biologia-tres.html">
-                    <button>
-                        Avançar
-                    </button>
-                    </a>
-                </div>
                 </div>
             </div>
             <?php endforeach; ?>

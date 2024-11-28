@@ -197,12 +197,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="container my-5">
                 <!--Botão tem que desaparecer após ser criado 3 módulos-->
                 <?php
-                include_once '../php/metodos_principais.php';
-                $metodos_principais = new metodos_principais();
-                $result = $metodos_principais->verificarModulos($_SESSION['id_do_curso']);
-                
-                if($result == false){ ?>
-                <a href="gerenciar-modulos-create.php" class="btn btn-success add-course mb-4">Criar Novo Módulo</a>
+                    include_once '../php/metodos_principais.php';
+                    $metodos_principais = new metodos_principais();
+                    $result = $metodos_principais->verificarModulos($_SESSION['id_do_curso']);
+                    
+                    if($result == false){ ?>
+                    <a href="gerenciar-modulos-create.php" class="btn btn-success add-course mb-4">Criar Novo Módulo</a>
                 <?php }?>
 
                 <form class="row" method="POST">

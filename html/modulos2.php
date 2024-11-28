@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="../css/topbar.css">
     <?php } ?>
     <link rel="stylesheet" href="../css/especializacoes.css">
+    <link rel="stylesheet" href="../css/mensagembemvindo.css">
 
     <script src="../js/perfil.js" defer></script>
     <script type = "module" src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -180,6 +181,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt = $pdo->query('SELECT * FROM modulos WHERE id_curso = ' . $_SESSION['id_do_curso']);
             $modulos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
+                <?php
+                include_once '../php/metodos_principais.php';
+                $metodos_principais = new metodos_principais();
+
+                $result = $metodos_principais->preencherProgresso($_SESSION["user"]['id'], $_SESSION["id_do_curso"]);
+
+                if($result){?>
+                    <div class="button_emitir_certificado">
+                        <button>Emitir certificado</button>
+                    </div>
+                    
+                <?php }
+
+                else { ?>
+                    <div class="mensagemBemvindo">
+                        <h1><?php echo "Emitir certificado após 7 dias do início do curso";?></h1>
+                    </div>
+                <?php } ?>
 
             <div class="container">
                <form class="card__container" method="POST">
@@ -190,7 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                      <div class="card__data">
                         <span class="card__description"><?php echo htmlspecialchars($modulo['descricao_mod']); ?></span>
                         <h2 class="card__title"><?php echo htmlspecialchars($modulo['titulo_mod']);?></h2>
-                        <a type="button" class="card__button">Começar</a>
+                        <a type="submit" class="card__button" name="btn_modulo_visualizar">Começar</a>
                      </div>
                   </article>
                   <?php endforeach; ?>
@@ -198,7 +217,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <input type="hidden" name="txt_nome_do_modulo" class="txt_nome_do_modulo" value="">
                </form>
             </div>
+            
          </div>
+
 
          <script>
         // Seleciona todos os botões de módulo
