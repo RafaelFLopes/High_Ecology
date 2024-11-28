@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link rel="stylesheet" href="../css/all.css">
-
+    <link rel="stylesheet" href="../css/forms.css">
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/conteudo-main-logado.css">
     <?php  if($_SESSION["user"]['tabela'] == "professor") {?>
@@ -49,6 +49,7 @@
     <?php } else if($_SESSION["user"]['tabela'] == "aluno") {?>
         <link rel="stylesheet" href="../css/leftnavbar.css">
         <link rel="stylesheet" href="../css/topbar.css">
+        
     <?php } ?>
     <link rel="stylesheet" href="../css/editar-perfil.css">
 
@@ -207,9 +208,10 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="image" class="form-label">Imagem Atual</label>
-                
-                </div>
+                        <label for="image" class="form-label">Trocar Imagem </label>
+                        <input type="file" name="image" class="form-control">
+                    </div>
+            <button type="submit" class = "btn bnt-sucess">Enviar</button>
 
             </form>
 

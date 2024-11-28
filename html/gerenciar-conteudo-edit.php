@@ -89,6 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../css/all.css">
 
     <link rel="stylesheet" href="../css/all.css">
+    <link rel="stylesheet" href="../css/forms.css">
+
     <link rel="stylesheet" href="../css/conteudo-main-logado.css">
     <?php if ($_SESSION["user"]['tabela'] == "professor") { ?>
         <link rel="stylesheet" href="../css/leftnavbarprofessor.css">
