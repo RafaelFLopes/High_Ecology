@@ -15,12 +15,12 @@
 
     <!--COMEÇO DA NAVBAR-->
     <nav class="nav">
-        <a href="index.html" class="logo"><img src="../img/logo-tres.svg" alt="logo"></a>
+        <a href="../index.html" class="logo"><img src="../img/logo-tres.svg" alt="logo"></a>
         <div class="menu-btn">
             <i class="fa fa-bars fa-2x" onclick="menuShow()"></i>
         </div>
         <ul>
-            <li><a href="../html/matricula.html" class="active"> Matricule-se</a></li>
+            <li><a href="../html/planos.php" class="active"> Matricule-se</a></li>
             <li><a href="../index.html">Home</a></li>
             <li><a href="../html/especializacoes.php">Especializações</a></li>
             <li><a href="../html/login.php">Login</a></li>
@@ -86,8 +86,17 @@
             if ($_SESSION["user"] && is_array($_SESSION["user"])) {
                 if ($_SESSION["user"]['tabela'] === "aluno") {
                     $_SESSION["dados_user"] = $metodos_principais->getAlunoPorId($_SESSION["user"]['id']);
-                    header("Location: perfil.php");
-                    exit();
+                    $metodos_principais->passouUmMesDesdeUltimaAssinatura($_SESSION["user"]['id']);
+                    
+                    if($_SESSION['dados_user']['matriculado'] == true){
+                        header("Location: perfil.php");
+                        exit();
+                    }
+                    elseif($_SESSION['dados_user']['matriculado'] == false){
+                        header("Location: renovarAssinatura.php");
+                        exit();
+                    }
+
                 } else if ($_SESSION["user"]['tabela'] === "professor") {
                     $_SESSION['dados_user'] = $metodos_principais->getProfessorPorId($_SESSION['user']['id']);
                     header("Location: gerenciar-cursos.php");

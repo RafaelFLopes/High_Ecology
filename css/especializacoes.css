@@ -54,6 +54,19 @@ img {
 
 }
 
+
+.visualizar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+img {
+  width: 50px;
+  height: auto;
+
+}
+
+
 .card__container {
   display: grid;
   row-gap: 50px;

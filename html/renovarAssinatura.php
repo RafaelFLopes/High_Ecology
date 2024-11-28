@@ -1,5 +1,42 @@
 <?php
 session_start();
+
+                    if($_SERVER["REQUEST_METHOD"] == "POST") {
+                        if(isset($_POST['btn_renovar_assinatura'])) {
+                            include_once '../php/metodos_principais.php';
+                            $metodos_principais = new metodos_principais();
+
+                            $plano = $_POST ['planos'];
+                            $forma_pagamento = $_POST ['pagamento'];
+
+                            $metodos_principais->setPlanoAluno($plano);
+                            $metodos_principais->setformaPagamentoAluno($forma_pagamento);
+
+
+
+                            $result = $metodos_principais->renovarAssinatura($_SESSION['user']['id']);
+                            
+
+                            if($result == true) {
+                                header("Location: ../php/logout.php");
+                            }
+
+
+                            else {
+                                 echo "<script>
+                                        Swal.fire({
+                                            position: 'center',
+                                            icon: 'error',
+                                            title: 'Email jรก existente!'',
+                                            showConfirmButton: false,
+                                            timer: 3000
+                                        });
+                                    </script>";
+                            }
+                        }
+                    }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +61,8 @@ session_start();
     <?php } ?>
 
     <link rel="stylesheet" href="../css/perfil.css">
-    <link rel="stylesheet" href="../css/mensagembemvindo.css">
+
+    <link rel="stylesheet" href="../css/cadastro.css">
     <script src="../js/perfil.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -33,8 +71,8 @@ session_start();
 
     <div class = "container-p">
         <div class = "navegacao">
-            <ul>
-            <li>
+        <ul>
+        <li>
                     <a href = "#">
                         <span class = "icone">
                             <img src="" alt="">
@@ -154,117 +192,51 @@ session_start();
                     </a>
                 </div>
             </div>
-
-            <div>
-            </div>
-
-
-
-
-
-            <div class="mensagemBemvindo">
-                <h1>Seja bem-vindo(a) <?php echo $_SESSION['user']['tabela'], " ", $_SESSION['dados_user']['nome'];?></h1>
-            </div>
-
-
-
-
-
-            <div class = "cardGrupo">
-            
-                <div class = "cards">
-                    <div>
-                        <div class = "numeros">9</div>
-                        <div class = "nomeCard">Badges</div>
-                    </div>
-                    <div class = "iconeGp">
-                        <ion-icon name="trophy-outline"></ion-icon>
+            <div class="container-editar-perfil">
+                <form action="#" method="POST" enctype="multipart/form-data">
+                    <div class="Row">
+                    <div class="form-header">
+                    <div class="title">
+                        <h1>Renovar Assinatura</h1>
                     </div>
                 </div>
-            
-                <div class = "cards">
-                    <div>
-                        <div class = "numeros">2</div>
-                        <div class = "nomeCard">Em Aberto</div>
                     </div>
-                    <div class = "iconeGp">
-                        <ion-icon name="book-outline"></ion-icon>
-                    </div>
-                </div>
-            
-                <?php
-include('../php/config.php');
+                    <div class="row">
 
-// Recupera as assinaturas do aluno
-$stmt = $pdo->query('SELECT * FROM assinaturas WHERE Cod_Aluno = ' . $_SESSION['dados_user']['cod_aluno']);
-$assinaturas = $stmt->fetchAll(PDO::FETCH_ASSOC); // Pega todas as linhas como um array associativo
-?>
+        
 
-<div class="page-content page-container" id="page-content">
-    <div class="padding">
-        <div class="row container d-flex">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Histórico</h4>
-                    <p class="card-description">
-                        Pagamentos realizados no ano
-                    </p>
-                    <div class="table-responsive">
-                        <?php if ($assinaturas): ?>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Data</th>
-                                        <th>Plano</th>
-                                        <th>Valor</th>
-                                        <th>Pagamento</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($assinaturas as $assinatura): 
-                                        // Recupera o valor do plano correspondente
-                                        $stmt = $pdo->query('SELECT Valor FROM planos WHERE Tipo = "' . $assinatura['Plano'] . '"');
-                                        $valorPlano = $stmt->fetch(PDO::FETCH_ASSOC); // Pega apenas uma linha
-                                    ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($assinatura['Data_Assinatura']); ?></td>
-                                            <td><?php echo htmlspecialchars($assinatura['Plano']); ?></td>
-                                            <td><?php echo htmlspecialchars($valorPlano['Valor'] ?? 'N/A'); ?></td>
-                                            <td><label class="badge badge-warning"><?php echo htmlspecialchars($assinatura['Forma_Pagamento']); ?></label></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        <?php else: ?>
-                            <p>Nenhuma assinatura encontrada.</p>
-                        <?php endif; ?>
+                        <div class="col">  
+                        <div class="titulo-col">
+                            <h1>Planos</h1>
+                        </div>
+                            <div class="inputBox-radio">
+                                <input type="radio" id="seed" name="planos" value="seed" required >
+                                <span>Seed - R$69,99</span>
+                            </div>
+                            <div class="inputBox-radio">
+                                <input type="radio" id="growth" name="planos" value="growth" required >
+                                <span>Growth - R$99,99</span>
+                            </div>
+
+                        </div>
+
+                        <div class="col">
+                        <div class="titulo-col">
+                            <h1>Pagamento</h1>
+                        </div>
+                            <div class="inputBox-editar-perfil">
+                                <span>Forma de pagamento:</span>
+                                <input type="text" id="pagamento" name="pagamento" placeholder="Forma de pagamento" required>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <button type="submit" class="button-editar-perfil" name="btn_renovar_assinatura">Renovar Assinatura</button>
+                    
+                </form>
             </div>
+
         </div>
     </div>
-</div>
-
-   
-                </div>
-        </div>
-
-
-
-    <script type = "module" src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
-
-    <div vw class = "enabled">
-        <div vw-access-button class = "active"></div>
-        <div vw-plugin-wrapper>
-          <div class = "vw-plugin-top-wrapper"></div>
-        </div>
-      </div>
-      <script src = "https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-      <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-      </script>
 </body>
 </html>
 

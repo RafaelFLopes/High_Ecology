@@ -6,6 +6,8 @@ class metodos_principais {
     private $cpf_aluno;
     private $email_aluno;
     private $senha_aluno;
+    private $forma_pagamento_aluno;
+    private $plano_aluno;
 
     private $imagem;
     
@@ -55,6 +57,26 @@ class metodos_principais {
     public function getEmailAluno() {
         return $this->email_aluno;
     }
+
+    public function setFormaPagamentoAluno($forma_pagamento_aluno) {
+        $this->forma_pagamento_aluno = $forma_pagamento_aluno;
+    }
+
+    // Getters e Setters para $email_aluno
+    public function getFormaPagamentoAluno() {
+        return $this->forma_pagamento_aluno;
+    }
+
+    public function setPlanoAluno($plano_aluno) {
+        $this->plano_aluno = $plano_aluno;
+    }
+
+    // Getters e Setters para $email_aluno
+    public function getPlanoAluno() {
+        return $this->plano_aluno;
+    }
+
+
 
     public function setEmailAluno($email_aluno) {
         $this->email_aluno = $email_aluno;
@@ -143,7 +165,7 @@ class metodos_principais {
         try {
             $this->conn = new Conectar();
             
-            // Verificação na tabela de aluno
+
             $sql = $this->conn->prepare("SELECT Cod_Aluno, 'aluno' AS tabela FROM aluno WHERE Email = ? AND Senha = ?");
             @$sql->bindParam(1, $this->getEmailAluno(), PDO::PARAM_STR);
             @$sql->bindParam(2, $this->getSenhaAluno(), PDO::PARAM_STR);
@@ -151,8 +173,10 @@ class metodos_principais {
 
             $result = $sql->fetch();
 
-            if ($result == true) {
+            if ($result == true) { 
+
                 $this->conn = null;
+
                 return [
                     'tabela' => $result['tabela'],
                     'id' => $result['Cod_Aluno']
@@ -223,21 +247,36 @@ class metodos_principais {
                 return ""; //TEMPORARIO
             }
 
-            // Cadastro do aluno
-            $sql = $this->conn->prepare("INSERT INTO aluno (Nome, CPF, Email, Senha, Imagem) VALUES (?, ?, ?, ?, ?)");
-            $nome = $this->getNomeAluno();  // Armazena o valor de getNomeAluno em uma variável
-            $cpf = $this->getCpfAluno();  // Armazena o valor de getNomeAluno em uma variável
-            $senha = $this->getSenhaAluno();  // Armazena o valor de getSenhaAluno em uma variável
-            $imagem = $this->getImagePath();
-            $sql->bindParam(1, $nome, PDO::PARAM_STR);
-            $sql->bindParam(2, $cpf, PDO::PARAM_STR);
-            $sql->bindParam(3, $email, PDO::PARAM_STR); // Aqui já usa a variável $email
-            $sql->bindParam(4, $senha, PDO::PARAM_STR); // Aqui já usa a variável $senha
-            $sql->bindParam(5, $imagem, PDO::PARAM_STR);
+        // Cadastro do aluno
+        $sqlAluno = $this->conn->prepare("INSERT INTO aluno (Nome, CPF, Email, Senha, Imagem, Matriculado) VALUES (?, ?, ?, ?, ?, ?)");
+        $nome = $this->getNomeAluno();
+        $cpf = $this->getCpfAluno();
+        $senha = $this->getSenhaAluno();
+        $imagem = $this->getImagePath();
+        $matriculado = 1;
+        
+        $sqlAluno->bindParam(1, $nome, PDO::PARAM_STR);
+        $sqlAluno->bindParam(2, $cpf, PDO::PARAM_STR);
+        $sqlAluno->bindParam(3, $email, PDO::PARAM_STR);
+        $sqlAluno->bindParam(4, $senha, PDO::PARAM_STR);
+        $sqlAluno->bindParam(5, $imagem, PDO::PARAM_STR);
+        $sqlAluno->bindParam(6, $matriculado, PDO::PARAM_STR);
 
-            if ($sql->execute()) {
-                return "registrado"; // Se cadastrado com sucesso
-            }
+        if (!$sqlAluno->execute()) {
+            return false; // Retorna se o primeiro INSERT falhar
+        }
+
+        // Cadastro na tabela de assinaturas
+        $sqlAssinatura = $this->conn->prepare("INSERT INTO assinaturas (Plano, Forma_Pagamento) VALUES (?, ?)");
+        $plano = $this->getPlanoAluno();
+        $forma_pagamento = $this->getFormaPagamentoAluno();
+
+        $sqlAssinatura->bindParam(1, $plano, PDO::PARAM_STR);
+        $sqlAssinatura->bindParam(2, $forma_pagamento, PDO::PARAM_STR);
+
+        if ($sqlAssinatura->execute()) {
+            return "registrado"; // Se ambos os INSERTs foram bem-sucedidos
+        }
 
             $this->conn = null;
 
@@ -247,6 +286,136 @@ class metodos_principais {
         }
     }
 
+    public function preencherProgresso($Cod_Aluno, $id_do_curso) //método preencherProgresso
+    {
+        try {
+            $this->conn = new Conectar();
+
+            $consultaSQL = $this->conn->prepare("INSERT INTO progresso (Cod_Aluno, id_curso) VALUES (?, ?)");
+
+            $consultaSQL->bindParam(1, $Cod_Aluno, PDO::PARAM_STR);
+            $consultaSQL->bindParam(2, $id_do_curso, PDO::PARAM_STR);
+            $consultaSQL->execute();
+
+            $this->conn = null;
+
+        } catch (PDOException $exc) {
+            echo "Erro ao cadastrar. " . $exc->getMessage();
+            return false;
+        }
+    }
+
+    public function cadastroAssinatura($Cod_Aluno)
+    {
+            try {
+            $this->conn = new Conectar();
+
+            // Cadastro na tabela de assinaturas
+            $sqlAssinatura = $this->conn->prepare("INSERT INTO assinaturas (Cod_Aluno, Plano, Forma_Pagamento) VALUES (?, ?, ?)");
+            $plano = $this->getPlanoAluno();
+            $forma_pagamento = $this->getFormaPagamentoAluno();
+
+            $sqlAssinatura->bindParam(1, $Cod_Aluno, PDO::PARAM_STR);
+            $sqlAssinatura->bindParam(2, $plano, PDO::PARAM_STR);
+            $sqlAssinatura->bindParam(3, $forma_pagamento, PDO::PARAM_STR);
+
+            if ($sqlAssinatura->execute()) {
+                return true; // Se ambos os INSERTs foram bem-sucedidos
+            }
+
+                $this->conn = null;
+
+            } catch (PDOException $exc) {
+                echo "Erro ao cadastrar. " . $exc->getMessage();
+                return false;
+            }
+    }
+    
+    public function renovarAssinatura($Cod_Aluno)
+    {
+        try {
+            $this->conn = new Conectar();
+
+            // Cadastro na tabela de assinaturas
+            $sqlAssinatura = $this->conn->prepare("INSERT INTO assinaturas (Cod_Aluno, Plano, Forma_Pagamento) VALUES (?, ?, ?)");
+            $plano = $this->getPlanoAluno();
+            $forma_pagamento = $this->getFormaPagamentoAluno();
+
+            $sqlAssinatura->bindParam(1, $Cod_Aluno, PDO::PARAM_STR);
+            $sqlAssinatura->bindParam(2, $plano, PDO::PARAM_STR);
+            $sqlAssinatura->bindParam(3, $forma_pagamento, PDO::PARAM_STR);
+
+            // Verifica o sucesso do INSERT antes de continuar
+            if ($sqlAssinatura->execute()) {
+                // Atualiza a matrícula do aluno
+                $sqlUpdate = $this->conn->prepare("UPDATE aluno SET Matriculado = 1 WHERE Cod_Aluno = :Cod_Aluno");
+                $sqlUpdate->bindParam(':Cod_Aluno', $Cod_Aluno, PDO::PARAM_INT);
+
+                // Executa o UPDATE e verifica o sucesso
+                if ($sqlUpdate->execute()) {
+                    $this->conn = null; // Fecha a conexão
+                    return true; // Se ambos os INSERT e UPDATE foram bem-sucedidos
+                } else {
+                    throw new PDOException("Erro ao atualizar a matrícula do aluno.");
+                }
+            } else {
+                throw new PDOException("Erro ao cadastrar a assinatura.");
+            }
+        } catch (PDOException $exc) {
+            echo "Erro ao cadastrar. " . $exc->getMessage();
+            return false;
+        }
+    }
+    
+    public function passouUmMesDesdeUltimaAssinatura($Cod_Aluno)
+    {
+        try {
+            $this->conn = new Conectar();
+    
+            // Consulta para pegar apenas a última assinatura
+            $query = "SELECT Data_Assinatura FROM assinaturas WHERE Cod_Aluno = '$Cod_Aluno' ORDER BY Data_Assinatura DESC LIMIT 1";
+            $result = $this->conn->query($query);
+            $ultimaAssinatura = $result->fetch(PDO::FETCH_ASSOC);
+    
+            // Fechar conexão
+            $this->conn = null;
+    
+            // Verifica se encontrou uma assinatura
+            if ($ultimaAssinatura) {
+                // Converter para objeto DateTime
+                $dataAssinatura = new DateTime($ultimaAssinatura['Data_Assinatura']);
+                $dataAtual = new DateTime();
+    
+                // Calcular a diferença
+                $diferenca = $dataAtual->diff($dataAssinatura);
+    
+                // Se passou 1 mês ou mais
+                if ($diferenca->m >= 1 || $diferenca->y > 0) {
+                    // Atualizar o campo 'matriculado' para false na tabela 'alunos'
+                    $this->conn = new Conectar();
+                    $updateQuery = "UPDATE aluno SET matriculado = 0 WHERE Cod_Aluno = :Cod_Aluno";
+                    $stmt = $this->conn->prepare($updateQuery);
+                    $stmt->bindParam(':Cod_Aluno', $Cod_Aluno, PDO::PARAM_INT);
+                    $stmt->execute();
+    
+                    // Fechar conexão
+                    $this->conn = null;
+    
+                    // Retornar true, pois o campo foi atualizado
+                    return true;
+                }
+            }
+    
+            // Se não houver assinatura registrada ou não passou 1 mês
+            return false;
+    
+        } catch (PDOException $exc) {
+            echo "Erro ao verificar assinatura: " . $exc->getMessage();
+            return false;
+        }
+    }
+
+
     // Método para buscar informações do aluno por ID
     public function getAlunoPorId($id)
     {
@@ -254,7 +423,7 @@ class metodos_principais {
             $this->conn = new Conectar();
             
             // Prepara a consulta SQL
-            $sql = $this->conn->prepare("SELECT Cod_Aluno AS 'cod_aluno', Nome AS 'nome', Senha AS 'senha', Email AS 'email', CPF AS 'cpf', Imagem AS 'img', Cod_Curso AS 'cod_curso', Cod_Plano AS 'cod_plano' FROM aluno WHERE Cod_Aluno = ?");
+            $sql = $this->conn->prepare("SELECT Cod_Aluno AS 'cod_aluno', Nome AS 'nome', Senha AS 'senha', Email AS 'email', CPF AS 'cpf', Imagem AS 'img', Matriculado AS 'matriculado' FROM aluno WHERE Cod_Aluno = ?");
             @$sql->bindParam(1, $id, PDO::PARAM_INT);
             $sql->execute();
 
@@ -268,8 +437,7 @@ class metodos_principais {
                     'email' => $resultado['email'],
                     'cpf' => $resultado['cpf'],
                     'img' => $resultado['img'],
-                    'cod_curso' => $resultado['cod_curso'],
-                    'cod_plano' => $resultado['cod_plano'],
+                    'matriculado' => $resultado['matriculado'],
                     'cod_aluno' => $resultado['cod_aluno']
                 ]; // Retorna os dados no formato desejado
             }
@@ -282,6 +450,31 @@ class metodos_principais {
         }
     }
 
+    public function verificarModulos($id_curso)
+    {
+        try {
+            // Instancia a conexão com o banco de dados
+            $this->conn = new Conectar();
+
+            // Consulta SQL direta (não segura)
+            $sql = "SELECT COUNT(*) AS total
+                FROM modulos
+                WHERE id_curso = $id_curso";
+
+            // Executa a consulta
+            $result = $this->conn->query($sql)->fetch(PDO::FETCH_ASSOC);
+
+            // Fecha a conexão com o banco
+            $this->conn = null;
+
+            // Verifica se o total de registros é maior ou igual a 3
+            return $result['total'] >= 3;
+
+        } catch (PDOException $exc) {
+            echo "Erro ao consultar. " . $exc->getMessage();
+            return false;
+        }
+    }
     // Método para buscar informações do professor por ID
     public function getProfessorPorId($id)
     {
@@ -313,8 +506,7 @@ class metodos_principais {
             return false;
         }
     }
-    public function editarPerfil($id, $nome, $email, $cpf, $senha)
-{
+    public function editarPerfil($id, $nome, $email, $cpf, $senha){
     try {
         $this->conn = new Conectar();
         $tabela = $_SESSION["user"]['tabela'];

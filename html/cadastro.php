@@ -6,61 +6,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/cad.css">
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <link rel="stylesheet" href="../css/all.css">
     <title>Formulário</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="form-image">
-            <img src="../img/login/cadImg.svg" alt="Imagem do Cadastro">
-        </div>
-        <div class="form">
-            <form action="#" method="POST" enctype="multipart/form-data">
-                <div class="form-header">
+<div class="container-editar-perfil">
+                <form action="#" method="POST" enctype="multipart/form-data">
+                    <div class="Row">
+                    <div class="form-header">
                     <div class="title">
                         <h1>Cadastre-se</h1>
                     </div>
                     <div class="login-button">
-                        <button><a href="login.php">Entrar</a></button>
+                        <a href="login.php">Entrar</a>
                     </div>
                 </div>
-
-                <div class="input-group">
-                    <div class="input-box">
-                        <label for="firstname">Primeiro Nome</label>
-                        <input id="firstname" type="text" name="name" placeholder="Seu nome aqui" required>
                     </div>
-                    <div class="input-box">
-                        <label for="email">E-mail</label>
-                        <input id="email" type="email" name="email" placeholder="alguem@gmail.com" required>
+                    <div class="row">
+
+                    <div class="col"> 
+                        <div class="titulo-col">
+                            <h1>Informações</h1>
+                        </div>
+                        <div class="inputBox-editar-perfil">
+                                <span>Alterar Nome:</span>
+                                <input type="text" id="name" name="name" placeholder="Nome" required>
+                            </div>
+                            <div class="inputBox-editar-perfil">
+                                <span>
+                                    Email:
+                                </span>
+                                <input type="email" id="email" name="email" placeholder="Email" required >
+                            </div>
+
+                            <div class="inputBox-editar-perfil">
+                                <span>Alterar CPF:</span>
+                                <input type="text" id="cpf" name="cpf" placeholder="CPF" required >
+                            </div>
+
+                            <div class="inputBox-editar-perfil">
+                                <span>Alterar senha:</span>
+                                <input type="password" name="password"placeholder="Senha" required >
+                            </div>
+                            <div class="inputBox-editar-perfil">
+                                <span for="file">Foto de perfil</span>
+                                <input type="file" name="image_mod" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="col">  
+                        <div class="titulo-col">
+                            <h1>Planos</h1>
+                        </div>
+                            <div class="inputBox-radio">
+                                <input type="radio" id="seed" name="planos" value="seed" required >
+                                <span>Seed - R$69,99</span>
+                            </div>
+                            <div class="inputBox-radio">
+                                <input type="radio" id="growth" name="planos" value="growth" required >
+                                <span>Growth - R$99,99</span>
+                            </div>
+
+                        </div>
+
+                        <div class="col">
+                        <div class="titulo-col">
+                            <h1>Pagamento</h1>
+                        </div>
+                            <div class="inputBox-editar-perfil">
+                                <span>Forma de pagamento:</span>
+                                <input type="text" id="pagamento" name="pagamento" placeholder="Forma de pagamento" required>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="input-box">
-                        <label for="cpf">CPF</label>
-                        <input id="cpf" type="pattern" name="cpf" placeholder="XXX-XXX-XXX-XX" required>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="password">Senha</label>
-                        <input id="password" type="password" name="password" placeholder="Digite aqui" required>
-                    </div>
-                    <div class="input-box">
-                        <label for="file">Foto de perfil</label>
-                        <input type="file" name="image_mod" class="form-control" required>
-                    </div>
-
-                </div>
-
-                <div class="continue-button">
-                    <button type="submit" name="continue_button">Confirmar</button>
-                </div>
-
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-                <?php
+                    <button type="submit" class="button-editar-perfil" name="btn_cadastrar">Cadastrar</button>
+                    <?php
                     if($_SERVER["REQUEST_METHOD"] == "POST") {
-                        if(isset($_POST['continue_button'])) {
+                        if(isset($_POST['btn_cadastrar'])) {
                             include_once '../php/metodos_principais.php';
                             $metodos_principais = new metodos_principais();
 
@@ -77,40 +101,48 @@
                                 }
                             }
 
+
                             $nome = $_POST['name'];
                             $cpf = $_POST['cpf'];
                             $email = $_POST ['email'];
                             $senha = $_POST ['password'];
+                            $plano = $_POST ['planos'];
+                            $forma_pagamento = $_POST ['pagamento'];
 
                             $metodos_principais->setNomeAluno($nome);
                             $metodos_principais->setCpfAluno($cpf);
                             $metodos_principais->setEmailAluno($email);
                             $metodos_principais->setSenhaAluno($senha);
+                            $metodos_principais->setPlanoAluno($plano);
+                            $metodos_principais->setformaPagamentoAluno($forma_pagamento);
 
                             $result = $metodos_principais->cadastro();
 
-                            if($result == "Registrado") {
+                            if($result == "registrado") {
+                                $user_assinatura = $metodos_principais->login();
+                                $result_assinatura = $metodos_principais->cadastroAssinatura($user_assinatura['id']);
                                 header("Location: login.php");
                                 exit(); 
+
                             }
                             else {
                                  echo "<script>
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'error',
-                        title: 'Email já existente!'',
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
-                </script>";
+                                        Swal.fire({
+                                            position: 'center',
+                                            icon: 'error',
+                                            title: 'Email jรก existente!'',
+                                            showConfirmButton: false,
+                                            timer: 3000
+                                        });
+                                    </script>";
+                            }
+                        }
                     }
-                }
-            }
                 ?>
+                </form>
+            </div>
 
-            </form>
-        </div>
-    </div>
+
 </body>
 
 </html>

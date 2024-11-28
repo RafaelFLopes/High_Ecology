@@ -8,6 +8,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['btn_curso_comecar'])) {
+            include_once '../php/metodos_principais.php';
+            $metodos_principais = new metodos_principais();
+
+            $metodos_principais->preencherProgresso($_SESSION["user"]['id'], $_SESSION["id_do_curso"]); //passar parametros
+
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class = "container-p">
         <div class = "navegacao">
             <ul style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-                <li>
+            <li>
                     <a href = "#">
                         <span class = "icone">
                             <img src="" alt="">
@@ -55,20 +65,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </li>
 
                 <?php 
-                if($_SESSION["user"]['tabela'] == "aluno")
-                {?>
+                if($_SESSION["user"]['tabela'] == "aluno"){
+                    if($_SESSION['dados_user']['matriculado'] == false)
+                    {?>
                     <li>
-                        <a href = "perfil.php">
+                        <a href = "renovarAssinatura.php">
                             <span class = "icone">
-                                <ion-icon name = "home-outline"></ion-icon>
+                                <ion-icon name="repeat-outline"></ion-icon>
                             </span>
-                            <span class = "titulo">Home</span>
+                            <span class = "titulo">Renovar Assinatura</span>
                         </a>
                     </li>
-                <?php }?>
+                <?php } }?>
 
                 <?php 
-                if($_SESSION["user"]['tabela'] == "professor") // ALGUM ERRO NA VARIAVEL , VERIFICAAAAAAAAAAAAAAAR
+                if($_SESSION["user"]['tabela'] == "aluno")
+                {?>
+
+                <li>
+                    <a href = "perfil.php">
+                        <span class = "icone">
+                            <ion-icon name = "home-outline"></ion-icon>
+                        </span>
+                        <span class = "titulo">Home</span>
+                    </a>
+                </li>
+                <?php } ?>
+
+                <?php 
+                if($_SESSION["user"]['tabela'] == "professor")
                 {?>
                     <li>
                     <a href = "gerenciar-cursos.php">
@@ -78,9 +103,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class = "titulo">Gerenciar Cursos</span>
                     </a>
                     </li>
-                <?php }?>
+                <?php } ?>
 
-
+                <?php
+                if($_SESSION["user"]['tabela'] == "aluno"){
+                    if($_SESSION['dados_user']['matriculado'] == true)
+                    {?>
+                    <li>
+                        <a href = "cursos.php">
+                            <span class = "icone">
+                                <ion-icon name="library-outline"></ion-icon>
+                            </span>
+                            <span class = "titulo">Cursos</span>
+                        </a>
+                    </li>
+                <?php }}
+                elseif($_SESSION["user"]['tabela'] == "professor")
+                {?>
                 <li>
                     <a href = "cursos.php">
                         <span class = "icone">
@@ -89,12 +128,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class = "titulo">Cursos</span>
                     </a>
                 </li>
+                <?php } ?>
 
                 <?php 
                 if($_SESSION["user"]['tabela'] == "aluno")
                 {?>
                 <li>
-                    <a href = "#">
+                    <a href = "certificados.php">
                         <span class = "icone">
                             <ion-icon name="trophy-outline"></ion-icon>
                         </span>
@@ -120,7 +160,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class = "titulo">Sair</span>
                     </a>
                 </li>
-
             </ul>
         </div>
         
@@ -152,12 +191,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                <div class="card__container">
                <?php foreach ($courses as $course): ?>
                   <article class="card__article">
+                     
                      <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" alt="image" class="card__img">
 
                      <div class="card__data">
                         <span class="card__description"><?php echo htmlspecialchars($course['description']); ?></span>
                         <h2 class="card__title"><?php echo htmlspecialchars($course['title']); ?></h2>
-                        <a type="button" class="card__button">Começar</a>
+                        <button type="submit" class="card__button" name="btn_curso_comecar">Começar</button>
                      </div>
                   </article>
                   <?php endforeach; ?>
