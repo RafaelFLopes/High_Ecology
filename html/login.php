@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="../css/lg.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/all.css">
-
-    <title>High Ecology</title>
+    <script src="../js/main.js" defer></script>
+    <title>Login - High Ecology</title>
 
 </head>
 <body>
@@ -31,30 +31,21 @@
     <div class="container">
         <div class="containerContent">
             <h3><i>Bem-Vindo(a)</i></h3>
-            <h1><i>Pode Entrar</i> </h1>
+            <h1><i>Entrar na conta</i> </h1>
 
             
             <form action="#" method="POST">
-                <label for="email"><i>E-mail</i></label>
+                <label for="email"><i>Email</i></label>
                 <div class="inputRow">
-                    <input type="email" name="email" maxlength="65" placeholder="alguem@gmail.com" required> 
+                    <input type="email" name="email" maxlength="65" placeholder="Email" required> 
                 </div>
                 <label for="password"><i>Senha</i></label>
                 <div class="inputRow">
-                    <input type="password" id="password" name="password" maxlength="16" placeholder="Sua senha aqui" required> 
+                    <input type="password" id="password" name="password" maxlength="16" placeholder="Senha" required> 
                     <span id="password-eye"><i class="ri-eye-off-line"></i> </span>
                 </div>
-                <div class="inputES" id="password-recovery">
-                    <a href="#"> <i> Esqueci Minha Senha</i></a>
-                </div>
-                <button type="submit" name="btn_entrar"><i>LOGIN</i></button>
+                <button type="submit" name="btn_entrar"><i>Login</i></button>
             </form>
-            <h6>Fazer login com</h6>
-            <div class="logins">
-                <a href="#"> <img src="../img/login/google.png" alt="Google"></a>
-                <a href="#"> <img src="../img/login/github.png" alt="Github"></a>
-                <a href="#"> <img src="../img/login/facebook.png" alt="Facebook"></a>
-            </div>
             <p>Ainda não é aluno? <a href="cadastro.php">Matrícule-se!</a></p>
         </div>
         <div class="containerImg">

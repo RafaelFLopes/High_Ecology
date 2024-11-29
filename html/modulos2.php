@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Editar Perfil - High Ecology</title>
+    <title>Modulos - High Ecology</title>
 </head>
 <body>
     <div class = "container-p">

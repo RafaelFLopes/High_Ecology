@@ -298,10 +298,9 @@ class metodos_principais {
             if ($consultaSQL->rowCount() == 0) { // Se não existir, faz o insert
                 $insertSQL = $this->conn->prepare("INSERT INTO progresso (Cod_Aluno, id_curso, status) VALUES ($Cod_Aluno, $id_do_curso, 'visualizado')");
                 $insertSQL->execute();
-                echo "Progresso cadastrado com sucesso.";
             } else {
 
-                $query = "SELECT data_inicio FROM progresso WHERE Cod_Aluno = '$Cod_Aluno' AND id_curso = '$id_do_curso' ORDER BY data_inicio";
+            $query = "SELECT data_inicio FROM progresso WHERE Cod_Aluno = '$Cod_Aluno' AND id_curso = '$id_do_curso' ORDER BY data_inicio";
             $result = $this->conn->query($query);
             $passouDias = $result->fetch(PDO::FETCH_ASSOC);
     
