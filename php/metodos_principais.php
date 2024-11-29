@@ -581,7 +581,7 @@ class metodos_principais {
             echo "Erro ao consultar. " . $exc->getMessage();
             return false;
         }
-    }
+    }   
     public function editarPerfil($id, $nome, $email, $cpf, $senha){
     try {
         $this->conn = new Conectar();
