@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,150 +44,151 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/conteudo-main-logado.css">
-    <?php  if($_SESSION["user"]['tabela'] == "professor") {?>
+    <?php if ($_SESSION["user"]['tabela'] == "professor") { ?>
         <link rel="stylesheet" href="../css/leftnavbarprofessor.css">
         <link rel="stylesheet" href="../css/topbarprofessor.css">
-    <?php } else if($_SESSION["user"]['tabela'] == "aluno") {?>
-        <link rel="stylesheet" href="../css/leftnavbar.css">
-        <link rel="stylesheet" href="../css/topbar.css">
+    <?php } else if ($_SESSION["user"]['tabela'] == "aluno") { ?>
+            <link rel="stylesheet" href="../css/leftnavbar.css">
+            <link rel="stylesheet" href="../css/topbar.css">
     <?php } ?>
     <link rel="stylesheet" href="../css/especializacoes.css">
     <link rel="stylesheet" href="../css/mensagembemvindo.css">
 
     <script src="../js/perfil.js" defer></script>
-    <script type = "module" src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <title>Modulos - High Ecology</title>
 </head>
+
 <body>
-    <div class = "container-p">
-        <div class = "navegacao">
+    <div class="container-p">
+        <div class="navegacao">
             <ul style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-            <li>
-                    <a href = "#">
-                        <span class = "icone">
+                <li>
+                    <a href="#">
+                        <span class="icone">
                             <img src="" alt="">
                         </span>
-                        <span class = "titulo">HIGH ECOLOGY</span>
+                        <span class="titulo">HIGH ECOLOGY</span>
                     </a>
                 </li>
 
-                <?php 
-                if($_SESSION["user"]['tabela'] == "aluno"){
-                    if($_SESSION['dados_user']['matriculado'] == false)
-                    {?>
+                <?php
+                if ($_SESSION["user"]['tabela'] == "aluno") {
+                    if ($_SESSION['dados_user']['matriculado'] == false) { ?>
+                        <li>
+                            <a href="renovarAssinatura.php">
+                                <span class="icone">
+                                    <ion-icon name="repeat-outline"></ion-icon>
+                                </span>
+                                <span class="titulo">Renovar Assinatura</span>
+                            </a>
+                        </li>
+                    <?php }
+                } ?>
+
+                <?php
+                if ($_SESSION["user"]['tabela'] == "aluno") { ?>
+
                     <li>
-                        <a href = "renovarAssinatura.php">
-                            <span class = "icone">
-                                <ion-icon name="repeat-outline"></ion-icon>
+                        <a href="perfil.php">
+                            <span class="icone">
+                                <ion-icon name="home-outline"></ion-icon>
                             </span>
-                            <span class = "titulo">Renovar Assinatura</span>
+                            <span class="titulo">Home</span>
                         </a>
-                    </li>
-                <?php } }?>
-
-                <?php 
-                if($_SESSION["user"]['tabela'] == "aluno")
-                {?>
-
-                <li>
-                    <a href = "perfil.php">
-                        <span class = "icone">
-                            <ion-icon name = "home-outline"></ion-icon>
-                        </span>
-                        <span class = "titulo">Home</span>
-                    </a>
-                </li>
-                <?php } ?>
-
-                <?php 
-                if($_SESSION["user"]['tabela'] == "professor")
-                {?>
-                    <li>
-                    <a href = "gerenciar-cursos.php">
-                        <span class = "icone">
-                            <ion-icon name="pencil-outline"></ion-icon>
-                        </span>
-                        <span class = "titulo">Gerenciar Cursos</span>
-                    </a>
                     </li>
                 <?php } ?>
 
                 <?php
-                if($_SESSION["user"]['tabela'] == "aluno"){
-                    if($_SESSION['dados_user']['matriculado'] == true)
-                    {?>
+                if ($_SESSION["user"]['tabela'] == "professor") { ?>
                     <li>
-                        <a href = "cursos.php">
-                            <span class = "icone">
-                                <ion-icon name="library-outline"></ion-icon>
+                        <a href="gerenciar-cursos.php">
+                            <span class="icone">
+                                <ion-icon name="pencil-outline"></ion-icon>
                             </span>
-                            <span class = "titulo">Cursos</span>
+                            <span class="titulo">Gerenciar Cursos</span>
                         </a>
                     </li>
-                <?php }}
-                elseif($_SESSION["user"]['tabela'] == "professor")
-                {?>
-                <li>
-                    <a href = "cursos.php">
-                        <span class = "icone">
-                            <ion-icon name="library-outline"></ion-icon>
-                        </span>
-                        <span class = "titulo">Cursos</span>
-                    </a>
-                </li>
                 <?php } ?>
 
-                <?php 
-                if($_SESSION["user"]['tabela'] == "aluno")
-                {?>
-                <li>
-                    <a href = "certificados.php">
-                        <span class = "icone">
-                            <ion-icon name="trophy-outline"></ion-icon>
-                        </span>
-                        <span class = "titulo">Certificados</span>
-                    </a>
-                </li>
+                <?php
+                if ($_SESSION["user"]['tabela'] == "aluno") {
+                    if ($_SESSION['dados_user']['matriculado'] == true) { ?>
+                        <li>
+                            <a href="cursos.php">
+                                <span class="icone">
+                                    <ion-icon name="library-outline"></ion-icon>
+                                </span>
+                                <span class="titulo">Cursos</span>
+                            </a>
+                        </li>
+                    <?php }
+                } elseif ($_SESSION["user"]['tabela'] == "professor") { ?>
+                    <li>
+                        <a href="cursos.php">
+                            <span class="icone">
+                                <ion-icon name="library-outline"></ion-icon>
+                            </span>
+                            <span class="titulo">Cursos</span>
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <?php
+                if ($_SESSION["user"]['tabela'] == "aluno") { ?>
+                    <li>
+                        <a href="certificados.php">
+                            <span class="icone">
+                                <ion-icon name="trophy-outline"></ion-icon>
+                            </span>
+                            <span class="titulo">Certificados</span>
+                        </a>
+                    </li>
                 <?php } ?>
 
                 <li>
-                    <a href = "editar-perfil.php">
-                        <span class = "icone">
-                            <ion-icon name = "settings-outline"></ion-icon>
+                    <a href="editar-perfil.php">
+                        <span class="icone">
+                            <ion-icon name="settings-outline"></ion-icon>
                         </span>
-                        <span class = "titulo">Editar Perfil</span>
+                        <span class="titulo">Editar Perfil</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href = "../php/logout.php">
-                        <span class = "icone">
-                            <ion-icon name = "log-out-outline"></ion-icon>
+                    <a href="../php/logout.php">
+                        <span class="icone">
+                            <ion-icon name="log-out-outline"></ion-icon>
                         </span>
-                        <span class = "titulo">Sair</span>
+                        <span class="titulo">Sair</span>
                     </a>
                 </li>
             </ul>
         </div>
-        
-        <div class = "main-p">
-            <div class = "topbar">
-                <div class = "toggle">
-                    <ion-icon name = "menu-outline"></ion-icon>
+
+        <div class="main-p">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
                 </div>
 
-                <div class = "user">    
+                <div class="user">
                     <a href="editar-perfil.php">
-                        <img src="<?php if($_SESSION["user"]['tabela'] == "aluno") { echo $_SESSION['dados_user']['img']; } elseif($_SESSION["user"]['tabela'] == "professor") { echo "../img/icon.png";} ?>" alt="foto de perfil">
+                        <img src="<?php if ($_SESSION["user"]['tabela'] == "aluno") {
+                            echo $_SESSION['dados_user']['img'];
+                        } elseif ($_SESSION["user"]['tabela'] == "professor") {
+                            echo "../img/icon.png";
+                        } ?>"
+                            alt="foto de perfil">
                     </a>
                 </div>
             </div>
-            
-                <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
+
+            <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
 
             <?php
             include('../php/config.php');
@@ -196,14 +198,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id_do_curso = $stmt->fetch(PDO::FETCH_ASSOC); // Usando fetch() para obter uma única linha e colocando na variavel $id_do_curso
             
             $_SESSION['id_do_curso'] = $id_do_curso['id']; // Criei um varaivel de sessão
-
+            
             // Armazene o ID do curso na variável de sessão
             $stmt = $pdo->query('SELECT * FROM modulos WHERE id_curso = ' . $_SESSION['id_do_curso']);
             $modulos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
-                <?php
-                include_once '../php/metodos_principais.php';
-                $metodos_principais = new metodos_principais();
+            <?php
+            include_once '../php/metodos_principais.php';
+            $metodos_principais = new metodos_principais();
 
                 $resultPreencherProgresso = $metodos_principais->preencherProgresso($_SESSION["user"]['id'], $_SESSION["id_do_curso"]);
 
@@ -227,10 +229,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
 
             <div class="container">
-               <form class="card__container" method="POST">
-               <?php foreach ($modulos as $modulo): ?>
-                  <article class="card__article">
-                     <img src="../img/uploads/<?php echo htmlspecialchars($modulo['image_mod']); ?>" alt="image" class="card__img">
+                <form class="card__container" method="POST">
+                    <?php foreach ($modulos as $modulo): ?>
+                        <article class="card__article">
+                            <img src="../img/uploads/<?php echo htmlspecialchars($modulo['image_mod']); ?>" alt="image"
+                                class="card__img">
 
                      <div class="card__data">
                         <span class="card__description"><?php echo htmlspecialchars($modulo['descricao_mod']); ?></span>
@@ -240,31 +243,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </article>
                   <?php endforeach; ?>
 
-                  <input type="hidden" name="txt_nome_do_modulo" class="txt_nome_do_modulo" value="">
-               </form>
+                    <input type="hidden" name="txt_nome_do_modulo" class="txt_nome_do_modulo" value="">
+                </form>
             </div>
-            
-         </div>
+
+        </div>
 
 
-         <script>
-        // Seleciona todos os botões de módulo
-        let btn_conteudo_cursos = document.querySelectorAll(".card__button");
-        let input_hidden_nome_modulo = document.querySelector('.txt_nome_do_modulo');
+        <script>
+            // Seleciona todos os botões de módulo
+            let btn_conteudo_cursos = document.querySelectorAll(".card__button");
+            let input_hidden_nome_modulo = document.querySelector('.txt_nome_do_modulo');
 
-        // Itera sobre cada botão e adiciona um evento de clique
-        btn_conteudo_cursos.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                // Localiza o título do curso no mesmo cartão do botão clicado
-                let nome_modulo = btn.closest('.card__data').querySelector('.card__title').textContent;
-                
-                // Define o valor do curso no input oculto
-                input_hidden_nome_modulo.value = nome_modulo;
-                
-                // Envia o formulário
-                btn.closest('form').submit();
+            // Itera sobre cada botão e adiciona um evento de clique
+            btn_conteudo_cursos.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    // Localiza o título do curso no mesmo cartão do botão clicado
+                    let nome_modulo = btn.closest('.card__data').querySelector('.card__title').textContent;
+
+                    // Define o valor do curso no input oculto
+                    input_hidden_nome_modulo.value = nome_modulo;
+
+                    // Envia o formulário
+                    btn.closest('form').submit();
+                });
             });
-        });
-    </script>
+        </script>
 </body>
+
 </html>

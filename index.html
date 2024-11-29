@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="css/all.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/timeline.css">
 
     <link rel="stylesheet" href="css/index.css">
 
     <script src="js/main.js" defer></script>
     <script src="js/home.js" defer></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
     <title>Início - High Ecology</title>
 </head>
@@ -28,21 +30,20 @@
             <i class="fa fa-bars fa-2x" onclick="menuShow()"></i>
         </div>
         <ul>
-            <li><a href="html/planos.php" class="active"> Matricule-se</a></li>
-            <li><a href="html/especializacoes.php">Especializações</a></li>
+            <li><a href="html/matricula.html" class="active"> Matricule-se</a></li>
+            <li><a href="html/especializacoes.html">Especializações</a></li>
             <li><a href="html/login.php">Login</a></li>
         </ul>
     </nav>
     <!--FINAL DA NAVBAR-->
 
-    <!--COMEÇO DO CARROSSEL-->
     <section class="slider">
         <div class="slider-content">
             <input type="radio" name="btn-radio" id="radio1">
             <input type="radio" name="btn-radio" id="radio2">
             <input type="radio" name="btn-radio" id="radio3">
             <div class="slide-box primeiro">
-                <a href="html/planos.php">
+                <a href="html/matricula.html">
                 <img class="img-desktop" src="img/carrossel/matricula-desktop.png" alt="slide 1">
                 <img class="img-mobile" src="img/carrossel/matricula-530.png" alt="slide 1">
                 </a>
@@ -52,7 +53,7 @@
                 <img class="img-mobile" src="img/carrossel/eventos-530.png" alt="slide 2">
             </div>
             <div class="slide-box">
-                <a href="html/especializacoes.php">
+                <a href="html/especializacoes.html">
                 <img class="img-desktop" src="img/carrossel/especializacoes-dekstop.png" alt="slide 3">
                 <img class="img-mobile" src="img/carrossel/especializacoes-530.png" alt="slide 3">
                 </a>
@@ -69,118 +70,343 @@
             </div>
         </div>
     </section>
-    <!--FINAL DO CARROSSEL-->
 
-    <!--COMEÇO DE AVALIAÇÕES-->
-    <section class="assessment">
-        <div class="container-ava">
-            <div class="container__left">
-                <h1>Tenha uma vida sustentável</h1>
-                <p>
-                    Atualmente com mais de 60 mil alunos com interesse de ter uma vida sustentável.
-                </p>
-                <p>
-                    Oferecemos um grande acervo de cursos focados no meio ambiente.
-                </p>
-                <a href="html/planos.php">
-                    <button>Matricule-se</button>
-                </a>
-            </div>
-            <div class="container__right">
-                <div class="card-ava">
-                    <img src="img/avaliacao/pic-1.png" alt="user" />
-                    <div class="card__content">
-                        <span>
-                            <i class="ri-double-quotes-l"></i>
-                        </span>
-                        <div class="card__details">
-                            <p>
-                                Material bem organizado, aulas envolventes e a praticidade da plataforma tornaram a experiência muito positiva.
-                            </p>
-                            <h4>- Marcos Lopes</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-ava">
-                    <img src="img/avaliacao/pic-3.png" alt="user" />
-                    <div class="card__content">
-                        <span><i class="ri-double-quotes-l"></i></span>
-                        <div class="card__details">
-                            <p>
-                                Adorei! Conteúdo prático e de fácil navegação. Uma experiência de aprendizado envolvente.
-                            </p>
-                            <h4>- Orquídea Leite</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-ava">
-                    <img src="img/avaliacao/pic-2.png" alt="user" />
-                    <div class="card__content">
-                        <span>
-                            <i class="ri-double-quotes-l"></i>
-                        </span>
-                        <div class="card__details">
-                            <p>
-                                Excelentes cursos! Conteúdo claro. Aprendizado prático e eficaz. Recomendo!
-                            </p>
-                            <h4>- Antônio Bezerra</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--FINAL DE AVALIAÇÕES-->
+        <section id="menu">
+            <h2 class="section-title">Cursos</h2>
+            <h3 class="section-subtitle">Nossos melhores cursos</h3>
 
-    <!--COMEÇO DA TIMELINE-->
-    <section class="timeline-section">
-        <div class="timeline-title">
-            <h1>LINHA DO TEMPO</h1>
+            <div id="dishes">
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <img src="img/especializacoes/biologia - curso.png" class="dish-image" alt="">
+
+                    <h3 class="dish-title">
+                        Biologia
+                    </h3>
+
+                    <span class="dish-description">
+                        Biologia é a ciência natural que estuda a vida e os organismos vivos.
+                    </span>
+
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(500+)</span>
+                    </div>
+
+                    <div class="dish-price">
+                        <h4>Assine agora!</h4>
+                            <a href="html/matricula.html">
+                                 <button class="btn-default">
+                                 <i class="fa-solid fa-basket-shopping"></i>
+                        </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <img src="img/especializacoes/ecologia-curso.jpg" class="dish-image" alt="">
+
+                    <h3 class="dish-title">
+                        Ecologia
+                    </h3>
+
+                    <span class="dish-description">
+                        Biologia é a ciência natural que estuda a vida e os organismos vivos.
+                    </span>
+
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(500+)</span>
+                    </div>
+
+                    <div class="dish-price">
+                        <h4>Assine agora!</h4>
+                        <a href="html/matricula.html">
+                            <button class="btn-default">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <img src="img/especializacoes/oceanografia-curso.png" class="dish-image" alt="">
+
+                    <h3 class="dish-title">
+                        Oceanografia
+                    </h3>
+
+                    <span class="dish-description">
+                        A Oceanografia é estudo dos oceanos e zonas costeiras sob todos os aspetos.
+                    </span>
+
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(500+)</span>
+                    </div>
+
+                    <div class="dish-price">
+                        <h4>Assine agora!</h4>
+                        <a href="html/matricula.html">
+                            <button class="btn-default">
+                                <i class="fa-solid fa-basket-shopping"></i> 
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <img src="img/especializacoes/sustentabilidade-curso.png" class="dish-image" alt="">
+
+                    <h3 class="dish-title">
+                        Sustentabilidade
+                    </h3>
+
+                    <span class="dish-description">
+                        Sustentabilidade é o estudo de estratégias para o estabelecimento de prioridades conservacionistas.
+                    </span>
+
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(500+)</span>
+                    </div>
+
+                    <div class="dish-price">
+                        <h4>Assine agora!</h4>
+                        <a href="html/matricula.html">
+                            <button class="btn-default">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <div id="testimonials_content">
+                <h2 class="section-title">
+                    Avaliações
+                </h2>
+                <h3 class="section-subtitle">
+                    O que os clientes falam sobre nós
+                </h3>
+
+                <div id="feedbacks">
+                    <div class="feedback">
+                        <img src="img/avaliacao/pic-1.png" class="feedback-avatar" alt="">
+
+                        <div class="feedback-content">
+                            <p>
+                                Matheus Ferreira
+                                <span>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </p>
+                            <p>
+                                A High Ecology oferece cursos de biologia bem estruturados, com conteúdo atualizado e professores qualificados,
+                                ideais tanto para iniciantes quanto para estudantes avançados.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="feedbacks">
+                        <div class="feedback">
+                            <img src="img/avaliacao/pic-1.png" class="feedback-avatar" alt="">
+    
+                            <div class="feedback-content">
+                                <p>
+                                    Ricardo Gomes
+                                    <span>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </span>
+                                </p>
+                                <p>
+                                    A plataforma é interativa, com recursos como vídeos, quizzes e fóruns, proporcionando uma aprendizagem dinâmica e eficaz.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div id="feedbacks">
+                            <div class="feedback">
+                                <img src="img/avaliacao/pic-2.png" class="feedback-avatar" alt="">
+        
+                                <div class="feedback-content">
+                                    <p>
+                                        Juliano Silva
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </span>
+                                    </p>
+                                    <p>
+                                        É uma excelente opção para quem busca aprofundamento acadêmico ou conhecimento sobre meio ambiente,
+                                        com materiais complementares e grande suporte de tutores.
+                                    </p>
+                                </div>
+                            </div>
+
+                    <div class="feedback">
+                        <img src="img/avaliacao/pic-3.png" class="feedback-avatar" alt="">
+
+                        <div class="feedback-content">
+                            <p>
+                                Orquídea leite
+                                <span>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </p>
+                            <p>
+                                Os cursos são acessíveis e explicam conceitos complexos de forma clara, tornando o aprendizado de biologia prazeroso e envolvente.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback">
+                    <img src="img/avaliacao/pic-3.png" class="feedback-avatar" alt="">
+
+                    <div class="feedback-content">
+                        <p>
+                            Ana Maria
+                            <span>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </span>
+                        </p>
+                        <p>
+                            A High Ecology se destaca pela profundidade dos tópicos e pela constante atualização de conteúdo,
+                            sendo uma plataforma confiável para quem busca excelência no estudo de biologia e ecologia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+                
+            </div>
+        </section>
+
+        <h1 class="title-tl">
+            TIMELINE
+        </h1>
+                 <!-- Container -->
+    <div class="container">
+        <!-- Vertical line -->
+        <div class="vertical-line"></div>
+        <!-- Box -->
+        <div class="box box-left">
+          <i class='fas'>&#xf4d8;</i>
+          <div class="info">
+            <h2>2019: Fundação e Início</h2>
+            <p>
+              TA High Ecology foi fundada com a missão de democratizar o ensino de biologia, oferecendo cursos acessíveis e de qualidade.
+               Inicialmente, focou em temas como biologia celular, ecologia básica e genética,
+                com o objetivo de atrair estudantes e profissionais interessados em expandir seus conhecimentos.
+          </div>
         </div>
-        <div class="timeline-items">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">2023 - MARÇO</div>
-                <div class="timeline-content">
-                    <h3>Início do High Ecology</h3>
-                    <p>
-                        Em 2020, estabelecemos nosso site de cursos dedicado à ecologia e sustentabilidade, inspirados pelo afastamento e mudanças globais ocasionados pela Pandemia.
-                    </p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">2023 - JUNHO</div>
-                <div class="timeline-content">
-                    <h3>Divulgação</h3>
-                    <p>
-                        Em 2021, focamos na qualidade dos cursos e atraímos os primeiros alunos.
-                    </p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">2023 - SETEMBRO</div>
-                <div class="timeline-content">
-                    <h3>Processo de Expansão</h3>
-                    <p>
-                        Em 2022, ampliamos nossa oferta de cursos  e expandimos nossa base de instrutores especializados. Nossos alunos se tornaram defensores ativos do meio ambiente.
-                    </p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">2023 - NOVEMBRO</div>
-                <div class="timeline-content">
-                    <h3>Hoje em Dia</h3>
-                    <p>
-                        Atualmente nosso compromisso com a excelência educacional nos rendeu reconhecimento internacional. Estamos em busca de solidificar ainda mais nossas tecnologias, para assim, garantir educação de qualidade remotamente para todas as áreas.
-                    </p>
-                </div>
-            </div>
+        <div class="box box-right">
+          <i class='fas'>&#xf06c;</i>
+          <div class="info">
+            <h2>2020: Expansão do Catálogo de Cursos</h2>
+            <p>
+                Com o aumento da demanda por educação online, a plataforma expandiu seu portfólio, lançando cursos avançados sobre biotecnologia, evolução e conservação ambiental.
+                A High Ecology também introduziu uma metodologia interativa, com simuladores e quizzes para tornar o aprendizado mais dinâmico.
+            </p>
+          </div>
         </div>
-    </section>
-    <!--FINAL DA TIMELINE-->
+        <div class="box box-left">
+          <i class='far'>&#xf2b5;</i>
+          <div class="info">
+            <h2>2021: Parcerias e Certificação</h2>
+            <p>
+                A plataforma firmou parcerias com universidades e instituições de pesquisa para garantir a qualidade de seus cursos e expandir sua credibilidade no mercado.
+                Nesse ano, foi implementado um sistema de certificação reconhecido,
+                permitindo que os alunos validassem seus conhecimentos com credenciais valiosas para o mercado de trabalho.
+            </p>
+          </div>
+        </div>
+        <div class="box box-right">
+          <i class='fas'>&#xf109;</i>
+          <div class="info">
+            <h2>2022: Adoção de Tecnologias Emergentes</h2>
+            <p>
+                Em 2022, a High Ecology passou a incorporar tecnologias emergentes, como realidade aumentada e inteligência artificial, para melhorar a experiência do usuário.
+                Essas inovações permitiram a criação de simuladores de laboratório mais realistas e aulas personalizadas baseadas no desempenho de cada aluno.
+            </p>
+          </div>
+        </div>
+        <div class="box box-left">
+          <i class='fas'>&#xf0ac;</i>
+          <div class="info">
+            <h2>2023: Crescimento Global e Comunidade</h2>
+            <p>
+                A plataforma viu um crescimento significativo em sua base de usuários, com a expansão internacional e o lançamento de cursos em diversos idiomas.
+                A High Ecology também criou uma comunidade online ativa, onde alunos,
+                professores e especialistas compartilham conhecimentos, discutem avanços na biologia e participam de webinars e workshops.
+            </p>
+          </div>
+        </div>
+        <div class="box box-right">
+          <i class='fas'>&#xf005;</i>
+          <div class="info">
+            <h2>2024: Reconhecimento e Inovação Contínua</h2>
+            <p>
+                Em 2024, a High Ecology se consolidou como uma das principais plataformas de cursos online sobre biologia.
+                A plataforma continua a investir em inovações educacionais, com novos módulos sobre biologia de conservação, bioinformática e sustentabilidade.
+                A missão de promover um aprendizado acessível e de alta qualidade permanece no centro da visão da plataforma.
+            </p>
+          </div>
+        </div>
+      </div>       
+    </main>
 
     <!--COMEÇO DO FOOTER-->
     <footer>
