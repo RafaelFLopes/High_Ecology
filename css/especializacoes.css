@@ -47,6 +47,7 @@ img {
 
 /*=============== CARD ===============*/
 .container {
+  
   display: grid;
  justify-content: center;
  align-items: center;
@@ -54,13 +55,7 @@ img {
 
 }
 
-
-.visualizar{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-img {
+img.eye-icon{
   width: 50px;
   height: auto;
 
@@ -77,7 +72,7 @@ img {
   overflow: hidden;
 }
 
-.card__img {
+img.cardimg{
   width: 328px;
   border-radius: 1.5rem;
 }
@@ -110,7 +105,7 @@ img {
   margin-bottom: .75rem;
 }
 
-.card__button {  
+.card__button a{  
   text-decoration: none;
   font-size: var(--small-font-size);
   font-weight: 500;
@@ -124,7 +119,7 @@ img {
   color: var(--first-color);
 }
 
-.card__button:hover {
+.card__buttona a:hover {
   text-decoration: underline;
 }
 
@@ -227,13 +222,153 @@ align-items: center;
   }
 
   .card__container {
-    grid-template-columns: repeat(3, 1fr);
-  }
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    flex-wrap: wrap;
+    max-width: 1200px; /* Define um limite para o conteúdo */
+    margin: 0 auto; /* Centraliza o container no meio da faixa */
+}
+
   .card__img {
     width: 348px;
   }
   .card__data {
     width: 316px;
     padding-inline: 2.5rem;
+  }
+}
+
+/* HEADER DOS CURSOS */
+.courses-header {
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f0f8ec;
+  border-radius: 10px;
+}
+
+.courses-header h1 {
+  font-size: 2.5em;
+  color: #3e7c4f;
+  margin-bottom: 10px;
+}
+
+.courses-header p {
+  font-size: 1.2em;
+  color: #526a50;
+}
+
+/* ÍCONES NOS CARDS */
+.card__icon {
+  font-size: 2em;
+  color: #3e7c4f;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* BANNER PROMOCIONAL */
+.promo-banner {
+  text-align: center;
+  margin: 40px auto;
+  padding: 20px;
+  background: #3e7c4f;
+  color: white;
+  border-radius: 10px;
+}
+
+.promo-banner h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.promo-banner p {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+.promo-button {
+  text-decoration: none;
+  background: white;
+  color: #307533;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.promo-button:hover {
+  background: #9a9b9a;
+}
+
+/* DEPOIMENTOS */
+.testimonials {
+  text-align: center;
+  margin: 50px auto;
+  background: #eaf6e9;
+  padding: 40px 20px;
+  border-radius: 10px;
+}
+
+.testimonials h2 {
+  font-size: 2em;
+  color: #3e7c4f;
+  margin-bottom: 20px;
+}
+
+.testimonial-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Permite que os elementos quebrem a linha em telas menores */
+}
+
+.testimonial {
+  flex: 1 1 calc(50% - 20px); /* Ocupa 50% da largura do container menos o espaço do gap */
+  max-width: 300px; /* Limita a largura máxima */
+}
+
+.testimonial {
+  max-width: 300px;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 8px;
+}
+
+.testimonial img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.testimonial p {
+  font-size: 1em;
+  color: #526a50;
+  margin-bottom: 10px;
+}
+
+.testimonial span {
+  font-weight: bold;
+  color: #3e7c4f;
+}
+.course-section {
+  background-color: #b9ceb9; /* Verde claro */
+  padding: 5px 0; /* Altura reduzida */
+  width: 100%; /* Garante que ocupa toda a largura da tela */
+}
+
+@media (max-width: 768px) {
+  .testimonial {
+      flex: 1 1 100%; /* Ocupa 100% da largura em telas pequenas */
+      max-width: none; /* Remove limite para permitir ocupar todo o espaço */
+  }
+}
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+  .card__container {
+      gap: 40px; /* Diminui o espaço entre os cards */
   }
 }

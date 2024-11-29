@@ -12,12 +12,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../img/icon.png"> <!--favicon-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="crossorigin="anonymous" referrerpolicy="no-referrer" /> <!--imagens para o footer-->
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> <!--imagens para o footer-->
+
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/footer.css">
@@ -25,9 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/especializacoes.css">
 
     <script src="../js/main.js" defer></script>
-    
+
     <title>Especializações - High Ecology</title>
 </head>
+
 <body>
 
     <!--COMEÇO DA NAVBAR-->
@@ -48,30 +52,74 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!--COMEÇO DOS CURSOS-->
 
     <?php
-            include('../php/config.php');
+    include('../php/config.php');
 
-            $stmt = $pdo->query('SELECT * FROM cursos');
-            $courses = $stmt->fetchAll();
-            ?>
+    $stmt = $pdo->query('SELECT * FROM cursos');
+    $courses = $stmt->fetchAll();
+    ?>
 
-            <div class="container">
+    <!-- HEADER DOS CURSOS -->
+    <section class="courses-header">
+        <h1>Explore Nossas Especializações</h1>
+        <p>Descubra cursos inovadores que irão expandir seu conhecimento sobre ecologia e sustentabilidade. Faça parte
+            da mudança!</p>
+    </section>
+
+    <!-- LISTA DE CURSOS -->
+    <div class="course-section">
+        <div class="container">
             <form action="#" method="POST">
-               <div class="card__container">
-               <?php foreach ($courses as $course): ?>
-                  <article class="card__article">
-                     <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" alt="image" class="card__img">
-
-                     <div class="card__data">
-                        <span class="card__description"><?php echo htmlspecialchars($course['description']); ?></span>
-                        <h2 class="card__title"><?php echo htmlspecialchars($course['title']); ?></h2>
-                        <a  href="cadastro.php" type="button" class="card__button">Começar</a>
-                     </div>
-                  </article>
-                  <?php endforeach; ?>
-               </div>
-            </div>
+                <div class="card__container">
+                    <?php foreach ($courses as $course): ?>
+                        <article class="card__article">
+                            <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" alt="image"
+                                class="card__img">
+                            <div class="card__data">
+                                <span
+                                    class="card__description"><?php echo htmlspecialchars($course['description']); ?></span>
+                                <h2 class="card__title"><?php echo htmlspecialchars($course['title']); ?></h2>
+                                <a href="cadastro.php" type="button" class="card__button">Começar</a>
+                            </div>
+                        </article>
+                    <?php endforeach; ?>
+                </div>
             </form>
-         </div>
+        </div>
+    </div>
+    </form>
+    </div>
+
+    <!-- BANNER PROMOCIONAL -->
+    <div class="promo-banner">
+        <h2>Aproveite Nossa Promoção Exclusiva</h2>
+        <p>Inscreva-se hoje mesmo e obtenha acesso gratuito a um curso bônus!</p>
+        <a href="cadastro.php" class="promo-button">Garanta Sua Vaga</a>
+    </div>
+
+    <!-- DEPOIMENTOS -->
+    <section class="testimonials">
+        <h2>O que nossos alunos dizem</h2>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <img src="../img/avaliacao/pic-3.png" alt="Estudante 1">
+                <p>"Aprender sobre ecologia com a High Ecology mudou minha vida! Agora eu sei como contribuir para um
+                    mundo melhor."</p>
+                <span>- Maria Silva</span>
+            </div>
+            <div class="testimonial">
+                <img src="../img/avaliacao/pic-1.png" alt="Estudante 2">
+                <p>"Os cursos são práticos, informativos e incríveis. Recomendo a todos!"</p>
+                <span>- João Pereira</span>
+            </div>
+            <div class="testimonial">
+                <img src="../img/avaliacao/pic-2.png" alt="Estudante 3">
+                <p>"Os cursos são exelentes, aprendi muito e desejo continuar aprendendo cada vez mais com eles."</p>
+                <span>- Marco Bezerra</span>
+            </div>
+        </div>
+    </section>
+    </form>
+    </div>
 
     <!--FINAL DOS CURSOS-->
 
@@ -85,7 +133,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </li>
                     <li>
                         <div id="footer_social_media">
-                            <a href="https://instagram.com/high.ecology?igshid=OGQ5ZDc2ODk2ZA==" class="footer-link" id="instagram">
+                            <a href="https://instagram.com/high.ecology?igshid=OGQ5ZDc2ODk2ZA==" class="footer-link"
+                                id="instagram">
                                 <i class="fa-brands fa-instagram"></i>
                             </a>
                             <a href="high.ecology@hotmail.com" class="footer-link" id="emailfooter">
@@ -117,9 +166,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h2>Sobre</h2>
                 </li>
                 <li id="footer-sobre-texto">
-                    Uma rede online de ensino focado em incentivar os nossos estudantes a cuidar melhor do lugar onde eles moram, a Terra.
-                    Temos o objetivo de disponibilizar cursos que abrangem as mais diversas matérias dos estudos ecológicos. 
-               </li>
+                    Uma rede online de ensino focado em incentivar os nossos estudantes a cuidar melhor do lugar onde
+                    eles moram, a Terra.
+                    Temos o objetivo de disponibilizar cursos que abrangem as mais diversas matérias dos estudos
+                    ecológicos.
+                </li>
                 </li>
             </ul>
         </div>
@@ -130,4 +181,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </footer>
     <!--FINAL DO FOOTER-->
 </body>
+
 </html>

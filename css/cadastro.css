@@ -176,3 +176,58 @@ button.button-editar-perfil{
 
 
 /*====================FINAL PAGAMENTO======================*/
+
+
+.content{
+    margin-top: 42px;
+  }
+label.box{
+    background: #d3d3d3;
+    margin-top: 12px;
+    padding: 7px 12px;
+    display: flex;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  #one:checked ~ label.first,
+  #two:checked ~ label.second{
+    background: #5a8854;
+  }
+  #pix:checked ~ label.first,
+  #cartao:checked ~ label.second,
+  #boleto:checked ~ label.third{
+    background: #5a8854;
+  }
+label.box:hover{
+    background: #c9c9c9;
+  }
+label.box .circle{
+    height: 22px;
+    width: 22px;
+    background: #d3d3d3;
+    border: 5px solid transparent;
+    display: inline-block;
+    margin-right: 17px;
+    border-radius: 50%;
+    transition: all 0.25s ease;
+    background-color: #aaaaaa;
+  }
+  #one:checked ~ label.first .circle,
+  #two:checked ~ label.second .circle{
+    background: #395735;
+  }
+  #pix:checked ~ label.first .circle,
+  #cartao:checked ~ label.second .circle,
+  #boleto:checked ~ label.third .circle{
+    background: #395735;
+  }
+label.box .plan{
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+input[type="radio"]{
+    display: none;
+  }

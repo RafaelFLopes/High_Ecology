@@ -13,6 +13,11 @@ header {
 }
 
 /* Estilos dos botões */
+button.btn_modulo.btn.btn-warning{
+    background-color: rgb(54, 113, 201);
+    border-color:rgb(54, 113, 201); ;
+}
+
 .add-course,
 .btn-primary,
 .btn-warning,
@@ -45,8 +50,9 @@ header {
 
 /* Botões alinhados lado a lado dentro dos cards */
 .card-footer {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
 }
 
 /* Estilos dos cartões */

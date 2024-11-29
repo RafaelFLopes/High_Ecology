@@ -180,37 +180,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
                 <!--ADICIONAAAAAAAAAAAAR AQUII VINICIUUUSSSSSSSSS-->
 
-            <?php
-            include('../php/config.php');
+                <?php
+                    include('../php/config.php');
 
-            $stmt = $pdo->query('SELECT * FROM cursos');
-            $courses = $stmt->fetchAll();
+                    // Obter o ID do aluno da sessão
+                    $codAluno = $_SESSION['user']['id'];
 
-            $consultaSQL = $pdo->query('SELECT status FROM progresso WHERE Cod_Aluno AND id_curso');
-            ?>
+                    // Buscar todos os cursos
+                    $sqlCursos = 'SELECT * FROM cursos';
+                    $stmtCursos = $pdo->query($sqlCursos);
+                    $courses = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
 
-            <div class="container">
-            <form action="#" method="POST">
-               <div class="card__container">
-               <?php foreach ($courses as $course): ?>
-                  <article class="card__article">
-                        <img src="../img/eye.webp">
+                    // Buscar progresso do aluno com status "visualizado"
+                    $sqlProgresso = 'SELECT id_curso FROM progresso WHERE Cod_Aluno = :codAluno AND status = "visualizado"';
+                    $stmtProgresso = $pdo->prepare($sqlProgresso);
+                    $stmtProgresso->execute(['codAluno' => $codAluno]);
+                    $visualizados = $stmtProgresso->fetchAll(PDO::FETCH_COLUMN); // Apenas IDs de cursos
 
-                     <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" alt="image" class="card__img">
+                    // Criar um array para verificar quais cursos estão visualizados
+                    $visualizadosMap = array_flip($visualizados);
+                ?>
 
-                     <div class="card__data">
-                        <span class="card__description"><?php echo htmlspecialchars($course['description']); ?></span>
-                        <h2 class="card__title"><?php echo htmlspecialchars($course['title']); ?></h2>
-                        <button type="submit" class="card__button" name="btn_curso_comecar">Iniciar curso</button>
-                     </div>
-                  </article>
-                  <?php endforeach; ?>
+                <div class="container">
+                    <form action="#" method="POST">
+                        <div class="card__container">
+                            <?php foreach ($courses as $course): ?>
+                                <article class="card__article">
+                                    <?php if (isset($visualizadosMap[$course['id']])): ?>
+                                        <img src="../img/eye.webp" alt="Visualizado" class="eye-icon">
+                                    <?php endif; ?>
 
-                  <input type="hidden" name="txt_nome_do_curso" class="txt_nome_do_curso" value="">
-               </div>
-            </div>
-            </form>
-         </div>
+                                    <img src="../img/uploads/<?php echo htmlspecialchars($course['image']); ?>" alt="image" class="cardimg">
+
+                                    <div class="card__data">
+                                        <span class="card__description"><?php echo htmlspecialchars($course['description']); ?></span>
+                                        <h2 class="card__title"><?php echo htmlspecialchars($course['title']); ?></h2>
+                                        <button type="submit" class="card__button" name="btn_curso_comecar">Iniciar curso</button>
+                                    </div>
+                                </article>
+                            <?php endforeach; ?>
+
+                            <input type="hidden" name="txt_nome_do_curso" class="txt_nome_do_curso" value="">
+                        </div>
+                    </form>
+                </div>
 
          <script>
             // Seleciona todos os botões de módulo

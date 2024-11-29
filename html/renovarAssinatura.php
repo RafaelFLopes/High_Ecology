@@ -209,25 +209,57 @@ session_start();
                         <div class="titulo-col">
                             <h1>Planos</h1>
                         </div>
-                            <div class="inputBox-radio">
-                                <input type="radio" id="seed" name="planos" value="seed" required >
-                                <span>Seed - R$69,99</span>
+                        <div class="content">
+                            <input type="radio" name="planos" id="one" value="seed" required>
+                            <input type="radio" name="planos" id="two" value="growth" required>
+                        
+                            <label for="one" class="box first">
+                              <div class="plan">
+                              <span class="circle"></span>
+                              <span class="yearly">Seed</span>
                             </div>
-                            <div class="inputBox-radio">
-                                <input type="radio" id="growth" name="planos" value="growth" required >
-                                <span>Growth - R$99,99</span>
+                                <span class="price">R$69,99 <br> 1Mês</span>
+                            </label>
+                            <label for="two" class="box second">
+                              <div class="plan">
+                              <span class="circle"></span>
+                              <span class="yearly">Growth</span>
+                              
                             </div>
-
+                            <span class="price">R$99,99<br>3Meses</span>
+                                
+                            </label>
+                          </div>
                         </div>
 
                         <div class="col">
                         <div class="titulo-col">
                             <h1>Pagamento</h1>
                         </div>
-                            <div class="inputBox-editar-perfil">
-                                <span>Forma de pagamento:</span>
-                                <input type="text" id="pagamento" name="pagamento" placeholder="Forma de pagamento" required>
+                        <div class="content">
+                            <input type="radio" name="pagamento" id="pix" value="Pix" required>
+                            <input type="radio" name="pagamento" id="cartao" value="Cartão" required>
+                            <input type="radio" name="pagamento" id="boleto" value="Boleto" required>
+                        
+                            <label for="pix" class="box first">
+                              <div class="plan">
+                              <span class="circle"></span>
+                              <span class="yearly">Pix</span>
                             </div>
+                            </label>
+                            <label for="cartao" class="box second">
+                              <div class="plan">
+                              <span class="circle"></span>
+                              <span class="yearly">Cartão</span>
+                            </div>
+                            </label>
+                            <label for="boleto" class="box third">
+                              <div class="plan">
+                              <span class="circle"></span>
+                              <span class="yearly">Boleto</span>
+                            </div>
+                            </label>
+                          </div>
                         </div>
                     </div>
                     <button type="submit" class="button-editar-perfil" name="btn_renovar_assinatura">Renovar Assinatura</button>
