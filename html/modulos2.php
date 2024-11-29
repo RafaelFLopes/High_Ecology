@@ -238,7 +238,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                      <div class="card__data">
                         <span class="card__description"><?php echo htmlspecialchars($modulo['descricao_mod']); ?></span>
                         <h2 class="card__title"><?php echo htmlspecialchars($modulo['titulo_mod']);?></h2>
-                        <button type="submit" class="card__button" name="btn_modulo_visualizar">Começar</button>
+                        <button type="submit" class="card__button" name="btn_modulo_visualizar" style = "border:none">Começar</button>
                      </div>
                   </article>
                   <?php endforeach; ?>
