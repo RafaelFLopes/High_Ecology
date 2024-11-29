@@ -610,5 +610,28 @@ class metodos_principais {
         return false;
     }
 }
+
+public function emitirCertificado($Cod_Aluno, $id_do_curso) {
+    try {
+        $this->conn = new Conectar();
+
+        // Verifica se já existe um registro
+        $consultaSQL = $this->conn->prepare("SELECT * FROM certificado WHERE Cod_Aluno = $Cod_Aluno AND id_curso = $id_do_curso");
+        $consultaSQL->execute();
+
+        if ($consultaSQL->rowCount() == 0) { // Se não existir, insere
+            $insertSQL = $this->conn->prepare("INSERT INTO certificado (Cod_Aluno, id_curso) VALUES ($Cod_Aluno, $id_do_curso)");
+            $insertSQL->execute();
+            $this->conn = null; // Fecha conexão
+            return "emitido";
+        } else {
+            $this->conn = null; // Fecha conexão
+            return "teste"; // Já emitido
+        }
+    } catch (Exception $exc) {
+        echo "Erro ao emitir certificado: " . $exc->getMessage();
+    }
+}
+
 }
 ?>

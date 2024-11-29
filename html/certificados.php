@@ -166,27 +166,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </a>
                 </div>
             </div>
+            
+            <?php
+            include('../php/config.php');
+
+            $stmt = $pdo->query('SELECT * FROM certificado');
+            $courses = $stmt->fetchAll();
+            ?>
 
             <header>
                 <h1>Certificados</h1>
             </header>
-            <div class="container my-5">
-                <a href="CertificadoBiologia.php">
-                    <form class="" method="POST"> <!--tinha uma row aqui-->
-                        <div class="card" style="width: 27rem;">
-                            <img src="../img/especializacoes/biologia - curso.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h4 class="title-card"> Certificação - Biologia</h4>
-                                <p class="card-text">Biologia é a ciência natural que estuda a vida e os organismos
-                                    vivos.
-                                </p>
-                            </div>
-                        </div>
 
-                        
-                    </form>
-                </a>
-            </div>
         </div>
 
 

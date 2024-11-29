@@ -215,7 +215,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="card__data">
                                         <span class="card__description"><?php echo htmlspecialchars($course['description']); ?></span>
                                         <h2 class="card__title"><?php echo htmlspecialchars($course['title']); ?></h2>
-                                        <button type="submit" class="card__button" name="btn_curso_comecar">Iniciar curso</button>
+                                        <button type="submit" class="card__button" name="btn_curso_comecar" style="border:none">Iniciar curso</button>
                                     </div>
                                 </article>
                             <?php endforeach; ?>

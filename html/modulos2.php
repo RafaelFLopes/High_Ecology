@@ -2,11 +2,31 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['btn_emitir_certificado'])) {
+        include_once '../php/metodos_principais.php';
+        $metodos_principais = new metodos_principais();
+        $id_do_curso_certificado = $_SESSION['id_do_curso'];
+        $result = $metodos_principais->emitirCertificado($_SESSION["user"]['id'], $id_do_curso_certificado); // Passa os parâmetros
+
+        if ($result == "emitido") {
+            header("Location: ./certificados.php");
+            exit(); // Garante que o script pare
+        } else {
+            header("Location: ./certificados.php");
+        }
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['btn_modulo_visualizar'])) {
     $input_hidden = $_POST['txt_nome_do_modulo'];
     $_SESSION['nome_do_modulo'] = $input_hidden;
     header("Location: conteudo-cursos.php");
     exit();
+    }
 }
+
+
 
 ?>
 
@@ -185,20 +205,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 include_once '../php/metodos_principais.php';
                 $metodos_principais = new metodos_principais();
 
-                $result = $metodos_principais->preencherProgresso($_SESSION["user"]['id'], $_SESSION["id_do_curso"]);
+                $resultPreencherProgresso = $metodos_principais->preencherProgresso($_SESSION["user"]['id'], $_SESSION["id_do_curso"]);
 
-                if($result){?>
-                    <div class="button_emitir_certificado">
-                        <button>Emitir certificado</button>
-                    </div>
-                    
+                if($resultPreencherProgresso){?>
+                    <form method="POST">
+                        <div class="button_emitir_certificado">
+                            <button type="submit" name="btn_emitir_certificado">Emitir certificado</button>
+                        </div>
+                    </form>
                 <?php }
 
                 else { ?>
                     <div class="mensagemBemvindo">
                         <h1><?php echo "Emitir certificado após 7 dias do início do curso";?></h1>
                     </div>
-                <?php } ?>
+                <?php }?>
+
+                
+
+                
+                
 
             <div class="container">
                <form class="card__container" method="POST">
@@ -209,7 +235,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                      <div class="card__data">
                         <span class="card__description"><?php echo htmlspecialchars($modulo['descricao_mod']); ?></span>
                         <h2 class="card__title"><?php echo htmlspecialchars($modulo['titulo_mod']);?></h2>
-                        <a type="submit" class="card__button" name="btn_modulo_visualizar">Começar</a>
+                        <button type="submit" class="card__button" name="btn_modulo_visualizar">Começar</button>
                      </div>
                   </article>
                   <?php endforeach; ?>
